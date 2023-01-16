@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/event", name="app_event_")
+ * @Route("/participation", name="app_participation_")
  */
 class ParticipationController extends AbstractController
 {
     /**
-     * @Route("/create-participation", name="create_participation", methods={"GET", "POST"})
+     * @Route("/create", name="create", methods={"GET", "POST"})
      */
     public function create(Request $request, ParticipationRepository $participationRepository, Event $event, EventRepository $eventRepository): Response
     {
