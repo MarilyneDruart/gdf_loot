@@ -40,7 +40,7 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $eventRepository->add($event, true);
 
-            $this->addFlash('success', 'Evènement ajouté');
+            // $this->addFlash('success', 'Evènement ajouté');
             return $this->redirectToRoute('app_event_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -63,15 +63,17 @@ class EventController extends AbstractController
     /**
      * @Route ("/{id<\d+>}/update", name="update", methods={"GET", "POST"})
      */
-    public function update(Request $request, Event $event, EventRepository $eventRepository): Response
+    public function update(Request $request, Event $event, EventRepository $eventRepo): Response
     {
+
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $eventRepository->add($event, true);
 
-            $this->addFlash('warning', 'Evènement modifié');
+            $eventRepo->add($event, true);
+
+            // $this->addFlash('warning', 'Evènement modifié');
             // return $this->redirectToRoute('app_event_list', [], Response::HTTP_SEE_OTHER);
             return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
         }
@@ -91,7 +93,7 @@ class EventController extends AbstractController
             $eventRepository->remove($event, true);
         }
 
-        $this->addFlash('success', 'Evènement supprimé');
+        // $this->addFlash('success', 'Evènement supprimé');
         return $this->redirectToRoute('app_event_list', [], Response::HTTP_SEE_OTHER);
     }
 }

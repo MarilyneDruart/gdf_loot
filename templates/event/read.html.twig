@@ -16,6 +16,7 @@
 <div class="container">
 
 
+
     <div class="left-container">
         <table class="table">
             <thead>
@@ -60,10 +61,13 @@
                 {% endfor %}
             </tbody>
         </table>
+        {# <div>
+            <a class="bottom-button-update" href="{{ path('app_event_create_participation') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter une participation</a>
+        </div> #}
     </div>
 </div>
 <div class="bottom-button d-flex flex-wrap justify-content-evenly">
-    <a class="bottom-button-update" href="{{ path('app_event_update', {'id': event.id}) }}">Modifier l'évènement</a>
+    <a class="bottom-button-update" href="{{ path('app_event_update', {'id': event.id}) }}">Modifier l'évènement</a>      
     <a class="bottom-button-back" href="{{ path('app_event_list') }}">Retour</a>
     {{ include('event/_delete_form.html.twig') }}
 </div>
