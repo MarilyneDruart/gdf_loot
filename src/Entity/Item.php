@@ -56,7 +56,7 @@ class Item
     private $detail;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Slot::class, mappedBy="item")
+     * @ORM\ManyToMany(targetEntity=Slot::class, inversedBy="item")
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $slots;

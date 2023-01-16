@@ -162,6 +162,10 @@ a:hover, .navbar-expand-lg .navbar-nav .nav-link:hover {
     color: rgb(211, 43, 226);
 }
 
+form li {
+    color: red;
+}
+
 
 /* ---------------------- buttons ---------------------- */
 .button-top {
@@ -171,7 +175,7 @@ a:hover, .navbar-expand-lg .navbar-nav .nav-link:hover {
     margin-top: 4rem;
 }
 
-.bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back {
+.button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -211,7 +215,7 @@ table tbody td {
     color: white;
 }
 
-/* ---------------------- accrodions ---------------------- */
+/* ---------------------- accordions ---------------------- */
 
 .accordion-item, .accordion-button, .accordion-button:not(.collapsed), .list-group-item {
     background-color: rgba(0, 0, 0, 0.308);
@@ -256,20 +260,31 @@ table tbody td {
 }
 
 /* ---------------------- form (général) ---------------------- */
-form {
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#form input{
+    width: 25rem;
+}
+
+.container form {
     display: flex;
     flex-direction: column;
     text-align: center;
     color: white;
  }
  
- form > div:nth-child(1) {
+ .container form > div:nth-child(1) {
     margin-bottom: 2rem;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
  }
 
- form > div:nth-child(1) div {
+ .container form > div:nth-child(1) div {
     margin: 1rem;
     text-align: center;
  }
@@ -277,7 +292,6 @@ form {
  label.required {
     display: flex;
     background-color:  #88c9fbab;
-    margin: 0.5rem;
     padding: 0.5rem;
     justify-content: center;
  }
@@ -295,7 +309,35 @@ form {
 
 
 /* ---------------------- form (spécifiques) ---------------------- */
+/* ----------- form (item) ----------- */
+form #item {
+    flex-direction: row;
+}
 
+form #item_type {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+form #item_type label {
+    background: none;
+}
+
+form #item_raid {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+form #item_raid label {
+    background: none;
+}
+
+form #item_slots label {
+    margin-right: 3rem;
+    height: auto;
+}
+
+/* ----------- form (event) ----------- */
 form input#event_date {
     background-color: rgba(0, 0, 0, 0.493);
     color: white;
