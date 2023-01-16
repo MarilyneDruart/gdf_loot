@@ -71,28 +71,56 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-//    /**
-//     * @return Player[] Returns an array of Player objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findPlayerByRole(): array
+    {
+        $entityManager = $this->getEntityManager();
 
-//    public function findOneBySomeField($value): ?Player
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $query = $entityManager->createQuery(
+            'SELECT r.name, COUNT(p) 
+            FROM App\Entity\Player p 
+            JOIN App\Entity\Role r
+            WHERE p.role = r.id 
+            GROUP BY p.role
+            '
+        );
+
+        return $query->getResult();
+    }
+
+    public function findPlayerByParticipation(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT pl.name, COUNT(pa.isBench) 
+            FROM App\Entity\Participation pa
+            JOIN App\Entity\Player pl
+            WHERE pa.player = pl.id
+            AND pa.isBench = 0
+            GROUP BY pl.name
+            ORDER BY COUNT(pa.isBench) DESC
+            '
+        );
+
+        return $query->getResult();
+    }
+
+    public function findPlayerByBench(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT pl.name, COUNT(pa.isBench) 
+            FROM App\Entity\Participation pa
+            JOIN App\Entity\Player pl
+            WHERE pa.player = pl.id 
+            AND pa.isBench = 1
+            GROUP BY pl.name
+            ORDER BY COUNT(pa.isBench) DESC
+            '
+        );
+
+        return $query->getResult();
+    }
+
 }
