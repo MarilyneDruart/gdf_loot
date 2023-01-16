@@ -53,6 +53,7 @@ class RaidController extends AbstractController
 
     /**
      * @Route ("/{id<\d+>}", name="read", methods={"GET"})
+     * @Route ("/{slug}", name="show_by_slug", methods={"GET"})
      */
     public function read(Raid $raid): Response
     {
