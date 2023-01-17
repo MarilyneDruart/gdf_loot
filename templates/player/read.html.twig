@@ -3,7 +3,7 @@
 {% block title %}- Player{% endblock %}
 
 {% block body %}
-<div class="title">
+<div class="title-player">
     <h1>{{ player.name }}</h1>
     <h2>{{ player.role.name }} - {{ player.class }} - {{ player.rank }}</h1>
 </div>
@@ -15,52 +15,97 @@
                 <tr>
                     <th colspan="1">Date</th>
                     <th colspan="1">Raid</th>
-                    <th colspan="1">Item Bis</th>
-                    <th colspan="1">Item contested</th>
+                    <th colspan="1">Item</th>
+                    <th colspan="1">Type</th>
                 </tr>
             </thead>
             <tbody>
                 {# pour chaque évènement auquel le joueur a participé je veux la date de l'évènmenent, le(s) raid(s) où l'event s'est déroulé, le nom des items bis reçus, le nom des items contested reçus #}
 
                 {# pour chaque event du player, event date + event raids + item event player de type bis + item event player de type contested #}
-                {% for event in player.events %}
+                {% for loot in lootHistories %}
                 <tr>
-                    <td>{{ event.date ? event.date|date('d M Y - H:i') : ''  }}</td>
-                    <td>
-                        {% for raid in event.raid %}
-                        {{ raid.name }}</br>
-                        {% endfor %}
-                    </td>
-                    <td>nom_item_bis</td>
-                    <td>nom_item_contested</td>
+                    <td>{{ loot.date ? loot.date|date('d M Y - H:i') : '' }}</td>
+                    <td>{{ loot.raid }}</td>
+                    <td>{{ loot.item }}</td>
+                    <td>{{ loot.type }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
     <div class="right-container">
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre de présences
-                <span class="badge bg-dark rounded-pill">0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre de benchs
-                <span class="badge bg-dark rounded-pill">0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre d'items Bis
-                <span class="badge bg-dark rounded-pill">0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Nombre d'items Contested
-                <span class="badge bg-dark rounded-pill">0</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Score
-                <span class="badge bg-dark rounded-pill">0</span>
-            </li>
-        </ul>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Top 5 des présences
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>participation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        Top 5 des benchs
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>bench</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        Joueurs par grade
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>joueur</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseFour">
+                        Joueurs par rôle
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingFour">
+                    <div class="accordion-body">
+                        <ul>
+                            <li>joueur</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="bottom-button d-flex flex-wrap justify-content-evenly">

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
+use App\Repository\LootHistoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +26,7 @@ class PlayerController extends AbstractController
         $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
     
-        // dd($participations); die;
+        //dd($lootHistoriesBis); die;
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
@@ -34,7 +35,6 @@ class PlayerController extends AbstractController
             'roles' => $roles,
             'participations' => $participations,
             'benchs' => $benchs,
-
         ]);
     }
 
@@ -65,11 +65,17 @@ class PlayerController extends AbstractController
      * @Route ("/{id<\d+>}", name="read", methods={"GET"}, requirements={"id"="\d+"})
      * @Route ("/{slug}", name="show_by_slug", methods={"GET"})
      */
-    public function read(Player $player, PlayerRepository $playerRepository): Response
+    public function read(Player $player, PlayerRepository $playerRepository, LootHistoryRepository $lootHistoryRepository, string $slug): Response
     {
+
+        $lootHistories = $lootHistoryRepository->findLootHistory($slug);
+
+        //dd($lootHistories); die;
+
         return $this->render('player/read.html.twig', [
             'player' => $player,
             'players' => $playerRepository->findAll(),
+            'lootHistories' => $lootHistories,
         ]);
     }
 

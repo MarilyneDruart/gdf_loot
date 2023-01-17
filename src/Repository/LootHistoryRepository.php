@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\LootHistory;
+use App\Entity\Player;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,28 +40,21 @@ class LootHistoryRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return LootHistory[] Returns an array of LootHistory objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('l.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findLootHistory($slug): array
+    {
+        $entityManager = $this->getEntityManager();
 
-//    public function findOneBySomeField($value): ?LootHistory
-//    {
-//        return $this->createQueryBuilder('l')
-//            ->andWhere('l.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $query = $entityManager->createQuery(
+            "SELECT p.slug, r.name AS raid, e.date,i.name AS item, i.type 
+            FROM App\Entity\lootHistory lh 
+            JOIN App\Entity\Event e WITH lh.event = e.id 
+            JOIN App\Entity\Player p WITH lh.player = p.id 
+            JOIN App\Entity\Item i WITH lh.item = i.id 
+            JOIN App\Entity\Raid r WITH i.raid = r.id
+            WHERE p.slug = '$slug'
+            "
+        );
+
+        return $query->getResult();
+    }
 }

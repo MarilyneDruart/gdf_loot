@@ -225,7 +225,7 @@ table tbody td {
 
 /* ---------------------- page item ---------------------- */
 
-.title-item{
+.title-item, .title-player {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     margin: 2rem 0;
@@ -233,6 +233,10 @@ table tbody td {
     border-radius: 20px;
     margin: 5rem 20%;
     font-size: 3rem;
+}
+
+.title-player h1, .title-player h2 {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .wowhead {
