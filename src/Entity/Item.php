@@ -15,7 +15,6 @@ class Item
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -76,6 +75,13 @@ class Item
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -221,5 +227,6 @@ class Item
 
         return $this;
     }
+
 
 }

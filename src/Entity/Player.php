@@ -27,7 +27,7 @@ class Player
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=30, columnDefinition="enum('Chaman', 'Chasseur', 'Chevalier de la mort', 'Démoniste', 'Druide', 'Guerrier', 'Mage', 'Paladin', 'Prêtre', 'Voleur')")
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $class;
@@ -39,7 +39,7 @@ class Player
     private $score;
 
     /**
-     * @ORM\Column(type="string", length=30, columnDefinition="enum('Demi', 'Galopin', 'Sérieux')")
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $rank;

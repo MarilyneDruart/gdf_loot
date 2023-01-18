@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for item in items |sort((a, b) => a.name <=> b.name) %}
                 <tr>
                     <td>
                         <a href="{{ path('app_item_show_by_slug', {'slug': item.slug}) }}">
