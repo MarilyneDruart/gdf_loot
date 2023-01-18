@@ -27,11 +27,8 @@ class ItemType extends AbstractType
                 'choices'  => [
                     'Bis' => 'Bis',
                     'Contested' => 'Contested'],
-                    'expanded' => true,
+                'expanded' => true,
                 'multiple' => false,
-                ])
-            ->add('slug', TextType::class, [
-                'label' => 'Nom de l\'item sluggifié',
                 ])
             ->add('detail', TextType::class, [
                 'label' => 'URL',

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Item;
 use App\Form\ItemType;
+use App\Utils\MySlugger;
 use App\Repository\ItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class ItemController extends AbstractController
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
      */
-    public function create(Request $request, ItemRepository $itemRepository): Response
+    public function create(Request $request, ItemRepository $itemRepository, MySlugger $mySlugger): Response
     {
         $item = new Item();
 
@@ -39,6 +40,8 @@ class ItemController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $item->setSlug($mySlugger->slugify($item->getName()));
             $itemRepository->add($item, true);
 
             $this->addFlash('success', 'Item ajouté');
