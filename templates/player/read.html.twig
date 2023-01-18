@@ -56,7 +56,9 @@
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
                         <ul>
-                            <li>participation</li>
+                        {% for presence in nbPresences %}
+                            <li>{{ presence.nombre }} présence{{ presence.nombre > 1 ? 's' : '' }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -69,12 +71,13 @@
                         Nombre de bench
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
                         <ul>
-                            <li>bench</li>
-
+                        {% for bench in nbBenches %}
+                            <li>{{ bench.nombre }} bench{{ bench.nombre > 1 ? 'es' : '' }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -87,11 +90,13 @@
                         Nombre d'item "BIS"
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
                         <ul>
-                            <li>joueur</li>
+                        {% for items in nbItemBis %}
+                            <li>{{ items.nombre }} item{{ items.nombre > 1 ? 's' : '' }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -104,11 +109,13 @@
                         Nombre d'item "Contested"
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingFour">
                     <div class="accordion-body">
                         <ul>
-                            <li>joueur</li>
+                        {% for items in nbItemContested %}
+                            <li>{{ items.nombre }} item{{ items.nombre > 1 ? 's' : '' }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -121,11 +128,11 @@
                         Score
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingFive">
                     <div class="accordion-body">
                         <ul>
-                            <li>score</li>
+                            <li>A demander au grand maître Youyou</li>
                         </ul>
                     </div>
                 </div>

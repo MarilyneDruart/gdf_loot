@@ -69,13 +69,22 @@ class PlayerController extends AbstractController
     {
 
         $lootHistories = $lootHistoryRepository->findLootHistory($slug);
+        $nbPresences = $lootHistoryRepository->findNbPresence($slug);
+        $nbBenches = $lootHistoryRepository->findNbBench($slug);
+        $nbItemBis = $lootHistoryRepository->findNbItemBis($slug);
+        $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
+        //$scores = (($nbItemContested * 2) + $nbItemBis)/($nbBenches + $nbPresences);
 
-        //dd($lootHistories); die;
+        //dd($scores); die;
 
         return $this->render('player/read.html.twig', [
             'player' => $player,
             'players' => $playerRepository->findAll(),
             'lootHistories' => $lootHistories,
+            'nbPresences' => $nbPresences,
+            'nbBenches' => $nbBenches,
+            'nbItemBis' => $nbItemBis,
+            'nbItemContested' => $nbItemContested,
         ]);
     }
 

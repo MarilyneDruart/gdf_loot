@@ -57,4 +57,70 @@ class LootHistoryRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    public function findNbPresence($slug): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT(pa.player) AS nombre 
+            FROM App\Entity\Participation pa 
+            JOIN App\Entity\Player pl WHERE pa.player = pl.id
+            AND pa.isBench = 0
+            AND pl.slug = '$slug'
+            "
+        );
+
+        return $query->getResult();
+    }
+
+    public function findNbBench($slug): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT(pa.player) AS nombre 
+            FROM App\Entity\Participation pa 
+            JOIN App\Entity\Player pl WHERE pa.player = pl.id
+            AND pa.isBench = 1
+            AND pl.slug = '$slug'
+            "
+        );
+
+        return $query->getResult();
+    }
+
+    public function findNbItemBis($slug): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT(lh.item) AS nombre 
+            FROM App\Entity\lootHistory lh 
+            JOIN App\Entity\Player pl WITH lh.player = pl.id
+            AND pl.slug = '$slug'
+            JOIN App\Entity\Item it WITH lh.item = it.id
+            AND it.type = 'Bis'
+            "
+        );
+
+        return $query->getResult();
+    }
+
+    public function findNbItemContested($slug): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT(lh.item) AS nombre 
+            FROM App\Entity\lootHistory lh 
+            JOIN App\Entity\Player pl WITH lh.player = pl.id
+            AND pl.slug = '$slug'
+            JOIN App\Entity\Item it WITH lh.item = it.id
+            AND it.type = 'Contested'
+            "
+        );
+
+        return $query->getResult();
+    }
 }
