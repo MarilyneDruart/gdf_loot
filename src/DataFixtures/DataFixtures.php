@@ -2172,7 +2172,7 @@ class DataFixtures extends Fixture
                 [
                     "event" => "2022-11-30 20:45:00",
                     "player" => "Lucamar",
-                    "item" => "Ambition infinie",
+                    "item" => "Totem de croissance forestière",
                 ],
 
                 [
