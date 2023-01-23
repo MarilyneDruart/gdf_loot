@@ -73,7 +73,17 @@ class PlayerController extends AbstractController
         $nbBenches = $lootHistoryRepository->findNbBench($slug);
         $nbItemBis = $lootHistoryRepository->findNbItemBis($slug);
         $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
-        $scores = (($nbItemContested[0]['nombre'] * 2) + $nbItemBis[0]['nombre']) / ($nbBenches[0]['nombre'] + $nbPresences[0]['nombre']);
+
+        $scoreContested = $nbItemContested[0]['nombre'] * 2;
+        $scoreBis = $nbItemBis[0]['nombre'];
+        if ($nbBenches[0]['nombre'] == 0 && $nbPresences[0]['nombre'] == 0)
+        {
+            $scorePresence = 1;
+        } else {
+            $scorePresence = $nbBenches[0]['nombre'] + $nbPresences[0]['nombre'];
+        }
+
+        $scores = ($scoreContested + $scoreBis) / $scorePresence;
 
         //dd($scores); die;
 

@@ -132,7 +132,11 @@
                     aria-labelledby="panelsStayOpen-headingFive">
                     <div class="accordion-body">
                         <ul>
+                        {% if scores != 0 %}
                             <li>{{ scores }}</li>
+                        {% else %}
+                            <li>Pas de score</li>
+                        {% endif %}
                         </ul>
                     </div>
                 </div>
