@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Event;
+use App\Entity\Item;
 use App\Entity\LootHistory;
 use App\Entity\Player;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

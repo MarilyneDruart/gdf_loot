@@ -183,9 +183,16 @@ form li {
     padding: 0.5rem 1rem;
 }
 
+td .button-delete {
+    width: 3rem;    
+}
+
 .button-delete:hover {
     color: red;
+}
 
+.event-button-top-add {
+    margin-bottom: 1rem;
 }
 
 /* ---------------------- tables ---------------------- */
@@ -277,6 +284,7 @@ table tbody td {
 .container form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     color: white;
  }

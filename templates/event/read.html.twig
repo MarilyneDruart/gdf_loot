@@ -18,6 +18,9 @@
 
 
     <div class="left-container">
+        <div class="event-button-top-add">
+            <a class="button-top-add" href="{{ path('app_event_lootHistory_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un item looté</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -41,11 +44,11 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div>
-            <a class="button-top-add" href="{{ path('app_event_lootHistory_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un item looté</a>
-        </div>
     </div>
     <div class="right-container">
+        <div class="event-button-top-add">
+            <a class="button-top-add" href="{{ path('app_event_participation_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter une participation</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -69,9 +72,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <div>
-            <a class="button-top-add" href="{{ path('app_event_participation_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter une participation</a>
-        </div>
     </div>
 </div>
 <div class="bottom-button d-flex flex-wrap justify-content-evenly">
