@@ -35,10 +35,18 @@
                 {# Pour l'évènement en cours, je veux chaque item récupéré, son type, son raid d'appartenance, le joueur qui l'a récupéré #}
                 {% for lootHistories in event.lootHistories %}
                 <tr>
-                    <td>{{lootHistories.item.name }}</td>
+                    <td>
+                        <a href="{{ path('app_item_show_by_slug', {'slug': lootHistories.item.slug}) }}" target="_blank">
+                                {{lootHistories.item.name }}
+                        </a>
+                    </td>
                     <td>{{lootHistories.item.type }}</td>
                     <td>{{lootHistories.item.raid.name }}</td>
-                    <td>{{lootHistories.player.name}}</td>
+                    <td>
+                        <a href="{{ path('app_player_show_by_slug', {'slug': lootHistories.player.slug}) }}" target="_blank">
+                            {{ lootHistories.player.name }}
+                        </a>
+                    </td>
                     <td>{{ include('event/_lootHistory_delete_form.html.twig') }}</td>
                 </tr>
                 {% endfor %}
@@ -60,7 +68,11 @@
             <tbody>
                 {% for participations in event.participations %}
                 <tr>
-                    <td>{{participations.player.name }}</td>
+                    <td>
+                        <a href="{{ path('app_player_show_by_slug', {'slug': participations.player.slug}) }}" target="_blank">
+                            {{ participations.player.name }}
+                        </a>
+                    </td>
                     {% if participations.isBench == 0 %}
                         <td>Présent</td>
                     {% else %}
