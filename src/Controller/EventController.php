@@ -3,8 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\LootHistory;
+use App\Entity\Participation;
 use App\Form\EventType;
+use App\Form\LootHistoryType;
+use App\Form\ParticipationType;
 use App\Repository\EventRepository;
+use App\Repository\LootHistoryRepository;
+use App\Repository\ParticipationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,10 +60,11 @@ class EventController extends AbstractController
     /**
      * @Route ("/{id<\d+>}", name="read", methods={"GET"})
      */
-    public function read(Event $event): Response
+    public function read(Event $event, Participation $participation): Response
     {
         return $this->render('event/read.html.twig', [
             'event' => $event,
+            'participation' => $participation,
         ]);
     }
 
@@ -95,6 +103,118 @@ class EventController extends AbstractController
 
         // $this->addFlash('success', 'Evènement supprimé');
         return $this->redirectToRoute('app_event_list', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * add participation in event (id of event)
+     *
+     * @Route("/{id<\d+>}/participation/add", name="participation_create", methods={"GET", "POST"})
+     * @return Response
+     */
+    public function participationCreate(EntityManagerInterface $em, Event $event, Request $request) :Response
+    {
+        $participation = new Participation();
+
+        $participation->setEvent($event);
+        $form = $this->createForm(ParticipationType::class, $participation);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // ? Traiter le formulaire
+            // entitymanager ( cf paramètre, ParamConverter)
+            // persist
+            $em->persist($participation);
+
+            //flush
+            $em->flush();
+
+            // // ? Ajouter un flash message
+            // $this->addFlash('success', 'participation ajoutée');
+
+            // ? Rediriger l'utilisateur
+            return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
+
+        }
+
+        return $this->render('event/_participation_create.html.twig', [
+            'form' => $form->createView(),
+            'event' => $event,
+        ]);
+    }
+
+    /**
+     * delete participation in event (id of participation)
+     *
+     * @Route("/{id<\d+>}/participation/delete", name="participation_delete", methods={"GET", "POST"})
+     * @return Response
+     */
+    public function participationDelete(Request $request, Event $event, ParticipationRepository $participationRepository, Participation $participation) :Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$participation->getId(), $request->request->get('_token'))) {
+            $participationRepository->remove($participation, true);
+        }
+
+        // $this->addFlash('success', 'Participation supprimée');
+        return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
+    }
+
+    /**
+     * add lootHistory in event (id of event)
+     *
+     * @Route("/{id<\d+>}/loothistory/add", name="lootHistory_create", methods={"GET", "POST"})
+     * @return Response
+     */
+    public function lootHistoryCreate(EntityManagerInterface $em, Event $event, Request $request) :Response
+    {
+        $lootHistory = new LootHistory();
+
+        $lootHistory->setEvent($event);
+        $form = $this->createForm(LootHistoryType::class, $lootHistory);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // ? Traiter le formulaire
+            // entitymanager ( cf paramètre, ParamConverter)
+            // persist
+            $em->persist($lootHistory);
+
+            //flush
+            $em->flush();
+
+            // // ? Ajouter un flash message
+            // $this->addFlash('success', 'item looté ajouté');
+
+            // ? Rediriger l'utilisateur
+            return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
+
+        }
+
+        return $this->render('event/_lootHistory_create.html.twig', [
+            'form' => $form->createView(),
+            'event' => $event,
+        ]);
+    }
+    
+    /**
+     * delete lootHistory in event (id of lootHistory)
+     *
+     * @Route("/{id<\d+>}/lootHistory/delete", name="lootHistory_delete", methods={"GET", "POST"})
+     * @return Response
+     */
+    public function lootHistoryDelete(Request $request, Event $event, LootHistoryRepository $lootHistoryRepository, LootHistory $lootHistory) :Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$lootHistory->getId(), $request->request->get('_token'))) {
+            $lootHistoryRepository->remove($lootHistory, true);
+        }
+
+        // $this->addFlash('success', 'Item supprimé');
+        return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
     }
 }
 

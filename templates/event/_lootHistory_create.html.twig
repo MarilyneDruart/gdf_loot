@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}- Nouvelle participation{% endblock %}
+{% block title %}- Nouvel item looté{% endblock %}
 
 {% block body %}
 
     <div class="d-flex justify-content-evenly">
-        <h1>Ajouter une participation</h1>
+        <h1>Ajouter un item looté</h1>
     </div>
-
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -19,7 +18,7 @@
         {% endfor %}
 
     <div class="container px-4">
-        {{ include('participation/_form.html.twig') }}
+        {{ include('lootHistory/_form.html.twig') }}
     </div>
 
 {% endblock %}

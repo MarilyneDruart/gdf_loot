@@ -11,7 +11,7 @@
         {{ raid.name }}
         {% endfor %}
     </h1>
-    <h2><a href="{{ event.log }}">Warcraftlogs</a></br></h2>
+    <h2><a href="{{ event.log }}" target="_blank">Warcraftlogs</a></br></h2>
 </div>
 <div class="container">
 
@@ -25,6 +25,7 @@
                     <th>Type</th>
                     <th>Raid</th>
                     <th>Joueur</th>
+                    <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,10 +36,14 @@
                     <td>{{lootHistories.item.type }}</td>
                     <td>{{lootHistories.item.raid.name }}</td>
                     <td>{{lootHistories.player.name}}</td>
+                    <td>{{ include('event/_lootHistory_delete_form.html.twig') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        <div>
+            <a class="button-top-add" href="{{ path('app_event_lootHistory_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un item looté</a>
+        </div>
     </div>
     <div class="right-container">
         <table class="table">
@@ -46,24 +51,27 @@
                 <tr>
                     <th>Joueur</th>
                     <th>Statut</th>
+                    <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
                 {% for participations in event.participations %}
                 <tr>
                     <td>{{participations.player.name }}</td>
-                    {% if participations.isBench == 1 %}
+                    {% if participations.isBench == 0 %}
                         <td>Présent</td>
                     {% else %}
                         <td>Bench</td>
                     {% endif %}
+                    {# Créer requête #}
+                    <td>{{ include('event/_participation_delete_form.html.twig') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        {# <div>
-            <a class="bottom-button-update" href="{{ path('app_participation_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter une participation</a>
-        </div> #}
+        <div>
+            <a class="button-top-add" href="{{ path('app_event_participation_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter une participation</a>
+        </div>
     </div>
 </div>
 <div class="bottom-button d-flex flex-wrap justify-content-evenly">
