@@ -20,6 +20,7 @@
     <div class="left-container">
         <div class="event-button-top-add">
             <a class="button-top-add" href="{{ path('app_event_lootHistory_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un item looté</a>
+            <a class="button-top-add" href="{{ path('app_event_lootHistory_create_csv', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un fichier d'items lootés</a>
         </div>
         <table class="table">
             <thead>

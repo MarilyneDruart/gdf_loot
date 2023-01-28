@@ -175,7 +175,7 @@ form li {
     margin-top: 4rem;
 }
 
-.button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back {
+.button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back, .form-control {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -364,6 +364,27 @@ form input#event_log {
     background-color: rgba(0, 0, 0, 0.493);
     color: white;
     width: 75%;
+}
+
+.event-button-top-add {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* ----------- form (csv) ----------- */
+.csv-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.import-form {
+    display: flex;
+}
+
+.export-form {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* ---------------------- MEDIA-QUERIES ---------------------- */
