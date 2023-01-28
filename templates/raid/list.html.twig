@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for raid in raids %}
+            {% for raid in raids |sort((a, b) => a.name <=> b.name) %}
                 <tr>
                     <td>
                         <a href="{{ path('app_raid_show_by_slug', {'slug': raid.slug}) }}">
@@ -28,6 +28,7 @@
                         </a>
                     </td>
                     <td>
+                        Ø
                     </td>
                 </tr>
             {% endfor %}
