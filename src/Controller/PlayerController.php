@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Player;
 use App\Form\PlayerType;
+use App\Utils\MySlugger;
 use App\Repository\PlayerRepository;
 use App\Repository\LootHistoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,7 +42,7 @@ class PlayerController extends AbstractController
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
      */
-    public function create(Request $request, PlayerRepository $playerRepository): Response
+    public function create(Request $request, PlayerRepository $playerRepository, MySlugger $mySlugger): Response
     {
         $player = new Player();
 
@@ -49,9 +50,11 @@ class PlayerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $player->setSlug($mySlugger->slugify($player->getName()));
             $playerRepository->add($player, true);
 
-            $this->addFlash('success', 'Joueur ajouté');
+            // $this->addFlash('success', 'Joueur ajouté');
             return $this->redirectToRoute('app_player_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -110,7 +113,7 @@ class PlayerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $playerRepository->add($player, true);
 
-            $this->addFlash('warning', 'Joueur modifié');
+            // $this->addFlash('warning', 'Joueur modifié');
             return $this->redirectToRoute('app_player_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -129,7 +132,7 @@ class PlayerController extends AbstractController
             $eventRepository->remove($event, true);
         }
 
-        $this->addFlash('success', 'Joueur supprimé');
+        // $this->addFlash('success', 'Joueur supprimé');
         return $this->redirectToRoute('app_player_list', [], Response::HTTP_SEE_OTHER);
     }
 }

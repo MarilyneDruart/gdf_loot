@@ -175,6 +175,10 @@ form li {
     margin-top: 4rem;
 }
 
+.bottom-button {
+    margin-top: 1rem;
+}
+
 .button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back, .form-control {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;

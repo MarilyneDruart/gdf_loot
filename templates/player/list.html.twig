@@ -6,7 +6,9 @@
 {{ render(controller(
         'App\\Controller\\SearchController::playerSearchBar'
  )) }}
-
+<div class="button-top">        
+    <a href="{{ path('app_player_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un joueur</a>
+</div>
 <div class="container">
     <div class="left-container">
         <table>
@@ -16,10 +18,11 @@
                     <th colspan="1">Rôle</th>
                     <th colspan="1">Classe</th>
                     <th colspan="1">Grade</th>
+                    <th colspan="1">Etat</th>
                 </tr>
             </thead>
             <tbody>
-                {% for player in players %}
+                {% for player in players |sort((a, b) => a.name <=> b.name)%}
                 <tr>
                     <td>
                         <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
@@ -29,6 +32,7 @@
                     <td>{{ player.role.name }}</td>
                     <td>{{ player.class }}</td>
                     <td>{{ player.rank }}</td>
+                    <td>{% if player.isActif == 0 %} Inactif {% else %} Actif {% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>

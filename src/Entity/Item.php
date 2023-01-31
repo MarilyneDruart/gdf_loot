@@ -91,7 +91,7 @@ class Item
 
     public function setName(string $name): self
     {
-        $this->name = ucfirst(strtolower($name));
+        $this->name = ucfirst(mb_strtolower($name));
         
         return $this;
     }

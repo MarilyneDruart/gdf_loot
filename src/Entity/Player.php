@@ -46,13 +46,11 @@ class Player
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $isActif;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $slug;
 
@@ -91,7 +89,7 @@ class Player
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+        $this->name = ucfirst(mb_strtolower($name));
 
         return $this;
     }

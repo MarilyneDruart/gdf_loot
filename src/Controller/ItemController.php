@@ -44,7 +44,7 @@ class ItemController extends AbstractController
             $item->setSlug($mySlugger->slugify($item->getName()));
             $itemRepository->add($item, true);
 
-            $this->addFlash('success', 'Item ajouté');
+            // $this->addFlash('success', 'Item ajouté');
             return $this->redirectToRoute('app_item_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -76,7 +76,7 @@ class ItemController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $itemRepository->add($item, true);
 
-            $this->addFlash('warning', 'Item modifié');
+            // $this->addFlash('warning', 'Item modifié');
             return $this->redirectToRoute('app_item_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -95,7 +95,7 @@ class ItemController extends AbstractController
             $itemRepository->remove($item, true);
         }
 
-        $this->addFlash('success', 'Item supprimé');
+        // $this->addFlash('success', 'Item supprimé');
         return $this->redirectToRoute('app_item_list', [], Response::HTTP_SEE_OTHER);
     }
 }
