@@ -158,14 +158,9 @@ a {
     color: white;
 }
 
-a:hover, .navbar-expand-lg .navbar-nav .nav-link:hover {
+a:hover, .navbar-expand-lg, .navbar-nav, .nav-link:hover, .button-save:hover {
     color: rgb(211, 43, 226);
 }
-
-form li {
-    color: red;
-}
-
 
 /* ---------------------- buttons ---------------------- */
 .button-top {
@@ -317,6 +312,10 @@ table tbody td {
     color: white;
     height: 10rem;
  }
+
+ form li {
+    color: red;
+}
 
  form option:checked {
     background-color: rgba(30, 131, 190, 80%);

@@ -145,7 +145,34 @@ class EventController extends AbstractController
             'event' => $event,
         ]);
     }
-    
+
+    /**
+     * update lootHistory in event (id of event)
+     * 
+     * @Route ("/{id<\d+>}/loothistory/{lootHistory_id}/update", name="lootHistory_update", methods={"GET", "POST"})
+     * @ParamConverter("lootHistory", options={"id" = "lootHistory_id"})
+     */
+    public function lootHistoryUpdate(Request $request, Event $event, LootHistoryRepository $lootHistoryRepository, LootHistory $lootHistory): Response
+    {
+
+        $form = $this->createForm(LootHistoryType::class, $lootHistory);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $lootHistoryRepository->add($lootHistory, true);
+
+            // $this->addFlash('warning', 'Item looté modifié');
+            // return $this->redirectToRoute('app_event_list', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
+        }
+
+        return $this->renderForm('event/_lootHistory_update.html.twig', [
+            'event' => $event,
+            'form' => $form,
+        ]);
+    }
+
     /**
      * delete lootHistory in event (id of lootHistory)
      *
@@ -201,6 +228,33 @@ class EventController extends AbstractController
         return $this->render('event/_participation_create.html.twig', [
             'form' => $form->createView(),
             'event' => $event,
+        ]);
+    }
+
+    /**
+     * update participation in event (id of event)
+     * 
+     * @Route ("/{id<\d+>}/participation/{participation_id}/update", name="participation_update", methods={"GET", "POST"})
+     * @ParamConverter("participation", options={"id" = "participation_id"})
+     */
+    public function participationUpdate(Request $request, Event $event, ParticipationRepository $participationRepository, Participation $participation): Response
+    {
+
+        $form = $this->createForm(ParticipationType::class, $participation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $participationRepository->add($participation, true);
+
+            // $this->addFlash('warning', 'Participation modifiée');
+            // return $this->redirectToRoute('app_event_list', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_event_read', ['id' => $event->getId()]);
+        }
+
+        return $this->renderForm('event/_participation_update.html.twig', [
+            'event' => $event,
+            'form' => $form,
         ]);
     }
 

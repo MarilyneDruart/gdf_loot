@@ -19,7 +19,7 @@ class ParticipationType extends AbstractType
             ->add('player',
             EntityType::class, [
                 'class' => Player::class,
-                'label' => 'Joueurs',
+                'label' => 'Joueur',
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => false,
