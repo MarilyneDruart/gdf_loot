@@ -23,40 +23,47 @@ class EventType extends AbstractType
                 'widget' => 'single_text',
                 'input' => 'datetime_immutable',
                 'html5' => true,
-                ])
+                ]
+            )
             ->add('raid', EntityType::class, [
                 'class' => Raid::class,
                 'label' => 'Raid(s)',
                 'choice_label' => 'name',
                 'multiple' => true, 
                 'expanded' => true,
-                'required' => true,] 
+                'required' => true,
+                ]
             )
-            ->add('player',
-            EntityType::class, [
-                'class' => Player::class,
-                'label' => 'Joueurs',
-                'choice_label' => 'name',
-                'attr' => [
-                    'class' => 'list'
-                ],
-                'multiple' => true,
-                'expanded' => false,
-                'required' => true,])
-            ->add('item',
-            EntityType::class, [
-                'class' => Item::class,
-                'label' => 'Items lootés',
-                'choice_label' => 'name',
-                'attr' => [
-                    'class' => 'list'
-                ],
-                'multiple' => true, 
-                'expanded' => false,
-                'required' => true,])
             ->add('log', TextType::class, [
                 'label' => 'URL log',
-                ])
+                ]
+            )
+            // ->add('player',
+            // EntityType::class, [
+            //     'class' => Player::class,
+            //     'label' => 'Joueurs',
+            //     'choice_label' => 'name',
+            //     'attr' => [
+            //         'class' => 'list'
+            //     ],
+            //     'multiple' => true,
+            //     'expanded' => false,
+            //     'required' => true,
+            //     ]
+            // )
+            // ->add('item',
+            // EntityType::class, [
+            //     'class' => Item::class,
+            //     'label' => 'Items lootés',
+            //     'choice_label' => 'name',
+            //     'attr' => [
+            //         'class' => 'list'
+            //     ],
+            //     'multiple' => true, 
+            //     'expanded' => false,
+            //     'required' => true,
+            //     ]
+            // )
         ;
     }
 

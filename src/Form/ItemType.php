@@ -20,56 +20,28 @@ class ItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('name', TextType::class, [
+            ->add('id')
+            ->add('name', TextType::class, [
             'label' => 'Nom de l\'item',
             ])
             ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'Bis' => 'Bis',
                     'Contested' => 'Contested'],
-                    'expanded' => true,
+                'expanded' => true,
                 'multiple' => false,
-                ])
-            ->add('slug', TextType::class, [
-                'label' => 'nom-de-l-item-sluggifié',
                 ])
             ->add('detail', TextType::class, [
                 'label' => 'URL',
                 ])
-            ->add('role',
-            EntityType::class, [
-                'class' => Role::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => true,]
-            )
-            ->add('player',
-            EntityType::class, [
-                'class' => Player::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,]
-            )
-            ->add('events',
-            EntityType::class, [
-                'class' => Event::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,]
-            )
-            ->add('raid',
-            EntityType::class, [
+            ->add('raid', EntityType::class, [
                 'class' => Raid::class,
                 'choice_label' => 'name',
                 'multiple' => false,
                 'expanded' => true,
                 'required' => true,]
             )
-            ->add('slots',
-            EntityType::class, [
+            ->add('slots', EntityType::class, [
                 'class' => Slot::class,
                 'choice_label' => 'name',
                 'multiple' => true,

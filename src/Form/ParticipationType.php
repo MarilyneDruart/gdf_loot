@@ -3,32 +3,36 @@
 namespace App\Form;
 
 use App\Entity\Event;
+use App\Entity\Participation;
 use App\Entity\Player;
-use App\Entity\Raid;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RaidType extends AbstractType
+class ParticipationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => 'Nom du raid',
-                ])
-            ->add('slug', TextType::class, [
-                'label' => 'nom-du-raid-sluggifié',
-                ])
+            ->add('isBench')
+            ->add('player',
+            EntityType::class, [
+                'class' => Player::class,
+                'label' => 'Joueur',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+                'required' => true,
+                ]
+            )
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Raid::class,
+            'data_class' => Participation::class,
         ]);
     }
 }

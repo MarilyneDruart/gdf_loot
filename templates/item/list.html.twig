@@ -3,10 +3,14 @@
 {% block title %}- Liste des items{% endblock %}
 
 {% block body %}
+<div class="searchBar">
 {{ render(controller(
         'App\\Controller\\SearchController::itemSearchBar'
  )) }}
- 
+</div>
+<div class="button-top">        
+    <a href="{{ path('app_item_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un item</a>
+</div>
 <div class="container">
     <table>
         <thead>
@@ -15,11 +19,11 @@
                 <th colspan="1">Emplacement</th>
                 <th colspan="1">Raid</th>
                 <th colspan="1">Type</th>
-                <th colspan="1">Rôle</th>
+                <th colspan="1">Id</th>
             </tr>
         </thead>
         <tbody>
-            {% for item in items %}
+            {% for item in items |sort((a, b) => a.name <=> b.name) %}
                 <tr>
                     <td>
                         <a href="{{ path('app_item_show_by_slug', {'slug': item.slug}) }}">
@@ -33,12 +37,7 @@
                     </td>
                     <td>{{item.raid.name}}</td>
                     <td>{{item.type}}</td>
-                    <td>
-                            {% for role in item.role %}
-                                {{ role.name }}</br>
-                            {% endfor %}
-                        </a>
-                    </td>
+                    <td>{{item.id}}</td>
                 </tr>
             {% endfor %}
         </tbody>

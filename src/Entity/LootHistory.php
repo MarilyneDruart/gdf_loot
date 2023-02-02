@@ -18,17 +18,17 @@ class LootHistory
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Event::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="lootHistories")
      */
     private $event;
 
     /**
-     * @ORM\OneToOne(targetEntity=Player::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Player::class, inversedBy="lootHistories")
      */
     private $player;
 
     /**
-     * @ORM\OneToOne(targetEntity=Item::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Item::class, inversedBy="lootHistories")
      */
     private $item;
 

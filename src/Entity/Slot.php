@@ -30,7 +30,7 @@ class Slot
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="slots")
+     * @ORM\ManyToMany(targetEntity=Item::class, mappedBy="slots")
      */
     private $item;
 

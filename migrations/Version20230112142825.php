@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230112133751 extends AbstractMigration
+final class Version20230112142825 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20230112133751 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE loot_history (id INT AUTO_INCREMENT NOT NULL, event_id INT DEFAULT NULL, player_id INT DEFAULT NULL, item_id INT DEFAULT NULL, UNIQUE INDEX UNIQ_2ED2066371F7E88B (event_id), UNIQUE INDEX UNIQ_2ED2066399E6F5DF (player_id), UNIQUE INDEX UNIQ_2ED20663126F525E (item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE loot_history (id INT AUTO_INCREMENT NOT NULL, event_id INT DEFAULT NULL, player_id INT DEFAULT NULL, item_id INT DEFAULT NULL, INDEX IDX_2ED2066371F7E88B (event_id), INDEX IDX_2ED2066399E6F5DF (player_id), INDEX IDX_2ED20663126F525E (item_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE loot_history ADD CONSTRAINT FK_2ED2066371F7E88B FOREIGN KEY (event_id) REFERENCES event (id)');
         $this->addSql('ALTER TABLE loot_history ADD CONSTRAINT FK_2ED2066399E6F5DF FOREIGN KEY (player_id) REFERENCES player (id)');
         $this->addSql('ALTER TABLE loot_history ADD CONSTRAINT FK_2ED20663126F525E FOREIGN KEY (item_id) REFERENCES item (id)');
