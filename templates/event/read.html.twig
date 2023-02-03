@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Evènement{% endblock %}
+
+{% block body %}
+
+<div class="title">
+    <h1>
+        {{ event.date ? event.date|date('d M Y - H:i') : ''  }}</br>
+        {% for raid in event.raid %}
+        {{ raid.name }}
+        {% endfor %}
+    </h1>
+    <h2><a href="{{ event.log }}" target="_blank" title="Voir les logs">Warcraftlogs</a></br></h2>
+</div>
+<div class="container">
+
+
+
+    <div class="left-container">
+        <div class="event-button-top-add">
+            <a class="button-top-add" href="{{ path('app_event_lootHistory_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un item looté</a>
+            {# <a class="button-top-add" href="{{ path('app_event_lootHistory_create_csv', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un fichier d'items lootés</a> #}
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Type</th>
+                    <th>Raid</th>
+                    <th>Joueur</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {# Pour l'évènement en cours, je veux chaque item récupéré, son type, son raid d'appartenance, le joueur qui l'a récupéré #}
+                {% for lootHistories in event.lootHistories %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_item_show_by_slug', {'slug': lootHistories.item.slug}) }}" target="_blank" title="Voir l'item">
+                                {{lootHistories.item.name }}
+                        </a>
+                    </td>
+                    <td>{{lootHistories.item.type }}</td>
+                    <td>{{lootHistories.item.raid.name }}</td>
+                    <td>
+                        <a href="{{ path('app_player_show_by_slug', {'slug': lootHistories.player.slug}) }}" target="_blank" title="Voir le joueur">
+                            {{ lootHistories.player.name }}
+                        </a>
+                    </td>
+                    <td><a class="bottom-button-update" href="{{ path('app_event_lootHistory_update', {'id': event.id, 'lootHistory_id': lootHistories.id}) }}" title="Modifier l'item looté"><i class="bi bi-pencil"></i></a></td>
+                    <td>{{ include('event/_lootHistory_delete_form.html.twig') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="right-container">
+        <div class="event-button-top-add">
+            <a class="button-top-add" href="{{ path('app_event_participation_create', {id: event.id} )}}" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter une participation</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Joueur</th>
+                    <th>Statut</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participations in event.participations %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_player_show_by_slug', {'slug': participations.player.slug}) }}" target="_blank" title="Voir le joueur">
+                            {{ participations.player.name }}
+                        </a>
+                    </td>
+                    {% if participations.isBench == 0 %}
+                        <td>Présent</td>
+                    {% else %}
+                        <td>Bench</td>
+                    {% endif %}
+                    <th><a class="bottom-button-update" href="{{ path('app_event_participation_update', {'id': event.id, 'participation_id': participations.id}) }}" title="Modifier la participation"><i class="bi bi-pencil"></i></a></th>
+                    <td>{{ include('event/_participation_delete_form.html.twig') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="bottom-button d-flex flex-wrap justify-content-evenly">
+    <a class="bottom-button-update" href="{{ path('app_event_update', {'id': event.id}) }}">Modifier l'évènement</a>      
+    <a class="bottom-button-back" href="{{ path('app_event_list') }}" title="Retour à la liste des évènements">Retour</a>
+    {{ include('event/_delete_form.html.twig') }}
+</div>
+{% endblock %}

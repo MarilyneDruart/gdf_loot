@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Accueil{% endblock %}
+
+{% block body %}
+<div class="container" id="calendar">
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'fr',
+            timeZone: 'Europe/Paris',
+            headerToolbar: {
+                start: 'dayGridMonth, timeGridWeek',
+                center: 'title',
+            }
+
+        });
+
+        calendar.render();
+
+    });
+</script>
+{% endblock %}

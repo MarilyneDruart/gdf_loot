@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Item{% endblock %}
+
+{% block body %}
+
+<h2 class="title-item">{{ item.name}}</h2>
+
+    <div class="wowhead">
+        <a href="{{ item.detail}}" target="_blank" rel="noopener noreferrer" class="wowhead-link">
+        <img src="{{ asset('../images/logo-wowhead.png') }}" class="wowhead-logo">
+        <p class="wowhead-title">Voir le détail sur</p>
+        </a>
+    </div>
+
+<div class="bottom-button d-flex flex-wrap justify-content-evenly">
+    <a class="bottom-button-update" href="{{ path('app_item_update', {'id': item.id}) }}">Modifier l'item</a>      
+    <a class="bottom-button-back" href="{{ path('app_item_list') }}">Retour</a>
+    {{ include('item/_delete_form.html.twig') }}
+</div>
+{% endblock %}

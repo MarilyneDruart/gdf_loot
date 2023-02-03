@@ -1,0 +1,416 @@
+/* ---------------------- HTML + BODY + HEADER + MAIN + FOOTER ---------------------- */
+
+html, body {
+    box-sizing: border-box;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+ }
+
+body {
+    background-image: url(../images/og-image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    flex-grow: 1;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header, footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+main {
+    margin: 1rem;
+}
+
+footer {
+    width: 100%;
+    /* height: 2.5rem; */
+    background-color: rgb(30, 131, 190, 0.418);
+    text-align: center;
+}
+
+.footer-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0.5rem;
+}
+
+.footer-list-text {
+    color: rgb(255, 255, 255);
+}
+
+
+/* ---------------------- navbar ---------------------- */
+
+.navbar {
+    background-color: rgba(30, 131, 190, 0.418);
+    background-position:bottom;
+    width: 100%;
+    height: 6rem;
+}
+    
+.logo-nav {
+    width: 12rem;
+    height: auto;
+    margin: 0 2rem;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    color: white;
+    font-size: 1.3rem;
+    margin: 2rem;
+}
+
+/* ---------------------- searchbar ---------------------- */
+
+.search-bar {
+    width: 55%;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: #1b2f4ead solid 1px;
+}
+
+.search-bar:hover {
+    -webkit-box-shadow: 2px -2px 9px 6px rgba(0,0,0,0.34); 
+    box-shadow: 2px -2px 9px 6px rgba(0,0,0,0.34);
+}
+
+.result-bar-title {
+    width: 8rem;
+    font-size: 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(30, 131, 190, 0.418);
+    border: #1b2f4ead solid 1px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem auto;
+}
+
+.result-bar-response {
+    width: 30%;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: #1b2f4ead solid 1px;
+    background-color: rgba(255, 255, 255);
+}
+
+.result-bar-choice {
+    text-align: center;
+    color: #1b2f4ead;
+    margin: 0;
+}
+
+/* ---------------------- calendrier ---------------------- */
+#calendar {
+    width: 45rem;
+    margin: auto;
+}
+
+
+/* ---------------------- container principaux ---------------------- */
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 4rem auto;
+    height: auto;
+}
+
+.left-container {
+    width: 42rem;
+}
+
+.right-container {
+    width: 25rem;
+}
+
+
+/* ---------------------- textes ---------------------- */
+h1, h2 {
+    color: white;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, .navbar-expand-lg, .navbar-nav, .nav-link:hover, .button-save:hover {
+    color: rgb(211, 43, 226);
+}
+
+/* ---------------------- buttons ---------------------- */
+.button-top {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 2rem;
+    margin-top: 4rem;
+}
+
+.bottom-button {
+    margin-top: 1rem;
+}
+
+.button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back, .form-control {
+    background-color: rgba(30, 131, 190, 0.418);
+    color: white;
+    border: #1b2f4ead solid 1px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+td .button-delete {
+    width: 3rem;    
+}
+
+.button-delete:hover {
+    color: red;
+}
+
+.event-button-top-add {
+    margin-bottom: 1rem;
+}
+
+/* ---------------------- tables ---------------------- */
+table {
+    padding: 2rem;
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+
+.container table > thead > tr > th  {
+    background-color: #6179a180;
+    font-weight: bold;
+    color: white;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #88c9fbab;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #1b2f4ead;
+}
+
+table tbody td {
+    padding: 0 1rem;
+    color: white;
+}
+
+/* ---------------------- accordions ---------------------- */
+
+.accordion-item, .accordion-button, .accordion-button:not(.collapsed), .list-group-item {
+    background-color: rgba(0, 0, 0, 0.308);
+    color:white;
+}
+
+
+/* ---------------------- page item ---------------------- */
+
+.title-item, .title-player {
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin: 2rem 0;
+    border: 4px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    margin: 5rem 20%;
+    font-size: 3rem;
+}
+
+.title-player h1, .title-player h2 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wowhead {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10rem;
+}
+
+.wowhead-link {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.wowhead-logo {
+    width: 30rem;
+    opacity: 70%;
+}
+
+.wowhead-title {
+    text-align: center;
+    font-size: 3rem;
+    margin: 7rem 0 0 0;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------------------- form (général) ---------------------- */
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#form input{
+    width: 25rem;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+ }
+ 
+ .container form > div:nth-child(1) {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+ }
+
+ .container form > div:nth-child(1) div {
+    margin: 1rem;
+    text-align: center;
+ }
+
+ label.required {
+    display: flex;
+    background-color:  #88c9fbab;
+    padding: 0.5rem;
+    justify-content: center;
+ }
+ 
+ form .list {
+    background-color: rgba(0, 0, 0, 0.493);
+    color: white;
+    height: 10rem;
+ }
+
+ form li {
+    color: red;
+}
+
+ form option:checked {
+    background-color: rgba(30, 131, 190, 80%);
+    color: white;
+ }
+
+
+/* ---------------------- form (spécifiques) ---------------------- */
+/* ----------- form (item) ----------- */
+form #item {
+    flex-direction: row;
+}
+
+form #item_type {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+form #item_type label {
+    background: none;
+}
+
+form #item_raid {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+form #item_raid label {
+    background: none;
+}
+
+form #item_slots label {
+    margin-right: 3rem;
+    height: auto;
+}
+
+/* ----------- form (event) ----------- */
+form input#event_date {
+    background-color: rgba(0, 0, 0, 0.493);
+    color: white;
+}
+
+form #event_raid label {
+    margin-right: 3rem;
+    height: auto;
+}
+
+form input#event_log {
+    background-color: rgba(0, 0, 0, 0.493);
+    color: white;
+    width: 75%;
+}
+
+.event-button-top-add {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* ----------- form (csv) ----------- */
+.csv-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.import-form {
+    display: flex;
+}
+
+.export-form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ---------------------- MEDIA-QUERIES ---------------------- */
+
+@media screen and (max-width: 800px) {
+    .wowhead-link {
+        flex-direction: column-reverse;
+    }
+    .title-item{
+        font-size: 1.5rem;
+    }
+    .wowhead-logo {
+        width: 15rem;
+    }
+    .wowhead-title {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .result-bar-response {
+        width: 50%;
+    }
+    .result-bar-choice {
+        font-size: 0.8rem;
+    }
+}
