@@ -44,10 +44,6 @@ class DataFixtures extends Fixture
                     "name" => "Naxxramas",
                 ],
 
-                [
-                    "name" => "Ulduar",
-                ],
-
             ];
 
             // $raidsObjArray = [];
@@ -1680,7 +1676,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Healer",
                     "rank" => "Demi",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1707,7 +1703,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Demi",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1715,7 +1711,7 @@ class DataFixtures extends Fixture
                     "class" => "Paladin",
                     "score" => "0",
                     "role" => "Healer",
-                    "rank" => "Demi",
+                    "rank" => "Galopin",
                     "is_actif" => "1",
                 ],
 
@@ -1734,11 +1730,11 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
-                    "name" => "Chip",
+                    "name" => "Chipmage",
                     "class" => "Mage",
                     "score" => "0",
                     "role" => "Caster",
@@ -1752,7 +1748,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Caster",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1760,7 +1756,7 @@ class DataFixtures extends Fixture
                     "class" => "Démoniste",
                     "score" => "0",
                     "role" => "Caster",
-                    "rank" => "Demi",
+                    "rank" => "Sérieux",
                     "is_actif" => "1",
                 ],
 
@@ -1774,7 +1770,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
-                    "name" => "Elvidora",
+                    "name" => "Elvi",
                     "class" => "Chevalier de la mort",
                     "score" => "0",
                     "role" => "CAC",
@@ -1787,7 +1783,7 @@ class DataFixtures extends Fixture
                     "class" => "Voleur",
                     "score" => "0",
                     "role" => "CAC",
-                    "rank" => "Sérieux",
+                    "rank" => "Galopin",
                     "is_actif" => "1",
                 ],
 
@@ -1806,7 +1802,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1815,7 +1811,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1824,7 +1820,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1833,20 +1829,11 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Caster",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
-                ],
-
-                [
-                    "name" => "Feyde",
-                    "class" => "Démoniste",
-                    "score" => "0",
-                    "role" => "Caster",
-                    "rank" => "Sérieux",
                     "is_actif" => "1",
                 ],
 
                 [
-                    "name" => "Gwendydd",
+                    "name" => "Gwen",
                     "class" => "Druide",
                     "score" => "0",
                     "role" => "Healer",
@@ -1865,9 +1852,9 @@ class DataFixtures extends Fixture
 
                 [
                     "name" => "Judgentix",
-                    "class" => "Chaman",
+                    "class" => "Paladin",
                     "score" => "0",
-                    "role" => "Heal",
+                    "role" => "CAC",
                     "rank" => "Sérieux",
                     "is_actif" => "1",
                 ],
@@ -1878,11 +1865,11 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Sérieux",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
-                    "name" => "Kenym",
+                    "name" => "Keny",
                     "class" => "Chevalier de la mort",
                     "score" => "0",
                     "role" => "CAC",
@@ -1896,7 +1883,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Caster",
                     "rank" => "Sérieux",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1913,7 +1900,7 @@ class DataFixtures extends Fixture
                     "class" => "Prêtre",
                     "score" => "0",
                     "role" => "Caster",
-                    "rank" => "Sérieux",
+                    "rank" => "Demi",
                     "is_actif" => "1",
                 ],
 
@@ -1923,7 +1910,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Healer",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1932,7 +1919,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Caster",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -1945,7 +1932,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
-                    "name" => "Mjollnir",
+                    "name" => "Mjol",
                     "class" => "Mage",
                     "score" => "0",
                     "role" => "Caster",
@@ -1972,7 +1959,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
-                    "name" => "Pyrotesse",
+                    "name" => "Pyro",
                     "class" => "Guerrier",
                     "score" => "0",
                     "role" => "CAC",
@@ -1995,7 +1982,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Healer",
                     "rank" => "Sérieux",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -2004,7 +1991,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Caster",
                     "rank" => "Demi",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -2031,7 +2018,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Sérieux",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -2040,24 +2027,15 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "CAC",
                     "rank" => "Galopin",
-                    "is_actif" => "0",
-                ],
-
-                [
-                    "name" => "Synadra",
-                    "class" => "Chasseur",
-                    "score" => "0",
-                    "role" => "CAC",
-                    "rank" => "Sérieux",
                     "is_actif" => "1",
                 ],
 
                 [
-                    "name" => "Tinduviel",
+                    "name" => "Tindu",
                     "class" => "Guerrier",
                     "score" => "0",
                     "role" => "CAC",
-                    "rank" => "Sérieux",
+                    "rank" => "Demi",
                     "is_actif" => "1",
                 ],
 
@@ -2094,7 +2072,7 @@ class DataFixtures extends Fixture
                     "score" => "0",
                     "role" => "Caster",
                     "rank" => "Sérieux",
-                    "is_actif" => "0",
+                    "is_actif" => "1",
                 ],
 
                 [
@@ -2102,7 +2080,7 @@ class DataFixtures extends Fixture
                     "class" => "Mage",
                     "score" => "0",
                     "role" => "Caster",
-                    "rank" => "Sérieux",
+                    "rank" => "Demi",
                     "is_actif" => "1",
                 ],
 
@@ -2143,33 +2121,31 @@ class DataFixtures extends Fixture
         // ------------------------------- Events -------------------------------
             $events = [
                 [
-                    "date" => "2023-01-22 20:45:00",
-                    "log" => "https://classic.warcraftlogs.com/reports/WK2rnxcaMzARLf1H/#boss=-2&difficulty=0&wipes=2&view=rankings",
+                    "date" => "2022-11-30 20:45:00",
+                    "log" => "https://classic.warcraftlogs.com/reports/GtrmZdLaC7Pykh2c/#boss=-2&difficulty=0&wipes=2&view=rankings",
                     "raid" => [
-                        "Ulduar",
+                        "Naxxramas",
+                        "L'oeil de l'éternité",
                     ],
                 ],
+
                 [
-                    "date" => "2023-01-23 20:45:00",
-                    "log" => "https://classic.warcraftlogs.com/reports/RFKm4ZkDWX2zj96G/",
+                    "date" => "2022-12-15 20:45:00",
+                    "log" => "https://classic.warcraftlogs.com/reports/GtrmZdLaC7Pykh2c/#boss=-2&difficulty=0&wipes=2&view=rankings",
                     "raid" => [
-                        "Ulduar",
+                        "L'oeil de l'éternité",
                     ],
                 ],
+
                 [
-                    "date" => "2023-01-25 20:45:00",
-                    "log" => "https://classic.warcraftlogs.com/reports/4Y2QLPRrxGJVZ1mg/",
+                    "date" => "2023-02-15 20:45:00",
+                    "log" => "https://classic.warcraftlogs.com/reports/GtrmZdLaC7Pykh2c/#boss=-2&difficulty=0&wipes=2&view=rankings",
                     "raid" => [
-                        "Ulduar",
+                        "Le sanctum Obsidien",
+                        "Naxxramas",
                     ],
                 ],
-                [
-                    "date" => "2023-01-29 20:45:00",
-                    "log" => "https://classic.warcraftlogs.com/reports/mQ287XwLby6KJrHR/",
-                    "raid" => [
-                        "Ulduar",
-                    ],
-                ],
+
             ];
 
             foreach ($events as $currentEvent) {
@@ -2194,10 +2170,35 @@ class DataFixtures extends Fixture
         // ------------------------------- LootHistories -------------------------------
             $lootHistories = [
                 [
-                    "event" => "2023-01-22 20:45:00",
+                    "event" => "2022-11-30 20:45:00",
                     "player" => "Lucamar",
                     "item" => "Totem de croissance forestière",
                 ],
+
+                [
+                    "event" => "2022-11-30 20:45:00",
+                    "player" => "Lucamar",
+                    "item" => "Anneau du capteur tellurique",
+                ],
+
+                [
+                    "event" => "2022-12-15 20:45:00",
+                    "player" => "Youyou",
+                    "item" => "Pas de Malygos",
+                ],
+
+                [
+                    "event" => "2022-12-15 20:45:00",
+                    "player" => "Atanea",
+                    "item" => "Averse de grêle",
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Kamari",
+                    "item" => "Grand heaume en obsidienne",
+                ],
+
             ];
 
             foreach ($lootHistories as $currentLoot) {
@@ -2218,144 +2219,51 @@ class DataFixtures extends Fixture
         // ------------------------------- Participations -------------------------------
             $participations = [
                 [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Farah",
+                    "event" => "2022-11-30 20:45:00",
+                    "player" => "Lucamar",
                     "isBench" => 0,
                 ],
+
                 [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Vali",
-                    "isBench" => 0,
+                    "event" => "2022-11-30 20:45:00",
+                    "player" => "Youyou",
+                    "isBench" => 1,
                 ],
+
                 [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Kenym",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Sha",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Elvidora",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Pyroyesse",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Tinduviel",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Gwendydd",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
+                    "event" => "2022-12-15 20:45:00",
                     "player" => "Youyou",
                     "isBench" => 0,
                 ],
+
                 [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Arianhrod",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Rim",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Cegar",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Bourla",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Eckte",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Ulmo",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Synadra",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Lady",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Chip",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Mealyn",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Feyde",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Necrogirl",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Belzedar",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Limdul",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Portish",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Skenz",
-                    "isBench" => 0,
-                ],
-                [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Mjollnir",
+                    "event" => "2022-12-15 20:45:00",
+                    "player" => "Lucamar",
                     "isBench" => 1,
                 ],
+
                 [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Xamena",
+                    "event" => "2022-12-15 20:45:00",
+                    "player" => "Atanea",
+                    "isBench" => 0,
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Youyou",
                     "isBench" => 1,
                 ],
+
                 [
-                    "event" => "2023-01-22 20:45:00",
-                    "player" => "Icekarr",
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Kamari",
                     "isBench" => 1,
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Atanea",
+                    "isBench" => 0,
                 ],
             ];
 
