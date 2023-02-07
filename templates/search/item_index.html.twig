@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Recherche{% endblock %}
+
+{% block body %}
+
+{% if app.request.method == 'POST' %}
+    <div>
+        {% if items | length == 0 %}
+            <h4>Aucun résulat pour votre recherche.</h4>
+           {% else %}
+               <h3 class="result-bar-title">Résulats :</h3>
+               {% for item in items %}
+                   <div class="result-bar-response">
+                       <a href="{{ path('app_item_show_by_slug', {'slug': item.slug}) }}">
+                              <h6 class="result-bar-choice">{{ item.name }}</h6>
+                              
+                       </a>
+                   </div>
+              {% endfor %}
+          {% endif %}
+    </div>
+    
+{% endif %}
+
+{% endblock %}

@@ -15,7 +15,6 @@ class Item
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -37,17 +36,6 @@ class Item
      */
     private $slug;
 
-    /**  
-     * @ORM\ManyToMany(targetEntity=Role::class, inversedBy="items")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
-     */
-    private $role;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Player::class, inversedBy="items")
-     */
-    private $player;
-
     /**
      * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="item")
      */
@@ -67,22 +55,33 @@ class Item
     private $detail;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Location::class, mappedBy="item")
+     * @ORM\ManyToMany(targetEntity=Slot::class, inversedBy="item")
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
-    private $locations;
+    private $slots;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LootHistory::class, mappedBy="item")
+     */
+    private $lootHistories;
 
     public function __construct()
     {
-        $this->role = new ArrayCollection();
-        $this->player = new ArrayCollection();
         $this->events = new ArrayCollection();
-        $this->locations = new ArrayCollection();
+        $this->slots = new ArrayCollection();
+        $this->lootHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -92,8 +91,8 @@ class Item
 
     public function setName(string $name): self
     {
-        $this->name = $name;
-
+        $this->name = ucfirst(mb_strtolower($name));
+        
         return $this;
     }
 
@@ -122,54 +121,6 @@ class Item
     }
 
     /**
-     * @return Collection<int, role>
-     */
-    public function getRole(): Collection
-    {
-        return $this->role;
-    }
-
-    public function addRole(role $role): self
-    {
-        if (!$this->role->contains($role)) {
-            $this->role[] = $role;
-        }
-
-        return $this;
-    }
-
-    public function removeRole(role $role): self
-    {
-        $this->role->removeElement($role);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, player>
-     */
-    public function getPlayer(): Collection
-    {
-        return $this->player;
-    }
-
-    public function addPlayer(player $player): self
-    {
-        if (!$this->player->contains($player)) {
-            $this->player[] = $player;
-        }
-
-        return $this;
-    }
-
-    public function removePlayer(player $player): self
-    {
-        $this->player->removeElement($player);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Event>
      */
     public function getEvents(): Collection
@@ -177,7 +128,7 @@ class Item
         return $this->events;
     }
 
-    public function addEvent(Event $event): self
+    public function addEvents(Event $event): self
     {
         if (!$this->events->contains($event)) {
             $this->events[] = $event;
@@ -187,7 +138,7 @@ class Item
         return $this;
     }
 
-    public function removeEvent(Event $event): self
+    public function removeEvents(Event $event): self
     {
         if ($this->events->removeElement($event)) {
             $event->removeItem($this);
@@ -221,30 +172,61 @@ class Item
     }
 
     /**
-     * @return Collection<int, Location>
+     * @return Collection<int, Slot>
      */
-    public function getLocations(): Collection
+    public function getSlots(): Collection
     {
-        return $this->locations;
+        return $this->slots;
     }
 
-    public function addLocation(Location $location): self
+    public function addSlot(Slot $slot): self
     {
-        if (!$this->locations->contains($location)) {
-            $this->locations[] = $location;
-            $location->addItem($this);
+        if (!$this->slots->contains($slot)) {
+            $this->slots[] = $slot;
+            $slot->addItem($this);
         }
 
         return $this;
     }
 
-    public function removeLocation(Location $location): self
+    public function removeSlot(Slot $slot): self
     {
-        if ($this->locations->removeElement($location)) {
-            $location->removeItem($this);
+        if ($this->slots->removeElement($slot)) {
+            $slot->removeItem($this);
         }
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, LootHistory>
+     */
+    public function getLootHistories(): Collection
+    {
+        return $this->lootHistories;
+    }
+
+    public function addLootHistory(LootHistory $lootHistory): self
+    {
+        if (!$this->lootHistories->contains($lootHistory)) {
+            $this->lootHistories[] = $lootHistory;
+            $lootHistory->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLootHistory(LootHistory $lootHistory): self
+    {
+        if ($this->lootHistories->removeElement($lootHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($lootHistory->getItem() === $this) {
+                $lootHistory->setItem(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 }

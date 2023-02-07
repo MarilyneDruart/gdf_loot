@@ -44,16 +44,10 @@ class Raid
      */
     private $item;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Player::class, inversedBy="raids")
-     */
-    private $player;
-
     public function __construct()
     {
         $this->events = new ArrayCollection();
         $this->item = new ArrayCollection();
-        $this->player = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,27 +136,4 @@ class Raid
         return $this;
     }
 
-    /**
-     * @return Collection<int, player>
-     */
-    public function getPlayer(): Collection
-    {
-        return $this->player;
-    }
-
-    public function addPlayer(player $player): self
-    {
-        if (!$this->player->contains($player)) {
-            $this->player[] = $player;
-        }
-
-        return $this;
-    }
-
-    public function removePlayer(player $player): self
-    {
-        $this->player->removeElement($player);
-
-        return $this;
-    }
 }

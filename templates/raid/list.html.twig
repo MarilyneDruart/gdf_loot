@@ -3,33 +3,37 @@
 {% block title %}- Liste des raids{% endblock %}
 
 {% block body %}
+{# <div class="searchBar">
+{{ render(controller(
+        'App\\Controller\\SearchController::raidSearchBar'
+ )) }}
+</div> #}
+<div class="button-top">        
+    <a href="{{ path('app_raid_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un raid</a>
+</div>
 <div class="container">
-        
     <table>
         <thead>
             <tr>
-                <th colspan="1">Nom</th>
+                <th colspan="1">Raid</th>
                 <th colspan="1">Stats</th>
-                <th colspan="1">Prochain évènement</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>nom_1</td>
-                <td>stats_1</td>
-                <td>date_1</td>
-            </tr>
-            <tr>
-                <td>nom_2</td>
-                <td>stats_2</td>
-                <td>date_2</td>
-            </tr>
-            <tr>
-                <td>nom_3</td>
-                <td>stats_3</td>
-                <td>date_3</td>
-            </tr>
+            {% for raid in raids |sort((a, b) => a.name <=> b.name) %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_raid_show_by_slug', {'slug': raid.slug}) }}">
+                            {{raid.name}}
+                        </a>
+                    </td>
+                    <td>
+                        Ø
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
+
 {% endblock %}
