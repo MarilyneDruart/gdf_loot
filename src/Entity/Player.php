@@ -27,7 +27,7 @@ class Player
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=30, columnDefinition="enum('Chaman', 'Chasseur', 'Chevalier de la mort', 'Démoniste', 'Druide', 'Guerrier', 'Mage', 'Paladin', 'Prêtre', 'Voleur')")
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $class;
@@ -39,20 +39,18 @@ class Player
     private $score;
 
     /**
-     * @ORM\Column(type="string", length=30, columnDefinition="enum('Demi', 'Galopin', 'Sérieux')")
+     * @ORM\Column(type="string", length=30)
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $rank;
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $isActif;
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $slug;
 
@@ -68,9 +66,15 @@ class Player
      */
     private $participations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=LootHistory::class, mappedBy="player")
+     */
+    private $lootHistories;
+
     public function __construct()
     {
         $this->participations = new ArrayCollection();
+        $this->lootHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,7 +89,7 @@ class Player
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+        $this->name = ucfirst(mb_strtolower($name));
 
         return $this;
     }
@@ -186,6 +190,36 @@ class Player
             // set the owning side to null (unless already changed)
             if ($participation->getPlayer() === $this) {
                 $participation->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LootHistory>
+     */
+    public function getLootHistories(): Collection
+    {
+        return $this->lootHistories;
+    }
+
+    public function addLootHistory(LootHistory $lootHistory): self
+    {
+        if (!$this->lootHistories->contains($lootHistory)) {
+            $this->lootHistories[] = $lootHistory;
+            $lootHistory->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLootHistory(LootHistory $lootHistory): self
+    {
+        if ($this->lootHistories->removeElement($lootHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($lootHistory->getPlayer() === $this) {
+                $lootHistory->setPlayer(null);
             }
         }
 

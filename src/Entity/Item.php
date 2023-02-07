@@ -15,7 +15,6 @@ class Item
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -56,13 +55,13 @@ class Item
     private $detail;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Slot::class, mappedBy="item")
+     * @ORM\ManyToMany(targetEntity=Slot::class, inversedBy="item")
      * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $slots;
 
     /**
-     * @ORM\ManyToMany(targetEntity=LootHistory::class, mappedBy="item")
+     * @ORM\OneToMany(targetEntity=LootHistory::class, mappedBy="item")
      */
     private $lootHistories;
 
@@ -78,6 +77,13 @@ class Item
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -85,8 +91,8 @@ class Item
 
     public function setName(string $name): self
     {
-        $this->name = $name;
-
+        $this->name = ucfirst(mb_strtolower($name));
+        
         return $this;
     }
 
@@ -204,7 +210,7 @@ class Item
     {
         if (!$this->lootHistories->contains($lootHistory)) {
             $this->lootHistories[] = $lootHistory;
-            $lootHistory->addItem($this);
+            $lootHistory->setItem($this);
         }
 
         return $this;
@@ -213,10 +219,14 @@ class Item
     public function removeLootHistory(LootHistory $lootHistory): self
     {
         if ($this->lootHistories->removeElement($lootHistory)) {
-            $lootHistory->removeItem($this);
+            // set the owning side to null (unless already changed)
+            if ($lootHistory->getItem() === $this) {
+                $lootHistory->setItem(null);
+            }
         }
 
         return $this;
     }
+
 
 }

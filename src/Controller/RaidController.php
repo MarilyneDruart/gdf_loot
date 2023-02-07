@@ -41,7 +41,7 @@ class RaidController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $raidRepository->add($raid, true);
 
-            $this->addFlash('success', 'Raid ajouté');
+            // $this->addFlash('success', 'Raid ajouté');
             return $this->redirectToRoute('app_raid_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -53,6 +53,7 @@ class RaidController extends AbstractController
 
     /**
      * @Route ("/{id<\d+>}", name="read", methods={"GET"})
+     * @Route ("/{slug}", name="show_by_slug", methods={"GET"})
      */
     public function read(Raid $raid): Response
     {
@@ -72,7 +73,7 @@ class RaidController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $raidRepository->add($raid, true);
 
-            $this->addFlash('warning', 'Raid modifié');
+            // $this->addFlash('warning', 'Raid modifié');
             return $this->redirectToRoute('app_raid_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -91,7 +92,7 @@ class RaidController extends AbstractController
             $raidRepository->remove($raid, true);
         }
 
-        $this->addFlash('success', 'Raid supprimé');
+        // $this->addFlash('success', 'Raid supprimé');
         return $this->redirectToRoute('app_raid_list', [], Response::HTTP_SEE_OTHER);
     }
 }

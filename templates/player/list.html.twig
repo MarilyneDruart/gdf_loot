@@ -6,7 +6,9 @@
 {{ render(controller(
         'App\\Controller\\SearchController::playerSearchBar'
  )) }}
-
+<div class="button-top">        
+    <a href="{{ path('app_player_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un joueur</a>
+</div>
 <div class="container">
     <div class="left-container">
         <table>
@@ -16,10 +18,11 @@
                     <th colspan="1">Rôle</th>
                     <th colspan="1">Classe</th>
                     <th colspan="1">Grade</th>
+                    <th colspan="1">Etat</th>
                 </tr>
             </thead>
             <tbody>
-                {% for player in players %}
+                {% for player in players |sort((a, b) => a.name <=> b.name)%}
                 <tr>
                     <td>
                         <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
@@ -29,6 +32,7 @@
                     <td>{{ player.role.name }}</td>
                     <td>{{ player.class }}</td>
                     <td>{{ player.rank }}</td>
+                    <td>{% if player.isActif == 0 %} Inactif {% else %} Actif {% endif %}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -48,11 +52,9 @@
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
                         <ul>
-                            <li>Joueur 1 + nbr présences</li>
-                            <li>Joueur 2 + nbr présences</li>
-                            <li>Joueur 3 + nbr présences</li>
-                            <li>Joueur 4 + nbr présences</li>
-                            <li>Joueur 5 + nbr présences</li>
+                        {% for playerParticipation in participations %}
+                            <li>{{playerParticipation.name}} : {{playerParticipation[1]}} participation{{ playerParticipation[1] > 1 ? 's' : '' }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -65,15 +67,13 @@
                         Top 5 des benchs
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
                         <ul>
-                            <li>Joueur 1 + nbr benchs</li>
-                            <li>Joueur 2 + nbr benchs</li>
-                            <li>Joueur 3 + nbr benchs</li>
-                            <li>Joueur 4 + nbr benchs</li>
-                            <li>Joueur 5 + nbr benchs</li>
+                        {% for playerBench in benchs %}
+                            <li>{{playerBench.name}} : {{playerBench[1]}} bench{{ playerBench[1] > 1 ? 's' : '' }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -86,13 +86,13 @@
                         Joueurs par grade
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
                         <ul>
-                            <li>X joueurs Sérieux</li>
-                            <li>X joueurs Demi</li>
-                            <li>X joueurs Galopin</li>
+                        {% for playerRank in ranks %}
+                            <li>{{playerRank[1]}} joueur{{ playerRank[1] > 1 ? 's' : '' }} "{{playerRank.rank}}"</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -105,14 +105,13 @@
                         Joueurs par rôle
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingFour">
                     <div class="accordion-body">
                         <ul>
-                            <li>X joueurs CAC</li>
-                            <li>X joueurs Caster</li>
-                            <li>X joueurs Healer</li>
-                            <li>X joueurs Tank</li>
+                        {% for playerRole in roles %}
+                            <li>{{playerRole[1]}} joueur{{ playerRole[1] > 1 ? 's' : '' }} "{{playerRole.name}}"</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>

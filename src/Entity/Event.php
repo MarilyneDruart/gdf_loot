@@ -48,11 +48,17 @@ class Event
      */
     private $participations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=LootHistory::class, mappedBy="event")
+     */
+    private $lootHistories;
+
     public function __construct()
     {
         $this->raid = new ArrayCollection();
         $this->item = new ArrayCollection();
         $this->participations = new ArrayCollection();
+        $this->lootHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,6 +163,36 @@ class Event
             // set the owning side to null (unless already changed)
             if ($participation->getEvent() === $this) {
                 $participation->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LootHistory>
+     */
+    public function getLootHistories(): Collection
+    {
+        return $this->lootHistories;
+    }
+
+    public function addLootHistory(LootHistory $lootHistory): self
+    {
+        if (!$this->lootHistories->contains($lootHistory)) {
+            $this->lootHistories[] = $lootHistory;
+            $lootHistory->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLootHistory(LootHistory $lootHistory): self
+    {
+        if ($this->lootHistories->removeElement($lootHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($lootHistory->getEvent() === $this) {
+                $lootHistory->setEvent(null);
             }
         }
 

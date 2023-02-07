@@ -65,10 +65,6 @@ class DataFixtures extends Fixture
             $rolesObjArray = [
 
                 [
-                    "name" => "...",
-                ],
-
-                [
                     "name" => "CAC",
                 ],
 
@@ -101,10 +97,6 @@ class DataFixtures extends Fixture
 
         // ------------------------------- Slots -------------------------------
             $slotObjArray = [
-
-                [
-                    "name" => "...",
-                ],
 
                 [
                     "name" => "Back",
@@ -194,16 +186,7 @@ class DataFixtures extends Fixture
         // ------------------------------- Items -------------------------------
             $itemsObjArray = [
                 [
-                    "name" => "Vide",
-                    "slot" => [
-                        "...",
-                    ],
-                    "type" => "...",
-                    "raid" => "Hors raid",
-                    "detail" => "...",
-                ],
-
-                [
+                    "id" => "40387",
                     "name" => "Ambition infinie",
                     "slot" => [
                         "Neck",
@@ -214,6 +197,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40717",
                     "name" => "Anneau d'invincibilité",
                     "slot" => [
                         "Ring 1",
@@ -225,6 +209,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40375",
                     "name" => "Anneau de beauté décomposée",
                     "slot" => [
                         "Ring 2",
@@ -235,6 +220,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40074",
                     "name" => "Anneau de la main lourde",
                     "slot" => [
                         "Ring 1",
@@ -245,6 +231,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40474",
                     "name" => "Anneau du capteur tellurique",
                     "slot" => [
                         "Ring 2",
@@ -255,6 +242,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40491",
                     "name" => "Averse de grêle",
                     "slot" => [
                         "Offhand",
@@ -265,6 +253,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40719",
                     "name" => "Bague de magie canalisée",
                     "slot" => [
                         "Ring 1",
@@ -275,6 +264,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40107",
                     "name" => "Bague usée par le sable",
                     "slot" => [
                         "Ring 1",
@@ -285,6 +275,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39426",
                     "name" => "Baguette de l'archiliche",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -295,6 +286,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39712",
                     "name" => "Baguette des nérubiens ornée",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -305,6 +297,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40108",
                     "name" => "Beauté ravie",
                     "slot" => [
                         "Ring 2",
@@ -315,6 +308,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40269",
                     "name" => "Bottes de persuasion",
                     "slot" => [
                         "Feet",
@@ -325,6 +319,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40592",
                     "name" => "Bottes des énergies soignantes",
                     "slot" => [
                         "Feet",
@@ -335,6 +330,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40246",
                     "name" => "Bottes des idéaux impétueux",
                     "slot" => [
                         "Feet",
@@ -345,6 +341,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40549",
                     "name" => "Bottes du vol renouvelé",
                     "slot" => [
                         "Feet",
@@ -355,6 +352,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40243",
                     "name" => "Bottillons de la vile duperie",
                     "slot" => [
                         "Feet",
@@ -365,6 +363,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40332",
                     "name" => "Brassards de complicité",
                     "slot" => [
                         "Wrists",
@@ -375,6 +374,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40330",
                     "name" => "Brassards de l'attaque implacable",
                     "slot" => [
                         "Wrists",
@@ -385,6 +385,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40306",
                     "name" => "Brassards du chevalier impie",
                     "slot" => [
                         "Wrists",
@@ -395,6 +396,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39701",
                     "name" => "Brodequins de l'aube",
                     "slot" => [
                         "Feet",
@@ -405,6 +407,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40822",
                     "name" => "Cachet de la conscience gelée",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -415,6 +418,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "42620",
                     "name" => "Cachet de lutte du gladiateur fatal",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -425,6 +429,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40207",
                     "name" => "Cachet de vigilance",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -435,6 +440,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40682",
                     "name" => "Cadran solaire de l'exilé",
                     "slot" => [
                         "Trinket 2",
@@ -445,6 +451,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40724",
                     "name" => "Cape des plumes de kea",
                     "slot" => [
                         "Back",
@@ -455,6 +462,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44005",
                     "name" => "Cape du pennon",
                     "slot" => [
                         "Back",
@@ -465,6 +473,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40405",
                     "name" => "Cape du sorcier déméritant",
                     "slot" => [
                         "Back",
@@ -475,6 +484,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40722",
                     "name" => "Cape maillée en platine",
                     "slot" => [
                         "Back",
@@ -485,6 +495,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44253",
                     "name" => "Carte de Sombrelune : Grandeur",
                     "slot" => [
                         "Trinket 1",
@@ -495,6 +506,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40205",
                     "name" => "Ceinture de traque-peau",
                     "slot" => [
                         "Waist",
@@ -505,6 +517,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40275",
                     "name" => "Ceinture rivetée dépravée",
                     "slot" => [
                         "Waist",
@@ -515,6 +528,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39759",
                     "name" => "Ceinturon ablatif en chitine",
                     "slot" => [
                         "Waist",
@@ -525,6 +539,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40278",
                     "name" => "Ceinturon de chevalerie",
                     "slot" => [
                         "Waist",
@@ -535,6 +550,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40327",
                     "name" => "Ceinturon de récupération",
                     "slot" => [
                         "Waist",
@@ -545,6 +561,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39401",
                     "name" => "Cercle de mort",
                     "slot" => [
                         "Ring 2",
@@ -555,6 +572,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40071",
                     "name" => "Chaîne d'adoration",
                     "slot" => [
                         "Neck",
@@ -565,6 +583,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44007",
                     "name" => "Chapel de réconciliation",
                     "slot" => [
                         "Head",
@@ -575,6 +594,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40562",
                     "name" => "Chaperon de rationalité",
                     "slot" => [
                         "Head",
@@ -585,6 +605,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40718",
                     "name" => "Chevalière de la forteresse imprenable",
                     "slot" => [
                         "Ring 2",
@@ -595,6 +616,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40399",
                     "name" => "Chevalière de la souffrance manifeste",
                     "slot" => [
                         "Ring 1",
@@ -606,6 +628,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39389",
                     "name" => "Chevalière du malveillant",
                     "slot" => [
                         "Ring 1",
@@ -616,6 +639,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44577",
                     "name" => "Clé de l'iris de focalisation",
                     "slot" => [
                         "Neck",
@@ -626,6 +650,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "37835",
                     "name" => "Cloche d'Af'Romaj",
                     "slot" => [
                         "Trinket 2",
@@ -636,6 +661,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40257",
                     "name" => "Code du défenseur",
                     "slot" => [
                         "Trinket 1",
@@ -646,6 +672,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44661",
                     "name" => "Collier de puissance du Repos du ver",
                     "slot" => [
                         "Neck",
@@ -656,6 +683,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40301",
                     "name" => "Cordelette de polarité",
                     "slot" => [
                         "Waist",
@@ -666,6 +694,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "43998",
                     "name" => "Corselet des prouesses indéniables",
                     "slot" => [
                         "Chest",
@@ -676,6 +705,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40539",
                     "name" => "Corselet du solitaire",
                     "slot" => [
                         "Chest",
@@ -686,6 +716,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44008",
                     "name" => "Crispins sans souillure",
                     "slot" => [
                         "Wrists",
@@ -696,6 +727,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44000",
                     "name" => "Cuirasse de l'orage draconique",
                     "slot" => [
                         "Chest",
@@ -706,6 +738,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40589",
                     "name" => "Cuissards de souveraineté",
                     "slot" => [
                         "Legs",
@@ -716,6 +749,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40403",
                     "name" => "Drapé de l'ennemi mortel",
                     "slot" => [
                         "Back",
@@ -726,6 +760,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40189",
                     "name" => "Effroi coléreux",
                     "slot" => [
                         "Main Hand",
@@ -737,6 +772,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40385",
                     "name" => "Emissaire de mortalité",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -747,6 +783,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39704",
                     "name" => "Espauliers de mort non naturelle",
                     "slot" => [
                         "Shoulders",
@@ -757,6 +794,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "37220",
                     "name" => "Essence de tulle",
                     "slot" => [
                         "Trinket 1",
@@ -767,6 +805,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39229",
                     "name" => "Etreinte de l'araignée",
                     "slot" => [
                         "Trinket 1",
@@ -778,6 +817,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44664",
                     "name" => "Faveur de la reine dragon",
                     "slot" => [
                         "Neck",
@@ -788,6 +828,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44063",
                     "name" => "Figurine de crabe monarchique",
                     "slot" => [
                         "Trinket 2",
@@ -798,6 +839,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "42341",
                     "name" => "Figurine de lièvre de rubis",
                     "slot" => [
                         "Trinket 1",
@@ -808,6 +850,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40388",
                     "name" => "Fin du voyage",
                     "slot" => [
                         "Main Hand",
@@ -818,6 +861,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40431",
                     "name" => "Fureur des cinq vols",
                     "slot" => [
                         "Trinket 2",
@@ -829,6 +873,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "41168",
                     "name" => "Fusil de combat blindé",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -839,6 +884,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40347",
                     "name" => "Gantelets de Zeliek",
                     "slot" => [
                         "Hands",
@@ -849,6 +895,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40564",
                     "name" => "Gants du spectacle d'hiver",
                     "slot" => [
                         "Hands",
@@ -859,6 +906,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40379",
                     "name" => "Garde-jambes de l'ossuaire",
                     "slot" => [
                         "Legs",
@@ -869,6 +917,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40541",
                     "name" => "Garde-mains adroits givrés",
                     "slot" => [
                         "Hands",
@@ -879,6 +928,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40370",
                     "name" => "Garde-porte",
                     "slot" => [
                         "Ring 1",
@@ -889,6 +939,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "43993",
                     "name" => "Grand anneau de collision",
                     "slot" => [
                         "Ring 2",
@@ -899,6 +950,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44006",
                     "name" => "Grand heaume en obsidienne",
                     "slot" => [
                         "Head",
@@ -909,6 +961,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39734",
                     "name" => "Grèves d'expiation",
                     "slot" => [
                         "Feet",
@@ -919,6 +972,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40234",
                     "name" => "Habits putrides de Heigan",
                     "slot" => [
                         "Chest",
@@ -929,6 +983,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40245",
                     "name" => "Halo pâlissant",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -939,6 +994,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40543",
                     "name" => "Heaume de l'aspect bleu",
                     "slot" => [
                         "Head",
@@ -949,6 +1005,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39757",
                     "name" => "Idole d'adoration",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -959,6 +1016,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40342",
                     "name" => "Idole d'éveil",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -969,6 +1027,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40321",
                     "name" => "Idole de l'étoile filante",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -979,6 +1038,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40075",
                     "name" => "Impitoyable",
                     "slot" => [
                         "Ring 1",
@@ -989,6 +1049,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40376",
                     "name" => "Jambards du dragon vaincu",
                     "slot" => [
                         "Legs",
@@ -999,6 +1060,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40294",
                     "name" => "Jambières d'abomination rivetées",
                     "slot" => [
                         "Legs",
@@ -1009,6 +1071,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40398",
                     "name" => "Jambières d'arrogance mortelle",
                     "slot" => [
                         "Legs",
@@ -1019,6 +1082,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40331",
                     "name" => "Jambières de fuite ratée",
                     "slot" => [
                         "Legs",
@@ -1029,6 +1093,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44011",
                     "name" => "Jambières des honorés",
                     "slot" => [
                         "Legs",
@@ -1039,6 +1104,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40560",
                     "name" => "Jambières du lanceur de sorts dévergondé",
                     "slot" => [
                         "Legs",
@@ -1049,6 +1115,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40080",
                     "name" => "Joyau perdu",
                     "slot" => [
                         "Ring 1",
@@ -1060,6 +1127,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40685",
                     "name" => "L'œuf d'essence mortelle",
                     "slot" => [
                         "Trinket 1",
@@ -1070,6 +1138,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40396",
                     "name" => "La Marée décisive",
                     "slot" => [
                         "Main Hand",
@@ -1080,6 +1149,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40561",
                     "name" => "Laisse de magie insouciante",
                     "slot" => [
                         "Waist",
@@ -1090,6 +1160,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40402",
                     "name" => "Le dernier sourire",
                     "slot" => [
                         "Main Hand",
@@ -1100,6 +1171,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40256",
                     "name" => "Le glas sinistre",
                     "slot" => [
                         "Trinket 2",
@@ -1111,6 +1183,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44002",
                     "name" => "Les habits flottants du Sanctum",
                     "slot" => [
                         "Chest",
@@ -1121,6 +1194,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40707",
                     "name" => "Libram d'obstruction",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -1131,6 +1205,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40705",
                     "name" => "Libram de renouveau",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -1141,6 +1216,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39762",
                     "name" => "Linceul en toile déchirée",
                     "slot" => [
                         "Waist",
@@ -1151,6 +1227,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40255",
                     "name" => "Malédiction du mourant",
                     "slot" => [
                         "Trinket 1",
@@ -1161,6 +1238,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39764",
                     "name" => "Manchettes de la proie impuissante",
                     "slot" => [
                         "Wrists",
@@ -1171,6 +1249,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40209",
                     "name" => "Manchettes du décati",
                     "slot" => [
                         "Wrists",
@@ -1181,6 +1260,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39765",
                     "name" => "Manchettes du pécheur",
                     "slot" => [
                         "Wrists",
@@ -1191,6 +1271,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40555",
                     "name" => "Manteau de dispersion",
                     "slot" => [
                         "Shoulders",
@@ -1201,6 +1282,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39719",
                     "name" => "Mantelet des sauterelles",
                     "slot" => [
                         "Shoulders",
@@ -1211,6 +1293,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "44662",
                     "name" => "Médaillon de lieur-de-vie",
                     "slot" => [
                         "Neck",
@@ -1221,6 +1304,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40273",
                     "name" => "Membre excédentaire",
                     "slot" => [
                         "Offhand",
@@ -1231,6 +1315,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40684",
                     "name" => "Miroir de vérité",
                     "slot" => [
                         "Trinket 2",
@@ -1241,6 +1326,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39714",
                     "name" => "Mort entoilée",
                     "slot" => [
                         "Offhand",
@@ -1251,6 +1337,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40400",
                     "name" => "Mur de terreur",
                     "slot" => [
                         "Offhand",
@@ -1261,6 +1348,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40519",
                     "name" => "Pas de Malygos",
                     "slot" => [
                         "Feet",
@@ -1271,6 +1359,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "37390",
                     "name" => "Pierre à aiguiser météorique",
                     "slot" => [
                         "Trinket 2",
@@ -1281,6 +1370,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40558",
                     "name" => "Piétineurs arcaniques",
                     "slot" => [
                         "Feet",
@@ -1291,6 +1381,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40192",
                     "name" => "Piquant maudit",
                     "slot" => [
                         "Offhand",
@@ -1301,6 +1392,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40324",
                     "name" => "Poignets de respect mutuel",
                     "slot" => [
                         "Wrists",
@@ -1311,6 +1403,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40282",
                     "name" => "Poignets du ruisseau de vase",
                     "slot" => [
                         "Wrists",
@@ -1321,6 +1414,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40345",
                     "name" => "Promesse rompue",
                     "slot" => [
                         "Main Hand",
@@ -1331,6 +1425,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "37111",
                     "name" => "Protecteur d'âme",
                     "slot" => [
                         "Trinket 2",
@@ -1341,16 +1436,18 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39766",
                     "name" => "Rejeton de la matriarche",
                     "slot" => [
                         "Offhand",
                     ],
                     "type" => "Bis",
                     "raid" => "Naxxramas",
-                    "detail" => "https://www.wowhead.com/wotlk/fr/item=39719/mantelet-des-sauterelles",
+                    "detail" => "https://www.wowhead.com/wotlk/fr/item=39766/rejeton-de-la-matriarche",
                 ],
 
                 [
+                    "id" => "40432",
                     "name" => "Représentation de l'Âme des dragons",
                     "slot" => [
                         "Trinket 1",
@@ -1362,6 +1459,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40194",
                     "name" => "Robes de neige couvrantes",
                     "slot" => [
                         "Chest",
@@ -1372,6 +1470,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40259",
                     "name" => "Sangle de la grâce divine",
                     "slot" => [
                         "Waist",
@@ -1382,6 +1481,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39706",
                     "name" => "Soleret des représailles subites",
                     "slot" => [
                         "Feet",
@@ -1392,6 +1492,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40297",
                     "name" => "Solerets d'endurance",
                     "slot" => [
                         "Feet",
@@ -1402,6 +1503,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40591",
                     "name" => "Solerets de mélancolie",
                     "slot" => [
                         "Feet",
@@ -1412,6 +1514,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "39717",
                     "name" => "Solerets inexorables",
                     "slot" => [
                         "Feet",
@@ -1422,6 +1525,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "1",
                     "name" => "T7",
                     "slot" => [
                         "Chest",
@@ -1436,6 +1540,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40395",
                     "name" => "Torche du saint feu",
                     "slot" => [
                         "Main Hand",
@@ -1446,6 +1551,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40383",
                     "name" => "Torsade de la calamité",
                     "slot" => [
                         "Main Hand",
@@ -1456,6 +1562,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40709",
                     "name" => "Totem de croissance forestière",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -1466,6 +1573,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40267",
                     "name" => "Totem de maléfice",
                     "slot" => [
                         "Relic-Wand-Ranged",
@@ -1476,6 +1584,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40384",
                     "name" => "Traître à l'humanité",
                     "slot" => [
                         "Main Hand",
@@ -1487,6 +1596,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40350",
                     "name" => "Urne des souvenirs perdus",
                     "slot" => [
                         "Offhand",
@@ -1497,6 +1607,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40298",
                     "name" => "Ventaille du trépassé",
                     "slot" => [
                         "Head",
@@ -1507,6 +1618,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
+                    "id" => "40401",
                     "name" => "Voix de la raison",
                     "slot" => [
                         "Offhand",
@@ -1522,6 +1634,7 @@ class DataFixtures extends Fixture
             foreach ($itemsObjArray as $currentItem) {
                 $itemObj = new Item();
 
+                $itemObj->setId($currentItem['id']);
                 $itemObj->setName($currentItem['name']);
                 $itemObj->setType($currentItem['type']);
                 $itemObj->setSlug($this->slugger->slug(mb_strtolower($currentItem['name'])));
@@ -2014,10 +2127,6 @@ class DataFixtures extends Fixture
                         "Naxxramas",
                         "L'oeil de l'éternité",
                     ],
-                    "item" => [
-                        "Ambition infinie",
-                        "Bottes des énergies soignantes",
-                    ],
                 ],
 
                 [
@@ -2026,8 +2135,14 @@ class DataFixtures extends Fixture
                     "raid" => [
                         "L'oeil de l'éternité",
                     ],
-                    "item" => [
-                        "Bottes des énergies soignantes",
+                ],
+
+                [
+                    "date" => "2023-02-15 20:45:00",
+                    "log" => "https://classic.warcraftlogs.com/reports/GtrmZdLaC7Pykh2c/#boss=-2&difficulty=0&wipes=2&view=rankings",
+                    "raid" => [
+                        "Le sanctum Obsidien",
+                        "Naxxramas",
                     ],
                 ],
 
@@ -2046,13 +2161,6 @@ class DataFixtures extends Fixture
                     $eventObj->addRaid($currentEventObj);
                 };
 
-                // $itemObj = $this->getReference($currentEvent["item"]);
-                // $eventObj->addItem($itemObj);
-                foreach ($currentEvent["item"] as $currentItemName) {
-                        $currentEventObj = $itemsObjArray[md5($currentItemName)];
-                        $eventObj->addItem($currentEventObj);
-                };
-
                 $manager->persist($eventObj);
 
                 //* reference to link fixtures files
@@ -2064,22 +2172,33 @@ class DataFixtures extends Fixture
                 [
                     "event" => "2022-11-30 20:45:00",
                     "player" => "Lucamar",
-                    "item" => [
-                        "Ambition infinie",
-                        "Bottes des énergies soignantes",
-                    ],
+                    "item" => "Totem de croissance forestière",
+                ],
 
+                [
+                    "event" => "2022-11-30 20:45:00",
+                    "player" => "Lucamar",
+                    "item" => "Anneau du capteur tellurique",
                 ],
 
                 [
                     "event" => "2022-12-15 20:45:00",
                     "player" => "Youyou",
-                    "item" => [
-                        "Ambition infinie",
-                        "Bottes des énergies soignantes",
-                    ],
-
+                    "item" => "Pas de Malygos",
                 ],
+
+                [
+                    "event" => "2022-12-15 20:45:00",
+                    "player" => "Atanea",
+                    "item" => "Averse de grêle",
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Kamari",
+                    "item" => "Grand heaume en obsidienne",
+                ],
+
             ];
 
             foreach ($lootHistories as $currentLoot) {
@@ -2091,10 +2210,8 @@ class DataFixtures extends Fixture
                 $playerObj = $this->getReference($currentLoot["player"]);
                 $lootObj->setPlayer($playerObj);
 
-                foreach ($currentLoot["item"] as $currentItemName) {
-                    $currentLootObj = $itemsObjArray[md5($currentItemName)];
-                    $lootObj->addItem($currentLootObj);
-                };
+                $itemObj = $this->getReference($currentLoot["item"]);
+                $lootObj->setItem($itemObj);
 
                 $manager->persist($lootObj);
             }
@@ -2104,29 +2221,49 @@ class DataFixtures extends Fixture
                 [
                     "event" => "2022-11-30 20:45:00",
                     "player" => "Lucamar",
-                    "isBench" => 1,
-
+                    "isBench" => 0,
                 ],
 
                 [
                     "event" => "2022-11-30 20:45:00",
                     "player" => "Youyou",
-                    "isBench" => 0,
-
+                    "isBench" => 1,
                 ],
 
                 [
                     "event" => "2022-12-15 20:45:00",
                     "player" => "Youyou",
-                    "isBench" => 1,
-
+                    "isBench" => 0,
                 ],
 
                 [
                     "event" => "2022-12-15 20:45:00",
                     "player" => "Lucamar",
-                    "isBench" => 0,
+                    "isBench" => 1,
+                ],
 
+                [
+                    "event" => "2022-12-15 20:45:00",
+                    "player" => "Atanea",
+                    "isBench" => 0,
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Youyou",
+                    "isBench" => 1,
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Kamari",
+                    "isBench" => 1,
+                ],
+
+                [
+                    "event" => "2023-02-15 20:45:00",
+                    "player" => "Atanea",
+                    "isBench" => 0,
                 ],
             ];
 

@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\LootHistoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,24 +18,19 @@ class LootHistory
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Event::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Event::class, inversedBy="lootHistories")
      */
     private $event;
 
     /**
-     * @ORM\OneToOne(targetEntity=Player::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Player::class, inversedBy="lootHistories")
      */
     private $player;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="lootHistories")
+     * @ORM\ManyToOne(targetEntity=Item::class, inversedBy="lootHistories")
      */
     private $item;
-
-    public function __construct()
-    {
-        $this->item = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -68,26 +61,14 @@ class LootHistory
         return $this;
     }
 
-    /**
-     * @return Collection<int, Item>
-     */
-    public function getItem(): Collection
+    public function getItem(): ?Item
     {
         return $this->item;
     }
 
-    public function addItem(Item $item): self
+    public function setItem(?Item $item): self
     {
-        if (!$this->item->contains($item)) {
-            $this->item[] = $item;
-        }
-
-        return $this;
-    }
-
-    public function removeItem(Item $item): self
-    {
-        $this->item->removeElement($item);
+        $this->item = $item;
 
         return $this;
     }
