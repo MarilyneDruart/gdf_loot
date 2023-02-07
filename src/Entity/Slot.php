@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\LocationRepository;
+use App\Repository\SlotRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=LocationRepository::class)
+ * @ORM\Entity(repositoryClass=SlotRepository::class)
  */
-class Location
+class Slot
 {
     /**
      * @ORM\Id
@@ -30,7 +30,7 @@ class Location
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="locations")
+     * @ORM\ManyToMany(targetEntity=Item::class, mappedBy="slots")
      */
     private $item;
 

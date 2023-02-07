@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ItemRepository;
+use App\Repository\PlayerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,15 +23,37 @@ class SearchController extends AbstractController
         ]);
     }
 
-    public function searchBar(): Response
+    public function itemSearchBar(): Response
     {
         $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('handleSearch'))
+            ->setAction($this->generateUrl('handleItemSearch'))
             ->add('query', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'class' => 'search-bar',
-                    'placeholder' => 'Entrez le nom d\'un item'
+                    'placeholder' => 'Saisissez le nom de l\'item'
+                ]
+            ])
+            ->add('recherche', SubmitType::class, [
+                'attr' => [
+                    'class' => 'button-search'
+                ]
+            ])
+            ->getForm();
+        return $this->render('search/searchBar.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    public function playerSearchBar(): Response
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('handlePlayerSearch'))
+            ->add('query', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'search-bar',
+                    'placeholder' => 'Saisissez le nom du joueur'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
@@ -45,17 +68,33 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/handleSearch", name="handleSearch")
+     * @Route("/handleItemSearch", name="handleItemSearch")
      * @param Request $request
      */
-    public function handleSearch(Request $request, ItemRepository $repo)
+    public function handleItemSearch(Request $request, ItemRepository $itemRepository)
     {
         $query = $request->request->all('form')['query'];
         if($query) {
-            $items = $repo->findItemsByName($query);
+            $items = $itemRepository->findItemsByName($query);
         }
-        return $this->render('search/index.html.twig', [
-            'items' => $items
+        return $this->render('search/item_index.html.twig', [
+            'items' => $items,
+        ]);
+    }
+
+    /**
+     * @Route("/handlePlayerSearch", name="handlePlayerSearch")
+     * @param Request $request
+     */
+    public function handlePlayerSearch(Request $request, PlayerRepository $playerRepository)
+    {
+        $query = $request->request->all('form')['query'];
+        if($query) {
+
+            $players = $playerRepository->findPlayersByName($query);
+        }
+        return $this->render('search/player_index.html.twig', [
+            'players' => $players,
         ]);
     }
 }
