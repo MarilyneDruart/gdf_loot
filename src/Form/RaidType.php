@@ -19,9 +19,6 @@ class RaidType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du raid',
                 ])
-            ->add('slug', TextType::class, [
-                'label' => 'nom-du-raid-sluggifié',
-                ])
         ;
     }
 
