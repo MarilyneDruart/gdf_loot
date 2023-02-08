@@ -92,7 +92,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbItemBis($slug): array
+    public function findNbItemNM($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -102,7 +102,24 @@ class LootHistoryRepository extends ServiceEntityRepository
             JOIN App\Entity\Player pl WITH lh.player = pl.id
             AND pl.slug = '$slug'
             JOIN App\Entity\Item it WITH lh.item = it.id
-            AND it.type = 'Bis'
+            AND it.type = 'NM'
+            "
+        );
+
+        return $query->getResult();
+    }
+
+    public function findNbItemHM($slug): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT(lh.item) AS nombre 
+            FROM App\Entity\lootHistory lh 
+            JOIN App\Entity\Player pl WITH lh.player = pl.id
+            AND pl.slug = '$slug'
+            JOIN App\Entity\Item it WITH lh.item = it.id
+            AND it.type = 'HM'
             "
         );
 
@@ -124,5 +141,29 @@ class LootHistoryRepository extends ServiceEntityRepository
         );
 
         return $query->getResult();
+    }
+
+    public function getScore(LootHistoryRepository $lootHistoryRepository, string $slug)
+    {
+        $nbPresences = $lootHistoryRepository->findNbPresence($slug);
+        $nbBenches = $lootHistoryRepository->findNbBench($slug);
+        $nbItemNM = $lootHistoryRepository->findNbItemNM($slug);
+        $nbItemHM = $lootHistoryRepository->findNbItemHM($slug);
+        $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
+
+        $scoreContested = $nbItemContested[0]['nombre'] * 2;
+        $scoreItemNM = $nbItemNM[0]['nombre'] * 0.8;
+        $scoreItemHM = $nbItemHM[0]['nombre'] * 1;
+        $scoreBis = $scoreItemNM + $scoreItemHM;
+        if ($nbBenches[0]['nombre'] == 0 && $nbPresences[0]['nombre'] == 0)
+        {
+            $scorePresence = 1;
+        } else {
+            $scorePresence = $nbBenches[0]['nombre'] + $nbPresences[0]['nombre'];
+        } 
+
+        $scores = ($scoreContested + $scoreBis) / $scorePresence;
+
+        return $scores;
     }
 }
