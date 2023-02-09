@@ -8,7 +8,7 @@ html, body {
  }
 
 body {
-    background-image: url(../images/og-image.jpg);
+    background-image: url(../images/og-image.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -51,6 +51,24 @@ footer {
     color: rgb(255, 255, 255);
 }
 
+#scroll_to_top {
+    position: fixed;
+    width: 3.1rem;
+    height: 2.6rem;
+    bottom: 3rem;
+    right: 1.8rem;
+    background-color: rgba(30, 131, 190, 0.418);
+    border: 0.06rem solid aliceblue;
+    border-radius: 0.5rem;
+}
+
+#scroll_to_top i {
+    position: fixed;
+    width: 3.1rem;
+    height: 2.4rem;
+    bottom: 2.7rem;
+    right: 1.8rem;
+}
 
 /* ---------------------- navbar ---------------------- */
 
