@@ -27,8 +27,7 @@ class ItemType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'choices'  => [
                     'NM' => 'NM',
-                    'HM' => 'HM
-                    ',
+                    'HM' => 'HM',
                     'Contested' => 'Contested'],
                 'expanded' => true,
                 'multiple' => false,
