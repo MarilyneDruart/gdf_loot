@@ -100,7 +100,7 @@ class PlayerRepository extends ServiceEntityRepository
             GROUP BY pl.name
             ORDER BY COUNT(pa.isBench) DESC
             '
-        );
+        )->setMaxResults(5);
 
         return $query->getResult();
     }
@@ -118,7 +118,7 @@ class PlayerRepository extends ServiceEntityRepository
             GROUP BY pl.name
             ORDER BY COUNT(pa.isBench) DESC
             '
-        );
+        )->setMaxResults(5);
 
         return $query->getResult();
     }
