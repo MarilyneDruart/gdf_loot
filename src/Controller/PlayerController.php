@@ -77,9 +77,9 @@ class PlayerController extends AbstractController
         $nbItemNM = $lootHistoryRepository->findNbItemNM($slug);
         $nbItemHM = $lootHistoryRepository->findNbItemHM($slug);
         $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
-        $scores = $lootHistoryRepository->getScore($lootHistoryRepository, $slug);
-
-        //dd($scores); die;
+        $scores = $lootHistoryRepository->calculScore($lootHistoryRepository, $slug);
+        $setScore = $lootHistoryRepository->setCalculScore($slug, $scores);
+        //dd($setScore); die;       
 
         return $this->render('player/read.html.twig', [
             'player' => $player,
@@ -91,6 +91,7 @@ class PlayerController extends AbstractController
             'nbItemHM' => $nbItemHM,
             'nbItemContested' => $nbItemContested,
             'scores' => $scores,
+            'setScore' => $setScore,
         ]);
     }
 
