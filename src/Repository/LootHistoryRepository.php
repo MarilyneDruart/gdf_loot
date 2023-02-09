@@ -143,7 +143,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function getScore(LootHistoryRepository $lootHistoryRepository, string $slug)
+    public function calculScore(LootHistoryRepository $lootHistoryRepository, string $slug)
     {
         $nbPresences = $lootHistoryRepository->findNbPresence($slug);
         $nbBenches = $lootHistoryRepository->findNbBench($slug);
@@ -165,5 +165,19 @@ class LootHistoryRepository extends ServiceEntityRepository
         $scores = ($scoreContested + $scoreBis) / $scorePresence;
 
         return $scores;
+    }
+
+    public function setCalculScore(string $slug, float $scores)
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "UPDATE App\Entity\Player pl
+            SET pl.score = '$scores'
+            WHERE pl.slug = '$slug'
+            "
+        );
+
+        return $query->getResult();
     }
 }

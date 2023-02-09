@@ -19,6 +19,8 @@
                     <th colspan="1">Classe</th>
                     <th colspan="1">Grade</th>
                     <th colspan="1">Etat</th>
+                    <th colspan="1">Score</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +35,8 @@
                     <td>{{ player.class }}</td>
                     <td>{{ player.rank }}</td>
                     <td>{% if player.isActif == 0 %} Inactif {% else %} Actif {% endif %}</td>
+                    <td>{{ player.score }}</td>
+
                 </tr>
                 {% endfor %}
             </tbody>
