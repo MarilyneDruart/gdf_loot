@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Raid;
 use App\Form\RaidType;
+use App\Utils\MySlugger;
 use App\Repository\RaidRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class RaidController extends AbstractController
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
      */
-    public function create(Request $request, RaidRepository $raidRepository): Response
+    public function create(Request $request, RaidRepository $raidRepository, MySlugger $mySlugger): Response
     {
         $raid = new Raid();
 
@@ -39,6 +40,8 @@ class RaidController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $raid->setSlug($mySlugger->slugify($raid->getName()));
             $raidRepository->add($raid, true);
 
             // $this->addFlash('success', 'Raid ajouté');
