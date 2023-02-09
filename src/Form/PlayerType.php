@@ -35,7 +35,6 @@ class PlayerType extends AbstractType
                     'Voleur' => 'Voleur',
                 ],
             ])
-            ->add('score')
             ->add('rank', ChoiceType::class, [
                 'choices' => [
                     'Demi' => 'Demi',

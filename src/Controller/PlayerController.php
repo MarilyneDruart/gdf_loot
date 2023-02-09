@@ -74,21 +74,12 @@ class PlayerController extends AbstractController
         $lootHistories = $lootHistoryRepository->findLootHistory($slug);
         $nbPresences = $lootHistoryRepository->findNbPresence($slug);
         $nbBenches = $lootHistoryRepository->findNbBench($slug);
-        $nbItemBis = $lootHistoryRepository->findNbItemBis($slug);
+        $nbItemNM = $lootHistoryRepository->findNbItemNM($slug);
+        $nbItemHM = $lootHistoryRepository->findNbItemHM($slug);
         $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
-
-        $scoreContested = $nbItemContested[0]['nombre'] * 2;
-        $scoreBis = $nbItemBis[0]['nombre'];
-        if ($nbBenches[0]['nombre'] == 0 && $nbPresences[0]['nombre'] == 0)
-        {
-            $scorePresence = 1;
-        } else {
-            $scorePresence = $nbBenches[0]['nombre'] + $nbPresences[0]['nombre'];
-        }
-
-        $scores = ($scoreContested + $scoreBis) / $scorePresence;
-
-        //dd($scores); die;
+        $scores = $lootHistoryRepository->calculScore($lootHistoryRepository, $slug);
+        $setScore = $lootHistoryRepository->setCalculScore($slug, $scores);
+        //dd($setScore); die;       
 
         return $this->render('player/read.html.twig', [
             'player' => $player,
@@ -96,9 +87,11 @@ class PlayerController extends AbstractController
             'lootHistories' => $lootHistories,
             'nbPresences' => $nbPresences,
             'nbBenches' => $nbBenches,
-            'nbItemBis' => $nbItemBis,
+            'nbItemNM' => $nbItemNM,
+            'nbItemHM' => $nbItemHM,
             'nbItemContested' => $nbItemContested,
             'scores' => $scores,
+            'setScore' => $setScore,
         ]);
     }
 
