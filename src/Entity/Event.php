@@ -38,22 +38,20 @@ class Event
     private $raid;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Player::class, inversedBy="events")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
+     * @ORM\OneToMany(targetEntity=Participation::class, mappedBy="event")
      */
-    private $player;
+    private $participations;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="events")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
+     * @ORM\OneToMany(targetEntity=LootHistory::class, mappedBy="event")
      */
-    private $item;
+    private $lootHistories;
 
     public function __construct()
     {
         $this->raid = new ArrayCollection();
-        $this->player = new ArrayCollection();
-        $this->item = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+        $this->lootHistories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,49 +109,61 @@ class Event
     }
 
     /**
-     * @return Collection<int, player>
+     * @return Collection<int, Participation>
      */
-    public function getPlayer(): Collection
+    public function getParticipations(): Collection
     {
-        return $this->player;
+        return $this->participations;
     }
 
-    public function addPlayer(player $player): self
+    public function addParticipations(Participation $participation): self
     {
-        if (!$this->player->contains($player)) {
-            $this->player[] = $player;
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setEvent($this);
         }
 
         return $this;
     }
 
-    public function removePlayer(player $player): self
+    public function removeParticipations(Participation $participation): self
     {
-        $this->player->removeElement($player);
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getEvent() === $this) {
+                $participation->setEvent(null);
+            }
+        }
 
         return $this;
     }
 
     /**
-     * @return Collection<int, item>
+     * @return Collection<int, LootHistory>
      */
-    public function getItem(): Collection
+    public function getLootHistories(): Collection
     {
-        return $this->item;
+        return $this->lootHistories;
     }
 
-    public function addItem(item $item): self
+    public function addLootHistory(LootHistory $lootHistory): self
     {
-        if (!$this->item->contains($item)) {
-            $this->item[] = $item;
+        if (!$this->lootHistories->contains($lootHistory)) {
+            $this->lootHistories[] = $lootHistory;
+            $lootHistory->setEvent($this);
         }
 
         return $this;
     }
 
-    public function removeItem(item $item): self
+    public function removeLootHistory(LootHistory $lootHistory): self
     {
-        $this->item->removeElement($item);
+        if ($this->lootHistories->removeElement($lootHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($lootHistory->getEvent() === $this) {
+                $lootHistory->setEvent(null);
+            }
+        }
 
         return $this;
     }

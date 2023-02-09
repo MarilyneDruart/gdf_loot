@@ -19,23 +19,6 @@ class RaidType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Nom du raid',
                 ])
-            ->add('slug', TextType::class, [
-                'label' => 'nom-du-raid-sluggifié',
-                ])
-            ->add('events',
-            EntityType::class, [
-                'class' => Event::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,])
-            // ->add('player',
-            // EntityType::class, [
-            //     'class' => Player::class,
-            //     'choice_label' => 'name',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            //     'required' => false,])
         ;
     }
 

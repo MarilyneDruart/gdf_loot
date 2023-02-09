@@ -8,7 +8,7 @@ html, body {
  }
 
 body {
-    background-image: url(../images/og-image.jpg);
+    background-image: url(../images/og-image.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -51,6 +51,24 @@ footer {
     color: rgb(255, 255, 255);
 }
 
+#scroll_to_top {
+    position: fixed;
+    width: 3.1rem;
+    height: 2.6rem;
+    bottom: 3rem;
+    right: 1.8rem;
+    background-color: rgba(30, 131, 190, 0.418);
+    border: 0.06rem solid aliceblue;
+    border-radius: 0.5rem;
+}
+
+#scroll_to_top i {
+    position: fixed;
+    width: 3.1rem;
+    height: 2.4rem;
+    bottom: 2.7rem;
+    right: 1.8rem;
+}
 
 /* ---------------------- navbar ---------------------- */
 
@@ -58,12 +76,11 @@ footer {
     background-color: rgba(30, 131, 190, 0.418);
     background-position:bottom;
     width: 100%;
-    height: 10rem;
-    padding-left: 2rem;
+    height: 6rem;
 }
     
 .logo-nav {
-    width: 8rem;
+    width: 12rem;
     height: auto;
     margin: 0 2rem;
 }
@@ -90,26 +107,30 @@ footer {
 }
 
 .result-bar-title {
-    margin: 1rem auto;
-    width: 55%;
+    width: 8rem;
+    font-size: 1rem;
     text-align: center;
+    color: rgba(255, 255, 255, 0.7);
     background-color: rgba(30, 131, 190, 0.418);
-    color: white;
     border: #1b2f4ead solid 1px;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
+    margin: 1rem auto;
 }
 
 .result-bar-response {
-    background-color: rgba(30, 131, 190, 0.418);
-    color: white;
-    border: #1b2f4ead solid 1px;
-    border-radius: 0.5rem;
+    width: 30%;
+    margin: 1rem auto;
     padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: #1b2f4ead solid 1px;
+    background-color: rgba(255, 255, 255);
 }
 
 .result-bar-choice {
     text-align: center;
+    color: #1b2f4ead;
+    margin: 0;
 }
 
 /* ---------------------- calendrier ---------------------- */
@@ -155,10 +176,9 @@ a {
     color: white;
 }
 
-a:hover, .navbar-expand-lg .navbar-nav .nav-link:hover {
+a:hover, .navbar-expand-lg, .navbar-nav, .nav-link:hover, .button-save:hover {
     color: rgb(211, 43, 226);
 }
-
 
 /* ---------------------- buttons ---------------------- */
 .button-top {
@@ -168,7 +188,11 @@ a:hover, .navbar-expand-lg .navbar-nav .nav-link:hover {
     margin-top: 4rem;
 }
 
-.bottom-button-update, .bottom-button-back, .button-delete, .button-search {
+.bottom-button {
+    margin-top: 1rem;
+}
+
+.button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back, .form-control {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -176,9 +200,16 @@ a:hover, .navbar-expand-lg .navbar-nav .nav-link:hover {
     padding: 0.5rem 1rem;
 }
 
+td .button-delete {
+    width: 3rem;    
+}
+
 .button-delete:hover {
     color: red;
+}
 
+.event-button-top-add {
+    margin-bottom: 1rem;
 }
 
 /* ---------------------- tables ---------------------- */
@@ -208,7 +239,7 @@ table tbody td {
     color: white;
 }
 
-/* ---------------------- accrodions ---------------------- */
+/* ---------------------- accordions ---------------------- */
 
 .accordion-item, .accordion-button, .accordion-button:not(.collapsed), .list-group-item {
     background-color: rgba(0, 0, 0, 0.308);
@@ -218,7 +249,7 @@ table tbody td {
 
 /* ---------------------- page item ---------------------- */
 
-.title-item{
+.title-item, .title-player {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     margin: 2rem 0;
@@ -226,6 +257,10 @@ table tbody td {
     border-radius: 20px;
     margin: 5rem 20%;
     font-size: 3rem;
+}
+
+.title-player h1, .title-player h2 {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .wowhead {
@@ -252,49 +287,128 @@ table tbody td {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* ---------------------- form ---------------------- */
-form {
+/* ---------------------- form (général) ---------------------- */
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#form input{
+    width: 25rem;
+}
+
+.container form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     color: white;
  }
  
- form #event {
+ .container form > div:nth-child(1) {
+    margin-bottom: 2rem;
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(0, 0, 0, 0.308);
-    justify-content: space-between;
-    align-items: center;
- }
-
- form #event div {
-    margin: 1rem;
- }
-
- form #event div label {
-    margin-right: 1rem;
- }
- 
- label.required {
-    display: flex;
-    background-color:  #88c9fbab;
-    margin: 1rem;
     justify-content: center;
  }
 
- #event_item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+ .container form > div:nth-child(1) div {
+    margin: 1rem;
+    text-align: center;
  }
 
-/* ---------------------- MEDIA-QUERIES ---------------------- */
-@media screen and (min-width: 384px) {
-    .logo-nav {
-        width: 13rem;
-    }       
+ label.required {
+    display: flex;
+    background-color:  #88c9fbab;
+    padding: 0.5rem;
+    justify-content: center;
+ }
+ 
+ form .list {
+    background-color: rgba(0, 0, 0, 0.493);
+    color: white;
+    height: 10rem;
+ }
+
+ form li {
+    color: red;
 }
+
+ form option:checked {
+    background-color: rgba(30, 131, 190, 80%);
+    color: white;
+ }
+
+
+/* ---------------------- form (spécifiques) ---------------------- */
+/* ----------- form (item) ----------- */
+form #item {
+    flex-direction: row;
+}
+
+form #item_type {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+form #item_type label {
+    background: none;
+}
+
+form #item_raid {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+form #item_raid label {
+    background: none;
+}
+
+form #item_slots label {
+    margin-right: 3rem;
+    height: auto;
+}
+
+/* ----------- form (event) ----------- */
+form input#event_date {
+    background-color: rgba(0, 0, 0, 0.493);
+    color: white;
+}
+
+form #event_raid label {
+    margin-right: 3rem;
+    height: auto;
+}
+
+form input#event_log {
+    background-color: rgba(0, 0, 0, 0.493);
+    color: white;
+    width: 75%;
+}
+
+.event-button-top-add {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* ----------- form (csv) ----------- */
+.csv-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.import-form {
+    display: flex;
+}
+
+.export-form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ---------------------- MEDIA-QUERIES ---------------------- */
 
 @media screen and (max-width: 800px) {
     .wowhead-link {
@@ -309,5 +423,12 @@ form {
     .wowhead-title {
         text-align: center;
         font-size: 1.5rem;
+    }
+
+    .result-bar-response {
+        width: 50%;
+    }
+    .result-bar-choice {
+        font-size: 0.8rem;
     }
 }

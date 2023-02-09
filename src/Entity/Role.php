@@ -30,18 +30,12 @@ class Role
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Item::class, mappedBy="role")
-     */
-    private $items;
-
-    /**
      * @ORM\OneToMany(targetEntity=Player::class, mappedBy="role")
      */
     private $players;
 
     public function __construct()
     {
-        $this->items = new ArrayCollection();
         $this->players = new ArrayCollection();
     }
 
@@ -70,33 +64,6 @@ class Role
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Item>
-     */
-    public function getItems(): Collection
-    {
-        return $this->items;
-    }
-
-    public function addItem(Item $item): self
-    {
-        if (!$this->items->contains($item)) {
-            $this->items[] = $item;
-            $item->addRole($this);
-        }
-
-        return $this;
-    }
-
-    public function removeItem(Item $item): self
-    {
-        if ($this->items->removeElement($item)) {
-            $item->removeRole($this);
-        }
 
         return $this;
     }

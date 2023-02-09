@@ -6,7 +6,10 @@ use App\Entity\Event;
 use App\Entity\Item;
 use App\Entity\Player;
 use App\Entity\Role;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,7 +35,6 @@ class PlayerType extends AbstractType
                     'Voleur' => 'Voleur',
                 ],
             ])
-            ->add('score', 'number')
             ->add('rank', ChoiceType::class, [
                 'choices' => [
                     'Demi' => 'Demi',
@@ -40,32 +42,7 @@ class PlayerType extends AbstractType
                     'Sérieux' => 'Sérieux',
                 ],
             ])
-            ->add('isActif', ChoiceType::class, [
-                'choices'  => [
-                    'Active' => 1,
-                    'Inactif' => 0],
-                    'expanded' => true,
-                'multiple' => false,
-                ])
-            ->add('slug', TextType::class, [
-                'label' => 'nom-de-l-item-sluggifié',
-                ])
-            ->add('items',
-            EntityType::class, [
-                'class' => Item::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,]
-            )
-            ->add('events',
-            EntityType::class, [
-                'class' => Event::class,
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => false,]
-            )
+            ->add('isActif')
             ->add('role',
             EntityType::class, [
                 'class' => Role::class,
@@ -74,14 +51,6 @@ class PlayerType extends AbstractType
                 'expanded' => true,
                 'required' => true,]
             )
-            // ->add('raids',
-            // EntityType::class, [
-            //     'class' => Role::class,
-            //     'choice_label' => 'name',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            //     'required' => false,]
-            // )
         ;
     }
 

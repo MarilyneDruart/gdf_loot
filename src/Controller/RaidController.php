@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Raid;
 use App\Form\RaidType;
+use App\Utils\MySlugger;
 use App\Repository\RaidRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class RaidController extends AbstractController
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
      */
-    public function create(Request $request, RaidRepository $raidRepository): Response
+    public function create(Request $request, RaidRepository $raidRepository, MySlugger $mySlugger): Response
     {
         $raid = new Raid();
 
@@ -39,9 +40,11 @@ class RaidController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $raid->setSlug($mySlugger->slugify($raid->getName()));
             $raidRepository->add($raid, true);
 
-            $this->addFlash('success', 'Raid ajouté');
+            // $this->addFlash('success', 'Raid ajouté');
             return $this->redirectToRoute('app_raid_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -53,6 +56,7 @@ class RaidController extends AbstractController
 
     /**
      * @Route ("/{id<\d+>}", name="read", methods={"GET"})
+     * @Route ("/{slug}", name="show_by_slug", methods={"GET"})
      */
     public function read(Raid $raid): Response
     {
@@ -72,7 +76,7 @@ class RaidController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $raidRepository->add($raid, true);
 
-            $this->addFlash('warning', 'Raid modifié');
+            // $this->addFlash('warning', 'Raid modifié');
             return $this->redirectToRoute('app_raid_list', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -91,7 +95,7 @@ class RaidController extends AbstractController
             $raidRepository->remove($raid, true);
         }
 
-        $this->addFlash('success', 'Raid supprimé');
+        // $this->addFlash('success', 'Raid supprimé');
         return $this->redirectToRoute('app_raid_list', [], Response::HTTP_SEE_OTHER);
     }
 }
