@@ -37,11 +37,6 @@ class Item
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Event::class, mappedBy="item")
-     */
-    private $events;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Raid::class, inversedBy="item")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(message="Merci de remplir ce champs")
@@ -67,7 +62,6 @@ class Item
 
     public function __construct()
     {
-        $this->events = new ArrayCollection();
         $this->slots = new ArrayCollection();
         $this->lootHistories = new ArrayCollection();
     }
@@ -116,33 +110,6 @@ class Item
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getEvents(): Collection
-    {
-        return $this->events;
-    }
-
-    public function addEvents(Event $event): self
-    {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->addItem($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvents(Event $event): self
-    {
-        if ($this->events->removeElement($event)) {
-            $event->removeItem($this);
-        }
 
         return $this;
     }

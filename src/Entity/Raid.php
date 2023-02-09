@@ -28,7 +28,6 @@ class Raid
 
     /**
      * @ORM\Column(type="string", length=64)
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
      */
     private $slug;
 
