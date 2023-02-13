@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Repository\EventRepository;
 use App\Repository\ItemRepository;
 use App\Repository\PlayerRepository;
@@ -16,18 +17,30 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="app_main")
      */
-    public function index(EventRepository $eventRepository, ItemRepository $itemRepository, RaidRepository $raidRepository, PlayerRepository $playerRepository): Response
+    public function index(EventRepository $eventRepository, RaidRepository $raidRepository): Response
     {
-        $eventList = $eventRepository->findAll();
-        $itemList = $itemRepository->findAll();
-        $raidList = $raidRepository->findAll();
-        $playerList = $playerRepository->findAll();
 
-        return $this->render('main/index.html.twig', [
-            'event' => $eventList,
-            'item'  => $itemList,
-            'raid'  => $raidList,
-            'player'=> $playerList
-        ]);
+        // get events from bdd to display on the calendar
+        $events = $eventRepository->findAll();
+        $raid = $raidRepository->findAll();
+        $directory = $this->getParameter('kernel.project_dir');
+        $eventsCalendar = [];
+        foreach($events as $event) {
+            $eventsCalendar[] = [
+                'id' => $event->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                
+                //TODO URL and TITLE
+                // 'url' => $directory.'/'.'event'.'/'.$event->getId(),
+                'url' => 'http://localhost:8000/event/'.$event->getId(),
+                // 'title' => $event->getRaid(['']),
+            ];
+        }
+        $data = json_encode($eventsCalendar);
+
+        return $this->render('main/index.html.twig', 
+        compact('data'), 
+    );
     }
 }
