@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}- Accueil{% endblock %}
+{% block title %}- Calendrier{% endblock %}
 
 {% block body %}
+
 <div class="container" id="calendar">
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        let calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             locale: 'fr',
             timeZone: 'Europe/Paris',
+            firstDay: 1,
             headerToolbar: {
-                start: 'dayGridMonth, timeGridWeek',
+                start: 'dayGridMonth,timeGridWeek',
                 center: 'title',
-            }
-
+            },
+            allday: false,
+            events: {{data|raw}},
         });
 
         calendar.render();
