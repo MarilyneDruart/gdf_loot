@@ -26,8 +26,9 @@ class PlayerController extends AbstractController
         $roles = $playerRepository->findPlayerByRole();
         $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
+        $sortByScore = $playerRepository->sortByScore();
     
-        //dd($lootHistoriesBis); die;
+        //dd($sortByScore); die;
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
@@ -36,6 +37,7 @@ class PlayerController extends AbstractController
             'roles' => $roles,
             'participations' => $participations,
             'benchs' => $benchs,
+            'sortByScore' => $sortByScore,
         ]);
     }
 
