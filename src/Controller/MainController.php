@@ -22,25 +22,24 @@ class MainController extends AbstractController
 
         // get events from bdd to display on the calendar
         $events = $eventRepository->findAll();
-        $raid = $raidRepository->findAll();
-        $directory = $this->getParameter('kernel.project_dir');
+    
         $eventsCalendar = [];
         foreach($events as $event) {
+            $raidNames = []; // initialize an empty array to store the names of raids
+            foreach ($event->getRaid() as $raid) { // loop through all the raids associated with the event
+                $raidNames[] = $raid->getName(); // add the raid name to the array of raid names
+            }
             $eventsCalendar[] = [
                 'id' => $event->getId(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
-                
-                //TODO URL and TITLE
-                // 'url' => $directory.'/'.'event'.'/'.$event->getId(),
-                'url' => 'http://localhost:8000/event/'.$event->getId(),
-                // 'title' => $event->getRaid(['']),
+                'url' => 'https://www.gdf-loot.fr/event/'.$event->getId(),
+                'title' => implode(' + ', $raidNames) ?: 'Raid inconnu', // set the raid names as title, or use a default string if no raid is linked
             ];
-        }
+        };
+    
         $data = json_encode($eventsCalendar);
-
-        return $this->render('main/index.html.twig', 
-        compact('data'), 
-    );
+    
+        return $this->render('main/index.html.twig', compact('data'));
     }
 }
