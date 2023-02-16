@@ -4,6 +4,7 @@
 
 {% block body %}
 
+
 <div class="title">
     <h1>
         {{ event.date ? event.date|date('d M Y - H:i') : ''  }}</br>
@@ -13,9 +14,18 @@
     </h1>
     <h2><a href="{{ event.log }}" target="_blank" title="Voir les logs">Warcraftlogs</a></br></h2>
 </div>
+<div class="bottom-button d-flex flex-wrap justify-content-evenly">
+    {# pagination #}
+    {% for event in paginator.items %}
+        {{ event.id }}
+    {% endfor %}
+
+    {% include '_paginator.html.twig' %}
+    <a class="bottom-button-update" href="{{ path('app_event_update', {'id': event.id}) }}">Modifier l'évènement</a>      
+    <a class="bottom-button-back" href="{{ path('app_event_list') }}" title="Retour à la liste des évènements">Retour</a>
+    {{ include('event/_delete_form.html.twig') }}
+</div>
 <div class="container">
-
-
 
     <div class="left-container">
         <div class="event-button-top-add">
@@ -89,10 +99,5 @@
             </tbody>
         </table>
     </div>
-</div>
-<div class="bottom-button d-flex flex-wrap justify-content-evenly">
-    <a class="bottom-button-update" href="{{ path('app_event_update', {'id': event.id}) }}">Modifier l'évènement</a>      
-    <a class="bottom-button-back" href="{{ path('app_event_list') }}" title="Retour à la liste des évènements">Retour</a>
-    {{ include('event/_delete_form.html.twig') }}
 </div>
 {% endblock %}
