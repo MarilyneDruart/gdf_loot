@@ -11,7 +11,6 @@ use App\Form\ParticipationType;
 use App\Repository\EventRepository;
 use App\Repository\LootHistoryRepository;
 use App\Repository\ParticipationRepository;
-use App\Utils\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -62,17 +61,37 @@ class EventController extends AbstractController
     /**
      * @Route ("/{id<\d+>}", name="read", methods={"GET"})
      */
-    public function read(Event $event, Participation $participation, Request $request, Paginator $paginator, EntityManagerInterface $em): Response
+    public function read(Event $event, Participation $participation, EventRepository $eventRepository): Response
     {
-        // pagination
-        $query = $em->getRepository(Event::class)->createQueryBuilder('e');
-        $paginator->paginate($query, $request->query->getInt('page', 1));
+        $previousEvent = $eventRepository->findPreviousEvent($event);
+        $nextEvent = $eventRepository->findNextEvent($event);
 
         return $this->render('event/read.html.twig', [
             'event' => $event,
             'participation' => $participation,
-            'paginator' => $paginator,
+            'previous_event' => $previousEvent,
+            'next_event' => $nextEvent,
         ]);
+    }
+
+    /**
+     * @Route("/{id<\d+>}/previous", name="read_previous")
+     */
+    public function readPrevious(Event $event, EventRepository $eventRepository)
+    {
+        $previousEvent = $eventRepository->findPreviousEvent($event);
+
+        return $this->redirectToRoute('app_event_read', ['id' => $previousEvent->getId()]);
+    }
+
+    /**
+     * @Route("/{id<\d+>}/next", name="read_next")
+     */
+    public function readNext(Event $event, EventRepository $eventRepository)
+    {
+        $nextEvent = $eventRepository->findNextEvent($event);
+
+        return $this->redirectToRoute('app_event_read', ['id' => $nextEvent->getId()]);
     }
 
     /**
