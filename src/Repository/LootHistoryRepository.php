@@ -164,7 +164,7 @@ class LootHistoryRepository extends ServiceEntityRepository
 
         $scores = ($scoreContested + $scoreBis) / $scorePresence;
 
-        return $scores;
+        return number_format($scores, 3);
     }
 
     public function setCalculScore(string $slug, float $scores)
