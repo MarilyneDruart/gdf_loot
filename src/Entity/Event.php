@@ -22,18 +22,24 @@ class Event
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
-     * @Assert\NotNull
+     * @Assert\NotNull(message="Merci de remplir ce champs")
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotNull(message="Merci de remplir ce champs")
      */
     private $log;
 
     /**
      * @ORM\ManyToMany(targetEntity=Raid::class, inversedBy="events")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
+     * 
+     * @Assert\Count(
+     *      min = "1",
+     *      minMessage = "Merci de choisir au moins un Raid"
+     * )
+     * 
      */
     private $raid;
 
@@ -46,6 +52,16 @@ class Event
      * @ORM\OneToMany(targetEntity=LootHistory::class, mappedBy="event")
      */
     private $lootHistories;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $start;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $end;
 
     public function __construct()
     {
@@ -164,6 +180,30 @@ class Event
                 $lootHistory->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStart(): ?\DateTimeInterface
+    {
+        return $this->start;
+    }
+
+    public function setStart(\DateTimeInterface $start): self
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getEnd(): ?\DateTimeInterface
+    {
+        return $this->end;
+    }
+
+    public function setEnd(\DateTimeInterface $end): self
+    {
+        $this->end = $end;
 
         return $this;
     }
