@@ -143,11 +143,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
-                    "name" => "Ring 1",
-                ],
-
-                [
-                    "name" => "Ring 2",
+                    "name" => "Ring",
                 ],
 
                 [
@@ -155,15 +151,7 @@ class DataFixtures extends Fixture
                 ],
 
                 [
-                    "name" => "Trinket 1",
-                ],
-
-                [
-                    "name" => "Trinket 2",
-                ],
-
-                [
-                    "name" => "Trinket 3",
+                    "name" => "Trinket",
                 ],
 
                 [
