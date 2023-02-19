@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Item;
 use App\Entity\LootHistory;
 use App\Entity\Player;
+use APP\Repository\ItemRepository;
 use APP\Repository\PlayerRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -33,6 +34,10 @@ class LootHistoryType extends AbstractType
             ->add('item',
             EntityType::class, [
                 'class' => Item::class,
+                'query_builder' => function (ItemRepository $er) {
+                    return $er->createQueryBuilder('i')
+                        ->orderBy('i.name', 'ASC');
+                },
                 'label' => 'Item',
                 'choice_label' => 'name',
                 'multiple' => false,
