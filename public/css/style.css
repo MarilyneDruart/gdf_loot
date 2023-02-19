@@ -1,11 +1,12 @@
 /* ---------------------- HTML + BODY + HEADER + MAIN + FOOTER ---------------------- */
 
-html, body {
+html,
+body {
     box-sizing: border-box;
     height: 100%;
     padding: 0;
     margin: 0;
- }
+}
 
 body {
     background-image: url(../images/og-image.png);
@@ -23,7 +24,8 @@ body {
     justify-content: space-between;
 }
 
-header, footer {
+header,
+footer {
     flex-grow: 0;
     flex-shrink: 0;
 }
@@ -74,11 +76,11 @@ footer {
 
 .navbar {
     background-color: rgba(30, 131, 190, 0.418);
-    background-position:bottom;
+    background-position: bottom;
     width: 100%;
     height: 6rem;
 }
-    
+
 .logo-nav {
     width: 12rem;
     height: auto;
@@ -102,8 +104,8 @@ footer {
 }
 
 .search-bar:hover {
-    -webkit-box-shadow: 2px -2px 9px 6px rgba(0,0,0,0.34); 
-    box-shadow: 2px -2px 9px 6px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 2px -2px 9px 6px rgba(0, 0, 0, 0.34);
+    box-shadow: 2px -2px 9px 6px rgba(0, 0, 0, 0.34);
 }
 
 .result-bar-title {
@@ -135,10 +137,65 @@ footer {
 
 /* ---------------------- calendrier ---------------------- */
 #calendar {
-    width: 45rem;
-    margin: auto;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 10px;
 }
 
+.fc .fc-toolbar {
+    justify-content: space-around;
+}
+
+#calendar button {
+    background-color: rgba(30, 131, 190, 0.418);
+    color: white;
+    border: #1b2f4ead solid 1px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.fc-theme-bootstrap5 .fc-scrollgrid {
+    border: none;
+}
+
+#calendar>div.fc-view-harness.fc-view-harness-active>div>table>tbody>tr>td>div>div>div>table>tbody>tr>td {
+    height: 6.4rem;
+}
+
+/* case jour */
+
+.fc-daygrid-event-dot {
+    display: none;
+}
+
+.fc-direction-ltr .fc-daygrid-event.fc-event-end,
+.fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    display: flex;
+    flex-direction: column;
+}
+
+.fc-daygrid-event {
+    white-space: normal;
+}
+
+/* liste */
+
+.fc-theme-bootstrap5 .fc-list {
+    border: none;
+}
+
+.fc-theme-bootstrap5-shaded {
+    background-color: black;
+}
+
+.fc-list-event-time,
+.fc-list-event-title {
+    color: black;
+}
+
+.fc-list-event-graphic {
+    display: none;
+}
 
 /* ---------------------- container principaux ---------------------- */
 .title {
@@ -166,7 +223,8 @@ footer {
 
 
 /* ---------------------- textes ---------------------- */
-h1, h2 {
+h1,
+h2 {
     color: white;
     text-align: center;
 }
@@ -176,7 +234,11 @@ a {
     color: white;
 }
 
-a:hover, .navbar-expand-lg, .navbar-nav, .nav-link:hover, .button-save:hover {
+a:hover,
+.navbar-expand-lg,
+.navbar-nav,
+.nav-link:hover,
+.button-save:hover {
     color: rgb(211, 43, 226);
 }
 
@@ -192,7 +254,14 @@ a:hover, .navbar-expand-lg, .navbar-nav, .nav-link:hover, .button-save:hover {
     margin-top: 1rem;
 }
 
-.button-top-add, .bottom-button-update, .bottom-button-back, .button-delete, .button-search, .button-save, .button-back, .form-control {
+.button-top-add,
+.bottom-button-update,
+.bottom-button-back,
+.button-delete,
+.button-search,
+.button-save,
+.button-back,
+.form-control {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -201,7 +270,7 @@ a:hover, .navbar-expand-lg, .navbar-nav, .nav-link:hover, .button-save:hover {
 }
 
 td .button-delete {
-    width: 3rem;    
+    width: 3rem;
 }
 
 .button-delete:hover {
@@ -220,7 +289,7 @@ table {
     text-align: center;
 }
 
-.container table > thead > tr > th  {
+.container table>thead>tr>th {
     background-color: #6179a180;
     font-weight: bold;
     color: white;
@@ -241,15 +310,19 @@ table tbody td {
 
 /* ---------------------- accordions ---------------------- */
 
-.accordion-item, .accordion-button, .accordion-button:not(.collapsed), .list-group-item {
+.accordion-item,
+.accordion-button,
+.accordion-button:not(.collapsed),
+.list-group-item {
     background-color: rgba(0, 0, 0, 0.308);
-    color:white;
+    color: white;
 }
 
 
 /* ---------------------- page item ---------------------- */
 
-.title-item, .title-player {
+.title-item,
+.title-player {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     margin: 2rem 0;
@@ -259,7 +332,8 @@ table tbody td {
     font-size: 3rem;
 }
 
-.title-player h1, .title-player h2 {
+.title-player h1,
+.title-player h2 {
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -294,7 +368,7 @@ table tbody td {
     justify-content: center;
 }
 
-#form input{
+#form input {
     width: 25rem;
 }
 
@@ -304,41 +378,41 @@ table tbody td {
     align-items: center;
     text-align: center;
     color: white;
- }
- 
- .container form > div:nth-child(1) {
+}
+
+.container form>div:nth-child(1) {
     margin-bottom: 2rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
- }
+}
 
- .container form > div:nth-child(1) div {
+.container form>div:nth-child(1) div {
     margin: 1rem;
     text-align: center;
- }
+}
 
- label.required {
+label.required {
     display: flex;
-    background-color:  #88c9fbab;
+    background-color: #88c9fbab;
     padding: 0.5rem;
     justify-content: center;
- }
- 
- form .list {
+}
+
+form .list {
     background-color: rgba(0, 0, 0, 0.493);
     color: white;
     height: 10rem;
- }
+}
 
- form li {
+form li {
     color: red;
 }
 
- form option:checked {
+form option:checked {
     background-color: rgba(30, 131, 190, 80%);
     color: white;
- }
+}
 
 
 /* ---------------------- form (spécifiques) ---------------------- */
@@ -352,6 +426,7 @@ form #item_type {
     flex-direction: row-reverse;
     margin: 0;
 }
+
 form #item_type label {
     background: none;
 }
@@ -414,12 +489,15 @@ form input#event_log {
     .wowhead-link {
         flex-direction: column-reverse;
     }
-    .title-item{
+
+    .title-item {
         font-size: 1.5rem;
     }
+
     .wowhead-logo {
         width: 15rem;
     }
+
     .wowhead-title {
         text-align: center;
         font-size: 1.5rem;
@@ -428,6 +506,7 @@ form input#event_log {
     .result-bar-response {
         width: 50%;
     }
+
     .result-bar-choice {
         font-size: 0.8rem;
     }
