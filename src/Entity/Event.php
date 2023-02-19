@@ -22,18 +22,24 @@ class Event
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
-     * @Assert\NotNull
+     * @Assert\NotNull(message="Merci de remplir ce champs")
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotNull(message="Merci de remplir ce champs")
      */
     private $log;
 
     /**
      * @ORM\ManyToMany(targetEntity=Raid::class, inversedBy="events")
-     * @Assert\NotBlank(message="Merci de remplir ce champs")
+     * 
+     * @Assert\Count(
+     *      min = "1",
+     *      minMessage = "Merci de choisir au moins un Raid"
+     * )
+     * 
      */
     private $raid;
 
