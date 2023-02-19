@@ -61,12 +61,37 @@ class EventController extends AbstractController
     /**
      * @Route ("/{id<\d+>}", name="read", methods={"GET"})
      */
-    public function read(Event $event, Participation $participation): Response
+    public function read(Event $event, Participation $participation, EventRepository $eventRepository): Response
     {
+        $previousEvent = $eventRepository->findPreviousEvent($event);
+        $nextEvent = $eventRepository->findNextEvent($event);
+
         return $this->render('event/read.html.twig', [
             'event' => $event,
             'participation' => $participation,
+            'previous_event' => $previousEvent,
+            'next_event' => $nextEvent,
         ]);
+    }
+
+    /**
+     * @Route("/{id<\d+>}/previous", name="read_previous")
+     */
+    public function readPrevious(Event $event, EventRepository $eventRepository)
+    {
+        $previousEvent = $eventRepository->findPreviousEvent($event);
+
+        return $this->redirectToRoute('app_event_read', ['id' => $previousEvent->getId()]);
+    }
+
+    /**
+     * @Route("/{id<\d+>}/next", name="read_next")
+     */
+    public function readNext(Event $event, EventRepository $eventRepository)
+    {
+        $nextEvent = $eventRepository->findNextEvent($event);
+
+        return $this->redirectToRoute('app_event_read', ['id' => $nextEvent->getId()]);
     }
 
     /**
