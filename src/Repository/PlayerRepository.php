@@ -123,4 +123,18 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function sortByScore(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT pl
+            FROM App\Entity\Player pl
+            ORDER BY pl.score DESC
+            '
+        );
+
+        return $query->getResult();
+    }
+
 }
