@@ -34,3 +34,35 @@ FIELDS TERMINATED BY ' ,'
 /* le paramètre IGNORE X LINES qui sert à déclaré que le fichier CSV dispose d'un en tête et que celui-ci doit être ignoré par la commande lors du traitement du lot des données.*/
 IGNORE 1 LINES ;
 ```
+
+## SELECT Count Items  NM / HM / Contested du LootHistory d'un player
+Je veux récuperer le total des items dont le type est NM pour le player 13
+
+### Somme de tous les items du player 13 dont le type est NM
+#### Requête SQL
+```sql
+SELECT count('NM')
+FROM loot_history
+JOIN item
+ON loot_history.item_id = item.id
+WHERE player_id = 13 AND item.type= 'NM';
+```
+
+#### Requête DQL
+```php
+    public function findNbItemNM(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT('NM') AS sumItemsNM 
+            FROM App\Entity\lootHistory lh 
+            JOIN App\Entity\item i
+            WITH lh.item = i.id
+            WHERE lh.player = 13 AND i.type = 'NM'
+            "
+        );
+
+        return $query->getResult();
+    }
+```

@@ -17,27 +17,35 @@
                     <th colspan="1">Joueur</th>
                     <th colspan="1">Rôle</th>
                     <th colspan="1">Classe</th>
-                    <th colspan="1">Grade</th>
-                    <th colspan="1">Etat</th>
+                    <th colspan="1">Participation</th>
+                    <th colspan="1">Loots NM</th>
+                    <th colspan="1">Loots HM</th>
+                    <th colspan="1">Loots Contested</th>
+                    {# <th colspan="1">Grade</th> #}
+                    {# <th colspan="1">Etat</th> #}
                     <th colspan="1">Score</th>
 
                 </tr>
             </thead>
             <tbody>
                 {% for player in players %}
-                <tr>
-                    <td>
-                        <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
-                            {{ player.name }}
-                        </a>
-                    </td>
-                    <td>{{ player.role.name }}</td>
-                    <td>{{ player.class }}</td>
-                    <td>{{ player.rank }}</td>
-                    <td>{% if player.isActif == 0 %} Inactif {% else %} Actif {% endif %}</td>
-                    <td>{{ player.score }}</td>
+                    {% if player.isActif == 1 %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
+                                    {{ player.name }}
+                                </a>
+                            </td>
+                            <td>{{ player.role.name }}</td>
+                            <td>{{ player.class }}</td>
+                            <td>{{ player.participations|length }}</td>
+                            <td>{{ findNbItemNM.sumItemsNM[1]}}</td>
+                            <td>{{ findNbItemHM.sumItemsHM }}</td>
+                            <td>{{ findNbItemContested.sumItemsContested }}</td>
+                            <td>{{ player.score }}</td>
 
-                </tr>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>

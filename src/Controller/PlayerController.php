@@ -17,18 +17,30 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PlayerController extends AbstractController
 {
+
+    private $lootHistoryRepository;
+
+    public function __construct(LootHistoryRepository $lootHistoryRepository)
+    {
+        $this->lootHistoryRepository = $lootHistoryRepository;
+    }
+
     /**
      * @Route("/", name="list", methods={"GET"})
      */
-    public function list(PlayerRepository $playerRepository): Response
+    public function list(PlayerRepository $playerRepository, LootHistoryRepository $lootHistoryRepository, Request $request): Response
     {
+        $playerId = $request->query->getInt('player_id');
         $ranks = $playerRepository->findPlayerByRank();
         $roles = $playerRepository->findPlayerByRole();
         $participations = $playerRepository->findPlayerByParticipation();
+        $findNbItemNM = $lootHistoryRepository->findNbItemNM($playerId);
+        $findNbItemHM = $lootHistoryRepository->findNbItemHM($playerId);
+        $findNbItemContested = $lootHistoryRepository->findNbItemContested($playerId);
         $benchs = $playerRepository->findPlayerByBench();
         $sortByScore = $playerRepository->sortByScore();
     
-        //dd($sortByScore); die;
+        // dd($findNbItemNM); die;
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
@@ -38,6 +50,10 @@ class PlayerController extends AbstractController
             'participations' => $participations,
             'benchs' => $benchs,
             'sortByScore' => $sortByScore,
+            'lootHistoryRepository' => $lootHistoryRepository,
+            'findNbItemNM' => $findNbItemNM,
+            'findNbItemHM' => $findNbItemHM,
+            'findNbItemContested' => $findNbItemContested,
         ]);
     }
 
@@ -73,14 +89,14 @@ class PlayerController extends AbstractController
     public function read(Player $player, PlayerRepository $playerRepository, LootHistoryRepository $lootHistoryRepository, string $slug): Response
     {
 
-        $lootHistories = $lootHistoryRepository->findLootHistory($slug);
-        $nbPresences = $lootHistoryRepository->findNbPresence($slug);
-        $nbBenches = $lootHistoryRepository->findNbBench($slug);
-        $nbItemNM = $lootHistoryRepository->findNbItemNM($slug);
-        $nbItemHM = $lootHistoryRepository->findNbItemHM($slug);
-        $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
-        $scores = $lootHistoryRepository->calculScore($lootHistoryRepository, $slug);
-        $setScore = $lootHistoryRepository->setCalculScore($slug, $scores);
+        $lootHistories = $lootHistoryRepository->findLootHistoryBySlug($slug);
+        $nbPresences = $lootHistoryRepository->findNbPresenceBySlug($slug);
+        $nbBenches = $lootHistoryRepository->findNbBenchBySlug($slug);
+        $nbItemNM = $lootHistoryRepository->findNbItemNMBySlug($slug);
+        $nbItemHM = $lootHistoryRepository->findNbItemHMBySlug($slug);
+        $nbItemContested = $lootHistoryRepository->findNbItemContestedBySlug($slug);
+        $scores = $lootHistoryRepository->calculScoreBySlug($lootHistoryRepository, $slug);
+        $setScore = $lootHistoryRepository->setCalculScoreBySlug($slug, $scores);
         //dd($setScore); die;       
 
         return $this->render('player/read.html.twig', [
