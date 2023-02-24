@@ -21,8 +21,6 @@
                     <th colspan="1">Loots NM</th>
                     <th colspan="1">Loots HM</th>
                     <th colspan="1">Loots Contested</th>
-                    {# <th colspan="1">Grade</th> #}
-                    {# <th colspan="1">Etat</th> #}
                     <th colspan="1">Score</th>
 
                 </tr>
@@ -39,11 +37,14 @@
                             <td>{{ player.role.name }}</td>
                             <td>{{ player.class }}</td>
                             <td>{{ player.participations|length }}</td>
-                            <td>{{ findNbItemNM.sumItemsNM[1]}}</td>
-                            <td>{{ findNbItemHM.sumItemsHM }}</td>
-                            <td>{{ findNbItemContested.sumItemsContested }}</td>
+                            <td>
+                            {% for items in nbItemNMByPlayer%}
+                                {{ items.nbItemNM }}
+                            {% endfor %}
+                            </td>
+                            <td>x items HM</td>
+                            <td>x items contested</td>
                             <td>{{ player.score }}</td>
-
                         </tr>
                     {% endif %}
                 {% endfor %}

@@ -28,19 +28,17 @@ class PlayerController extends AbstractController
     /**
      * @Route("/", name="list", methods={"GET"})
      */
-    public function list(PlayerRepository $playerRepository, LootHistoryRepository $lootHistoryRepository, Request $request): Response
+    public function list(PlayerRepository $playerRepository, Request $request): Response
     {
-        $playerId = $request->query->getInt('player_id');
+        // $playerId = $request->query->getInt('player_id');
         $ranks = $playerRepository->findPlayerByRank();
         $roles = $playerRepository->findPlayerByRole();
         $participations = $playerRepository->findPlayerByParticipation();
-        $findNbItemNM = $lootHistoryRepository->findNbItemNM($playerId);
-        $findNbItemHM = $lootHistoryRepository->findNbItemHM($playerId);
-        $findNbItemContested = $lootHistoryRepository->findNbItemContested($playerId);
         $benchs = $playerRepository->findPlayerByBench();
         $sortByScore = $playerRepository->sortByScore();
-    
-        // dd($findNbItemNM); die;
+        $nbItemNMByPlayer = $playerRepository->findNbItemNMByPlayer();
+
+        // dd($nbItemNMByPlayer); die;
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
@@ -50,10 +48,8 @@ class PlayerController extends AbstractController
             'participations' => $participations,
             'benchs' => $benchs,
             'sortByScore' => $sortByScore,
-            'lootHistoryRepository' => $lootHistoryRepository,
-            'findNbItemNM' => $findNbItemNM,
-            'findNbItemHM' => $findNbItemHM,
-            'findNbItemContested' => $findNbItemContested,
+            'nbItemNMByPlayer' => $nbItemNMByPlayer,
+
         ]);
     }
 

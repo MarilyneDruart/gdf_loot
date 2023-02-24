@@ -137,4 +137,34 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    // public function findNbItemNMByPlayer()
+    // {
+    //     $qb = $this->createQueryBuilder('p')
+    //         ->select('p.id, COUNT(lh.id) as nbItemNM')
+    //         ->leftJoin('p.lootHistories', 'lh')
+    //         ->andWhere('lh.item = :type')
+    //         ->setParameter('type', 'NM')
+    //         ->groupBy('p.id');
+    //     return $qb->getQuery()->getResult();
+    // }
+
+    public function findNbItemNMByPlayer(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            "SELECT COUNT('NM') AS nbItemNM 
+            FROM App\Entity\lootHistory lh 
+            JOIN App\Entity\item i
+            WITH lh.item = i.id
+            JOIN App\Entity\player p
+            WITH lh.player = p.id
+            WHERE  i.type = 'NM'
+            GROUP BY p.id
+            "
+        );
+
+        return $query->getResult();
+    }
+    
 }
