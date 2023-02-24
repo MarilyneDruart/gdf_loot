@@ -294,6 +294,8 @@ table {
     background-color: #6179a180;
     font-weight: bold;
     color: white;
+    padding: 0 1rem;
+    vertical-align: middle;
 }
 
 table tbody tr:nth-child(even) {
@@ -307,6 +309,7 @@ table tbody tr:nth-child(odd) {
 table tbody td {
     padding: 0 1rem;
     color: white;
+    vertical-align: middle;
 }
 
 /* ---------------------- accordions ---------------------- */
