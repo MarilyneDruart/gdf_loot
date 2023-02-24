@@ -37,13 +37,9 @@
                             <td>{{ player.role.name }}</td>
                             <td>{{ player.class }}</td>
                             <td>{{ player.participations|length }}</td>
-                            <td>
-                            {% for items in nbItemNMByPlayer%}
-                                {{ items.nbItemNM }}
-                            {% endfor %}
-                            </td>
-                            <td>x items HM</td>
-                            <td>x items contested</td>
+                            <td>{{ nbItemNMByPlayer[player.id][0]['nbItemNM'] }}</td>
+                            <td>{{ nbItemHMByPlayer[player.id][0]['nbItemHM'] }}</td>
+                            <td>{{ nbItemContestedByPlayer[player.id][0]['nbItemContested'] }}</td>
                             <td>{{ player.score }}</td>
                         </tr>
                     {% endif %}

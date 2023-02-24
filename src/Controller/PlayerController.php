@@ -20,9 +20,10 @@ class PlayerController extends AbstractController
 
     private $lootHistoryRepository;
 
-    public function __construct(LootHistoryRepository $lootHistoryRepository)
+    public function __construct(LootHistoryRepository $lootHistoryRepository, PlayerRepository $playerRepository)
     {
         $this->lootHistoryRepository = $lootHistoryRepository;
+        $this->playerRepository = $playerRepository;
     }
 
     /**
@@ -30,26 +31,42 @@ class PlayerController extends AbstractController
      */
     public function list(PlayerRepository $playerRepository, Request $request): Response
     {
-        // $playerId = $request->query->getInt('player_id');
+
         $ranks = $playerRepository->findPlayerByRank();
         $roles = $playerRepository->findPlayerByRole();
         $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
         $sortByScore = $playerRepository->sortByScore();
-        $nbItemNMByPlayer = $playerRepository->findNbItemNMByPlayer();
+        $players = $playerRepository->findAll();
+        $nbItemNMByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId());
+            $nbItemNMByPlayer[$player->getId()] = $nbItemNM;
+        }
+        $nbItemHMByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId());
+            $nbItemHMByPlayer[$player->getId()] = $nbItemHM;
+        }
+        $nbItemContestedByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId());
+            $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
+        }
 
         // dd($nbItemNMByPlayer); die;
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
-            'players' => $playerRepository->findAll(),
+            'players' => $players,
             'ranks' => $ranks,
             'roles' => $roles,
             'participations' => $participations,
             'benchs' => $benchs,
             'sortByScore' => $sortByScore,
             'nbItemNMByPlayer' => $nbItemNMByPlayer,
-
+            'nbItemHMByPlayer' => $nbItemHMByPlayer,
+            'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
         ]);
     }
 
