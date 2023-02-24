@@ -123,24 +123,10 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function sortByScore(): array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT pl
-            FROM App\Entity\Player pl
-            ORDER BY pl.score DESC
-            '
-        );
-
-        return $query->getResult();
-    }
-
     public function findNbItemNMByPlayer(int $playerId): array
     {
         $entityManager = $this->getEntityManager();
-    
+        
         $query = $entityManager->createQuery(
             "SELECT COUNT('NM') AS nbItemNM 
             FROM App\Entity\lootHistory lh 
@@ -149,7 +135,7 @@ class PlayerRepository extends ServiceEntityRepository
         );
         
         $query->setParameter('player', $playerId);
-    
+        
         return $query->getResult();
     }
 
@@ -172,7 +158,7 @@ class PlayerRepository extends ServiceEntityRepository
     public function findNbItemContestedByPlayer(int $playerId): array
     {
         $entityManager = $this->getEntityManager();
-    
+        
         $query = $entityManager->createQuery(
             "SELECT COUNT('Contested') AS nbItemContested 
             FROM App\Entity\lootHistory lh 
@@ -185,5 +171,18 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function sortByScore(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT pl
+            FROM App\Entity\Player pl
+            ORDER BY pl.score DESC
+            '
+        );
+
+        return $query->getResult();
+    }
 
 }

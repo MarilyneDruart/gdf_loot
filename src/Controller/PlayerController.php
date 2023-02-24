@@ -32,12 +32,14 @@ class PlayerController extends AbstractController
     public function list(PlayerRepository $playerRepository, Request $request): Response
     {
 
-        $ranks = $playerRepository->findPlayerByRank();
+        // sort by table column
+        $sortBy = $request->query->get('sort', 'name'); // par défaut, tri par nom
+        $sortOrder = $request->query->get('order', 'asc');
+
+        // datas for the table (left container)
+        $players = $playerRepository->findBy([], [$sortBy => $sortOrder]);
         $roles = $playerRepository->findPlayerByRole();
         $participations = $playerRepository->findPlayerByParticipation();
-        $benchs = $playerRepository->findPlayerByBench();
-        $sortByScore = $playerRepository->sortByScore();
-        $players = $playerRepository->findAll();
         $nbItemNMByPlayer = [];
         foreach ($players as $player) {
             $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId());
@@ -53,20 +55,23 @@ class PlayerController extends AbstractController
             $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId());
             $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
         }
-
+        
+        // datas for the stats (right container)
+        $ranks = $playerRepository->findPlayerByRank();
+        $benchs = $playerRepository->findPlayerByBench();
+        
         // dd($nbItemNMByPlayer); die;
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
             'players' => $players,
-            'ranks' => $ranks,
             'roles' => $roles,
             'participations' => $participations,
-            'benchs' => $benchs,
-            'sortByScore' => $sortByScore,
             'nbItemNMByPlayer' => $nbItemNMByPlayer,
             'nbItemHMByPlayer' => $nbItemHMByPlayer,
             'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
+            'ranks' => $ranks,
+            'benchs' => $benchs,
         ]);
     }
 
