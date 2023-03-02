@@ -64,6 +64,7 @@ class PlayerRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT p.rank, COUNT(p)
             FROM App\Entity\Player p
+            WHERE p.isActif = 1
             GROUP BY p.rank
             '
         );
@@ -79,7 +80,8 @@ class PlayerRepository extends ServiceEntityRepository
             'SELECT r.name, COUNT(p) 
             FROM App\Entity\Player p 
             JOIN App\Entity\Role r
-            WHERE p.role = r.id 
+            WHERE p.role = r.id
+            AND p.isActif = 1
             GROUP BY p.role
             '
         );
