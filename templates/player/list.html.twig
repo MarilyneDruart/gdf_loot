@@ -3,49 +3,51 @@
 {% block title %}- Liste des joueurs{% endblock %}
 
 {% block body %}
-{{ render(controller(
+{# {{ render(controller(
         'App\\Controller\\SearchController::playerSearchBar'
- )) }}
+ )) }} #}
 <div class="button-top">        
     <a href="{{ path('app_player_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un joueur</a>
 </div>
 <div class="container">
     <div class="left-container">
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="1"><a href="{{ path('app_player_list', {'sort': 'name'}) }}">Joueur</a></th>
-                    <th colspan="1"><a href="{{ path('app_player_list', {'sort': 'role'}) }}">Rôle</a></th>
-                    <th colspan="1"><a href="{{ path('app_player_list', {'sort': 'class'}) }}">Classe</a></th>
-                    <th colspan="1"><a href="{{ path('app_player_list', {'sort': 'participations'}) }}">Participation</th>
-                    <th colspan="1">Loots NM</th>
-                    <th colspan="1">Loots HM</th>
-                    <th colspan="1">Loots Contested</th>
-                    <th colspan="1"><a href="{{ path('app_player_list', {'sort': 'score'}) }}">Score</a></th>
+        <div class="table-responsive-xl">
+            <table id="sortTable" >
+                <thead>
+                    <tr>
+                        <th colspan="1">Joueur</th>
+                        <th colspan="1">Rôle</th>
+                        <th colspan="1">Classe</th>
+                        <th colspan="1">Participation</th>
+                        <th colspan="1">Loots NM</th>
+                        <th colspan="1">Loots HM</th>
+                        <th colspan="1">Loots Contested</th>
+                        <th colspan="1">Score</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in players %}
-                    {% if player.isActif == 1 %}
-                        <tr>
-                            <td>
-                                <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
-                                    {{ player.name }}
-                                </a>
-                            </td>
-                            <td>{{ player.role.name }}</td>
-                            <td>{{ player.class }}</td>
-                            <td>{{ player.participations|length }}</td>
-                            <td>{{ nbItemNMByPlayer[player.id][0]['nbItemNM'] }}</td>
-                            <td>{{ nbItemHMByPlayer[player.id][0]['nbItemHM'] }}</td>
-                            <td>{{ nbItemContestedByPlayer[player.id][0]['nbItemContested'] }}</td>
-                            <td>{{ player.score }}</td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                        {% if player.isActif == 1 %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
+                                        {{ player.name }}
+                                    </a>
+                                </td>
+                                <td>{{ player.role.name }}</td>
+                                <td>{{ player.class }}</td>
+                                <td>{{ player.participations|length }}</td>
+                                <td>{{ nbItemNMByPlayer[player.id][0]['nbItemNM'] }}</td>
+                                <td>{{ nbItemHMByPlayer[player.id][0]['nbItemHM'] }}</td>
+                                <td>{{ nbItemContestedByPlayer[player.id][0]['nbItemContested'] }}</td>
+                                <td>{{ player.score }}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="right-container">
         <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -128,5 +130,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

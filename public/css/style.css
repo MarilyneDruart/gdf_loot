@@ -49,7 +49,7 @@ footer {
     margin: 0.5rem;
 }
 
-.footer-list-text {
+.footer-list-text{
     color: rgb(255, 255, 255);
 }
 
@@ -146,7 +146,7 @@ footer {
     justify-content: space-around;
 }
 
-#calendar button {
+#calendar button, .page-link {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -310,6 +310,18 @@ table tbody td {
     padding: 0 1rem;
     color: white;
     vertical-align: middle;
+}
+
+#sortTable_wrapper .row .col-sm-12 {
+    color: rgb(255, 255, 255);
+}
+
+#sortTable_previous > a, #sortTable_next > a {
+    background-color: rgba(30, 131, 190, 0.418);
+    color: white;
+    border: #1b2f4ead solid 1px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
 /* ---------------------- accordions ---------------------- */
