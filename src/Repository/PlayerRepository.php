@@ -185,4 +185,15 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findByOrderByParticipations($order = 'asc')
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.participations', 'participations')
+            ->groupBy('p.id')
+            ->orderBy('COUNT(participations.id)', $order);
+
+        return $qb->getQuery()->getResult();
+    }
+
+
 }

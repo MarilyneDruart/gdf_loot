@@ -32,12 +32,7 @@ class PlayerController extends AbstractController
     public function list(PlayerRepository $playerRepository, Request $request): Response
     {
 
-        // sort by table column
-        $sortBy = $request->query->get('sort', 'name'); // par défaut, tri par nom
-        $sortOrder = $request->query->get('order', 'asc');
-
-        // datas for the table (left container)
-        $players = $playerRepository->findBy([], [$sortBy => $sortOrder]);
+        $players = $playerRepository->findAll();        
         $roles = $playerRepository->findPlayerByRole();
         $participations = $playerRepository->findPlayerByParticipation();
         $nbItemNMByPlayer = [];
