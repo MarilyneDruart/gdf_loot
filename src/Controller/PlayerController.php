@@ -31,40 +31,78 @@ class PlayerController extends AbstractController
      */
     public function list(PlayerRepository $playerRepository, Request $request): Response
     {
-
+        // datas for table
         $players = $playerRepository->findAll();        
-        $roles = $playerRepository->findPlayerByRole();
-        $participations = $playerRepository->findPlayerByParticipation();
+        
+        $nbPresenceByPlayer = [];
+        foreach ($players as $player) {
+            $nbPresence = $this-> playerRepository->findNbPresenceByPlayer($player->getId());
+            $nbPresenceByPlayer[$player->getId()] = $nbPresence;
+        }
+        
+        $nbBenchByPlayer = [];
+        foreach ($players as $player) {
+            $nbBench = $this-> playerRepository->findnbBenchByPlayer($player->getId());
+            $nbBenchByPlayer[$player->getId()] = $nbBench;
+        }                
+        
         $nbItemNMByPlayer = [];
         foreach ($players as $player) {
             $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId());
             $nbItemNMByPlayer[$player->getId()] = $nbItemNM;
         }
+        
         $nbItemHMByPlayer = [];
         foreach ($players as $player) {
             $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId());
             $nbItemHMByPlayer[$player->getId()] = $nbItemHM;
         }
+        
         $nbItemContestedByPlayer = [];
         foreach ($players as $player) {
             $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId());
             $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
         }
         
-        // datas for the stats (right container)
-        $ranks = $playerRepository->findPlayerByRank();
+        // datas for stats (right container)
+        $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
+        $ranks = $playerRepository->findPlayerByRank();
+        $roles = $playerRepository->findPlayerByRole();
         
-        // dd($nbItemNMByPlayer); die;
+        
+        // calcul players score : [(itemNM * 0.8) + (itemHM * 1) + (itemContested * 2)] / (participations + benches)
+        $scoreItemNMByPlayer = $nbItemNMByPlayer[$player->getId()][0]['nbItemNM'] * 0.8;
+        $scoreItemHMByPlayer = $nbItemHMByPlayer[$player->getId()][0]['nbItemHM'] * 1;
+        $scoreBisByPlayer = $scoreItemNMByPlayer + $scoreItemHMByPlayer;
+
+        $scoreContestedByPlayer = $nbItemContestedByPlayer[$player->getId()][0]['nbItemContested'] * 2;
+        
+        if ($nbBenchByPlayer[$player->getId()][0]['nbBench'] == 0 && $nbPresenceByPlayer[$player->getId()][0]['nbPresence'] == 0) {
+            $scoreParticipationByPlayer = 1;
+        } else {
+            $scoreParticipationByPlayer = $nbBenchByPlayer[$player->getId()][0]['nbBench'] + $nbPresenceByPlayer[$player->getId()][0]['nbPresence'];
+        }
+            
+        foreach ($players as $player) {
+            $scoreByPlayer = ($scoreBisByPlayer + $scoreContestedByPlayer) / $scoreParticipationByPlayer;
+        }
+        // dd($scoreByPlayer); die;
+        
+        //TODO set score
+
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
             'players' => $players,
             'roles' => $roles,
             'participations' => $participations,
+            'nbPresenceByPlayer' => $nbPresenceByPlayer,
+            'nbBenchByPlayer' => $nbBenchByPlayer,
             'nbItemNMByPlayer' => $nbItemNMByPlayer,
             'nbItemHMByPlayer' => $nbItemHMByPlayer,
             'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
+            'scoreByPlayer' => $scoreByPlayer,
             'ranks' => $ranks,
             'benchs' => $benchs,
         ]);

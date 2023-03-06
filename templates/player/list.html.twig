@@ -18,10 +18,12 @@
                         <th colspan="1">Joueur</th>
                         <th colspan="1">Rôle</th>
                         <th colspan="1">Classe</th>
+                        {# <th colspan="1">Participation</th> #}
                         <th colspan="1">Participation</th>
                         <th colspan="1">Loots NM</th>
                         <th colspan="1">Loots HM</th>
                         <th colspan="1">Loots Contested</th>
+                        <th colspan="1">Score</th>
                         <th colspan="1">Score</th>
 
                     </tr>
@@ -37,11 +39,13 @@
                                 </td>
                                 <td>{{ player.role.name }}</td>
                                 <td>{{ player.class }}</td>
-                                <td>{{ player.participations|length }}</td>
+                                {# <td>{{ player.participations|length }}</td> #}
+                                <td>{{ nbPresenceByPlayer[player.id][0]['nbPresence'] + nbBenchByPlayer[player.id][0]['nbBench'] }}
                                 <td>{{ nbItemNMByPlayer[player.id][0]['nbItemNM'] }}</td>
                                 <td>{{ nbItemHMByPlayer[player.id][0]['nbItemHM'] }}</td>
                                 <td>{{ nbItemContestedByPlayer[player.id][0]['nbItemContested'] }}</td>
                                 <td>{{ player.score }}</td>
+                                <td>{{ scoreByPlayer }}</td>
                             </tr>
                         {% endif %}
                     {% endfor %}

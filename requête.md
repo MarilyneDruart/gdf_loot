@@ -35,7 +35,7 @@ FIELDS TERMINATED BY ' ,'
 IGNORE 1 LINES ;
 ```
 
-## SELECT Count Items  NM / HM / Contested du LootHistory d'un player
+## SELECT Count Presences / Benches / Items NM / HM / Contested du LootHistory d'un player
 Je veux récuperer le total des items dont le type est NM pour le player 13
 
 ### Somme de tous les items du player 13 dont le type est NM
@@ -65,4 +65,36 @@ WHERE player_id = 13 AND item.type= 'NM';
 
         return $query->getResult();
     }
+```
+
+### Somme des toutes les participations en presence (pas bench) pour le plpayer 9
+#### Requête SQL
+```sql
+SELECT COUNT(is_bench)
+FROM participation
+JOIN player
+WHERE player.id = participation.player_id
+AND player_id = 9
+AND is_bench = 0
+```
+
+#### Requête DQL
+```php
+        public function findNbPresenceByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                'SELECT COUNT(pa.isBench) 
+                FROM App\Entity\Participation pa
+                JOIN App\Entity\Player pl
+                WHERE pa.player = pl.id
+                AND pa.player = :player
+                AND pa.isBench = 0'
+            );
+
+            $query->setParameter('player', $playerId);
+
+            return $query->getResult();
+        }
 ```
