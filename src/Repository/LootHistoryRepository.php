@@ -42,7 +42,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLootHistory($slug): array
+    public function findLootHistoryBySlug($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -60,7 +60,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbPresence($slug): array
+    public function findNbPresenceBySlug($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -76,7 +76,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbBench($slug): array
+    public function findNbBenchBySlug($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -92,7 +92,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbItemNM($slug): array
+    public function findNbItemNMBySlug($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -109,7 +109,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbItemHM($slug): array
+    public function findNbItemHMBySlug($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -126,7 +126,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbItemContested($slug): array
+    public function findNbItemContestedBySlug($slug): array
     {
         $entityManager = $this->getEntityManager();
 
@@ -143,13 +143,13 @@ class LootHistoryRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function calculScore(LootHistoryRepository $lootHistoryRepository, string $slug)
+    public function calculScoreBySlug(LootHistoryRepository $lootHistoryRepository, string $slug)
     {
-        $nbPresences = $lootHistoryRepository->findNbPresence($slug);
-        $nbBenches = $lootHistoryRepository->findNbBench($slug);
-        $nbItemNM = $lootHistoryRepository->findNbItemNM($slug);
-        $nbItemHM = $lootHistoryRepository->findNbItemHM($slug);
-        $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
+        $nbPresences = $lootHistoryRepository->findNbPresenceBySlug($slug);
+        $nbBenches = $lootHistoryRepository->findNbBenchBySlug($slug);
+        $nbItemNM = $lootHistoryRepository->findNbItemNMBySlug($slug);
+        $nbItemHM = $lootHistoryRepository->findNbItemHMBySlug($slug);
+        $nbItemContested = $lootHistoryRepository->findNbItemContestedBySlug($slug);
 
         $scoreContested = $nbItemContested[0]['nombre'] * 2;
         $scoreItemNM = $nbItemNM[0]['nombre'] * 0.8;
@@ -167,7 +167,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         return number_format($scores, 3);
     }
 
-    public function setCalculScore(string $slug, float $scores)
+    public function setCalculScoreBySlug(string $slug, float $scores)
     {
         $entityManager = $this->getEntityManager();
 
@@ -180,4 +180,5 @@ class LootHistoryRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
 }
