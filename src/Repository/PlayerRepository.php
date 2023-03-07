@@ -64,6 +64,7 @@ class PlayerRepository extends ServiceEntityRepository
         $query = $entityManager->createQuery(
             'SELECT p.rank, COUNT(p)
             FROM App\Entity\Player p
+            WHERE p.isActif = 1
             GROUP BY p.rank
             '
         );
@@ -79,7 +80,8 @@ class PlayerRepository extends ServiceEntityRepository
             'SELECT r.name, COUNT(p) 
             FROM App\Entity\Player p 
             JOIN App\Entity\Role r
-            WHERE p.role = r.id 
+            WHERE p.role = r.id
+            AND p.isActif = 1
             GROUP BY p.role
             '
         );
@@ -123,6 +125,93 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    // find players sums by presence / bench / items NM / items HM / items Contested
+
+        public function findNbPresenceByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                'SELECT COUNT(pa.isBench) AS nbPresence
+                FROM App\Entity\Participation pa
+                JOIN App\Entity\Player pl
+                WHERE pa.player = pl.id
+                AND pa.isBench = 0
+                AND pa.player = :player'
+            );
+
+            $query->setParameter('player', $playerId);
+
+            return $query->getResult();
+        }
+        
+        public function findNbBenchByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                'SELECT COUNT(pa.isBench) AS nbBench
+                FROM App\Entity\Participation pa
+                JOIN App\Entity\Player pl
+                WHERE pa.player = pl.id
+                AND pa.isBench = 1
+                AND pa.player = :player'
+            );
+
+            $query->setParameter('player', $playerId);
+
+            return $query->getResult();
+        }
+
+        public function findNbItemNMByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                "SELECT COUNT('NM') AS nbItemNM 
+                FROM App\Entity\lootHistory lh 
+                JOIN App\Entity\item i WITH lh.item = i.id
+                WHERE i.type = 'NM' AND lh.player = :player"
+            );
+            
+            $query->setParameter('player', $playerId);
+            
+            return $query->getResult();
+        }
+        
+
+        public function findNbItemHMByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+        
+            $query = $entityManager->createQuery(
+                "SELECT COUNT('HM') AS nbItemHM 
+                FROM App\Entity\lootHistory lh 
+                JOIN App\Entity\item i WITH lh.item = i.id
+                WHERE i.type = 'HM' AND lh.player = :player"
+            );
+            
+            $query->setParameter('player', $playerId);
+        
+            return $query->getResult();
+        }
+
+        public function findNbItemContestedByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                "SELECT COUNT('Contested') AS nbItemContested 
+                FROM App\Entity\lootHistory lh 
+                JOIN App\Entity\item i WITH lh.item = i.id
+                WHERE i.type = 'Contested' AND lh.player = :player"
+            );
+            
+            $query->setParameter('player', $playerId);
+        
+            return $query->getResult();
+        }   
+
     public function sortByScore(): array
     {
         $entityManager = $this->getEntityManager();
@@ -137,4 +226,13 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findByOrderByParticipations($order = 'asc')
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.participations', 'participations')
+            ->groupBy('p.id')
+            ->orderBy('COUNT(participations.id)', $order);
+
+        return $qb->getQuery()->getResult();
+    }
 }

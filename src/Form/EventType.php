@@ -38,32 +38,20 @@ class EventType extends AbstractType
                 'label' => 'URL log',
                 ]
             )
-            // ->add('player',
-            // EntityType::class, [
-            //     'class' => Player::class,
-            //     'label' => 'Joueurs',
-            //     'choice_label' => 'name',
-            //     'attr' => [
-            //         'class' => 'list'
-            //     ],
-            //     'multiple' => true,
-            //     'expanded' => false,
-            //     'required' => true,
-            //     ]
-            // )
-            // ->add('item',
-            // EntityType::class, [
-            //     'class' => Item::class,
-            //     'label' => 'Items lootés',
-            //     'choice_label' => 'name',
-            //     'attr' => [
-            //         'class' => 'list'
-            //     ],
-            //     'multiple' => true, 
-            //     'expanded' => false,
-            //     'required' => true,
-            //     ]
-            // )
+            ->add('start', DateTimeType::class, [
+                'label' => 'Date de début de l\'événement',
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable',
+                'html5' => true,
+                ]
+            )
+            ->add('end', DateTimeType::class, [
+                'label' => 'Date de fin de l\'événement',
+                'widget' => 'single_text',
+                'input' => 'datetime_immutable',
+                'html5' => true,
+                ]
+            )
         ;
     }
 
