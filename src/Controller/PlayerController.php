@@ -31,37 +31,57 @@ class PlayerController extends AbstractController
      */
     public function list(PlayerRepository $playerRepository, Request $request): Response
     {
-
+        // datas for table
         $players = $playerRepository->findAll();        
-        $roles = $playerRepository->findPlayerByRole();
-        $participations = $playerRepository->findPlayerByParticipation();
+        
+        $nbPresenceByPlayer = [];
+        foreach ($players as $player) {
+            $nbPresence = $this-> playerRepository->findNbPresenceByPlayer($player->getId());
+            $nbPresenceByPlayer[$player->getId()] = $nbPresence;
+        }
+        
+        $nbBenchByPlayer = [];
+        foreach ($players as $player) {
+            $nbBench = $this-> playerRepository->findnbBenchByPlayer($player->getId());
+            $nbBenchByPlayer[$player->getId()] = $nbBench;
+        }                
+        
         $nbItemNMByPlayer = [];
         foreach ($players as $player) {
             $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId());
             $nbItemNMByPlayer[$player->getId()] = $nbItemNM;
         }
+        
         $nbItemHMByPlayer = [];
         foreach ($players as $player) {
             $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId());
             $nbItemHMByPlayer[$player->getId()] = $nbItemHM;
         }
+        
         $nbItemContestedByPlayer = [];
         foreach ($players as $player) {
             $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId());
             $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
         }
         
-        // datas for the stats (right container)
-        $ranks = $playerRepository->findPlayerByRank();
+        $scores = [];
+        foreach ($players as $player) {
+            $scores[$player->getId()] = $player->getScore();
+        }
+
+        // datas for stats (right container)
+        $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
-        
-        // dd($nbItemNMByPlayer); die;
+        $ranks = $playerRepository->findPlayerByRank();
+        $roles = $playerRepository->findPlayerByRole();
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
             'players' => $players,
             'roles' => $roles,
             'participations' => $participations,
+            'nbPresenceByPlayer' => $nbPresenceByPlayer,
+            'nbBenchByPlayer' => $nbBenchByPlayer,
             'nbItemNMByPlayer' => $nbItemNMByPlayer,
             'nbItemHMByPlayer' => $nbItemHMByPlayer,
             'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
@@ -69,6 +89,35 @@ class PlayerController extends AbstractController
             'benchs' => $benchs,
         ]);
     }
+
+
+    /**
+     * @Route("/update-scores", name="update_scores", methods={"POST"})
+     */
+    public function updateScores(Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $players = $this->playerRepository->findAll();
+
+        foreach ($players as $player) {
+            $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId())[0]['nbItemNM'];
+            $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId())[0]['nbItemHM'];
+            $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId())[0]['nbItemContested'];
+            $participations = $this->playerRepository->findNbPresenceByPlayer($player->getId())[0]['nbPresence'];
+            $benches = $this->playerRepository->findNbBenchByPlayer($player->getId())[0]['nbBench'];
+
+            $scoreItems = ($nbItemNM * 0.8) + ($nbItemHM * 1) + ($nbItemContested * 2);
+            $scorePerPlayer = $participations + $benches > 0 ? $scoreItems / ($participations + $benches) : 0;
+            
+            $player->setScore(number_format($scorePerPlayer, 3));
+            $entityManager->persist($player);
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_player_list');
+    }
+
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})

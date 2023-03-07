@@ -125,53 +125,92 @@ class PlayerRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    public function findNbItemNMByPlayer(int $playerId): array
-    {
-        $entityManager = $this->getEntityManager();
-        
-        $query = $entityManager->createQuery(
-            "SELECT COUNT('NM') AS nbItemNM 
-            FROM App\Entity\lootHistory lh 
-            JOIN App\Entity\item i WITH lh.item = i.id
-            WHERE i.type = 'NM' AND lh.player = :player"
-        );
-        
-        $query->setParameter('player', $playerId);
-        
-        return $query->getResult();
-    }
+    // find players sums by presence / bench / items NM / items HM / items Contested
 
-    public function findNbItemHMByPlayer(int $playerId): array
-    {
-        $entityManager = $this->getEntityManager();
-    
-        $query = $entityManager->createQuery(
-            "SELECT COUNT('HM') AS nbItemHM 
-            FROM App\Entity\lootHistory lh 
-            JOIN App\Entity\item i WITH lh.item = i.id
-            WHERE i.type = 'HM' AND lh.player = :player"
-        );
-        
-        $query->setParameter('player', $playerId);
-    
-        return $query->getResult();
-    }
+        public function findNbPresenceByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                'SELECT COUNT(pa.isBench) AS nbPresence
+                FROM App\Entity\Participation pa
+                JOIN App\Entity\Player pl
+                WHERE pa.player = pl.id
+                AND pa.isBench = 0
+                AND pa.player = :player'
+            );
 
-    public function findNbItemContestedByPlayer(int $playerId): array
-    {
-        $entityManager = $this->getEntityManager();
+            $query->setParameter('player', $playerId);
+
+            return $query->getResult();
+        }
         
-        $query = $entityManager->createQuery(
-            "SELECT COUNT('Contested') AS nbItemContested 
-            FROM App\Entity\lootHistory lh 
-            JOIN App\Entity\item i WITH lh.item = i.id
-            WHERE i.type = 'Contested' AND lh.player = :player"
-        );
+        public function findNbBenchByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                'SELECT COUNT(pa.isBench) AS nbBench
+                FROM App\Entity\Participation pa
+                JOIN App\Entity\Player pl
+                WHERE pa.player = pl.id
+                AND pa.isBench = 1
+                AND pa.player = :player'
+            );
+
+            $query->setParameter('player', $playerId);
+
+            return $query->getResult();
+        }
+
+        public function findNbItemNMByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                "SELECT COUNT('NM') AS nbItemNM 
+                FROM App\Entity\lootHistory lh 
+                JOIN App\Entity\item i WITH lh.item = i.id
+                WHERE i.type = 'NM' AND lh.player = :player"
+            );
+            
+            $query->setParameter('player', $playerId);
+            
+            return $query->getResult();
+        }
         
-        $query->setParameter('player', $playerId);
-    
-        return $query->getResult();
-    }
+
+        public function findNbItemHMByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+        
+            $query = $entityManager->createQuery(
+                "SELECT COUNT('HM') AS nbItemHM 
+                FROM App\Entity\lootHistory lh 
+                JOIN App\Entity\item i WITH lh.item = i.id
+                WHERE i.type = 'HM' AND lh.player = :player"
+            );
+            
+            $query->setParameter('player', $playerId);
+        
+            return $query->getResult();
+        }
+
+        public function findNbItemContestedByPlayer(int $playerId): array
+        {
+            $entityManager = $this->getEntityManager();
+            
+            $query = $entityManager->createQuery(
+                "SELECT COUNT('Contested') AS nbItemContested 
+                FROM App\Entity\lootHistory lh 
+                JOIN App\Entity\item i WITH lh.item = i.id
+                WHERE i.type = 'Contested' AND lh.player = :player"
+            );
+            
+            $query->setParameter('player', $playerId);
+        
+            return $query->getResult();
+        }   
 
     public function sortByScore(): array
     {
@@ -196,6 +235,4 @@ class PlayerRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
-
-
 }
