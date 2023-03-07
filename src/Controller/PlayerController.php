@@ -17,29 +17,107 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PlayerController extends AbstractController
 {
+
+    private $lootHistoryRepository;
+
+    public function __construct(LootHistoryRepository $lootHistoryRepository, PlayerRepository $playerRepository)
+    {
+        $this->lootHistoryRepository = $lootHistoryRepository;
+        $this->playerRepository = $playerRepository;
+    }
+
     /**
      * @Route("/", name="list", methods={"GET"})
      */
-    public function list(PlayerRepository $playerRepository): Response
+    public function list(PlayerRepository $playerRepository, Request $request): Response
     {
-        $ranks = $playerRepository->findPlayerByRank();
-        $roles = $playerRepository->findPlayerByRole();
+        // datas for table
+        $players = $playerRepository->findAll();        
+        
+        $nbPresenceByPlayer = [];
+        foreach ($players as $player) {
+            $nbPresence = $this-> playerRepository->findNbPresenceByPlayer($player->getId());
+            $nbPresenceByPlayer[$player->getId()] = $nbPresence;
+        }
+        
+        $nbBenchByPlayer = [];
+        foreach ($players as $player) {
+            $nbBench = $this-> playerRepository->findnbBenchByPlayer($player->getId());
+            $nbBenchByPlayer[$player->getId()] = $nbBench;
+        }                
+        
+        $nbItemNMByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId());
+            $nbItemNMByPlayer[$player->getId()] = $nbItemNM;
+        }
+        
+        $nbItemHMByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId());
+            $nbItemHMByPlayer[$player->getId()] = $nbItemHM;
+        }
+        
+        $nbItemContestedByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId());
+            $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
+        }
+        
+        $scores = [];
+        foreach ($players as $player) {
+            $scores[$player->getId()] = $player->getScore();
+        }
+
+        // datas for stats (right container)
         $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
-        $sortByScore = $playerRepository->sortByScore();
-    
-        //dd($sortByScore); die;
+        $ranks = $playerRepository->findPlayerByRank();
+        $roles = $playerRepository->findPlayerByRole();
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
-            'players' => $playerRepository->findAll(),
-            'ranks' => $ranks,
+            'players' => $players,
             'roles' => $roles,
             'participations' => $participations,
+            'nbPresenceByPlayer' => $nbPresenceByPlayer,
+            'nbBenchByPlayer' => $nbBenchByPlayer,
+            'nbItemNMByPlayer' => $nbItemNMByPlayer,
+            'nbItemHMByPlayer' => $nbItemHMByPlayer,
+            'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
+            'ranks' => $ranks,
             'benchs' => $benchs,
-            'sortByScore' => $sortByScore,
         ]);
     }
+
+
+    /**
+     * @Route("/update-scores", name="update_scores", methods={"POST"})
+     */
+    public function updateScores(Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $players = $this->playerRepository->findAll();
+
+        foreach ($players as $player) {
+            $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId())[0]['nbItemNM'];
+            $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId())[0]['nbItemHM'];
+            $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId())[0]['nbItemContested'];
+            $participations = $this->playerRepository->findNbPresenceByPlayer($player->getId())[0]['nbPresence'];
+            $benches = $this->playerRepository->findNbBenchByPlayer($player->getId())[0]['nbBench'];
+
+            $scoreItems = ($nbItemNM * 0.8) + ($nbItemHM * 1) + ($nbItemContested * 2);
+            $scorePerPlayer = $participations + $benches > 0 ? $scoreItems / ($participations + $benches) : 0;
+            
+            $player->setScore(number_format($scorePerPlayer, 3));
+            $entityManager->persist($player);
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_player_list');
+    }
+
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
@@ -73,14 +151,14 @@ class PlayerController extends AbstractController
     public function read(Player $player, PlayerRepository $playerRepository, LootHistoryRepository $lootHistoryRepository, string $slug): Response
     {
 
-        $lootHistories = $lootHistoryRepository->findLootHistory($slug);
-        $nbPresences = $lootHistoryRepository->findNbPresence($slug);
-        $nbBenches = $lootHistoryRepository->findNbBench($slug);
-        $nbItemNM = $lootHistoryRepository->findNbItemNM($slug);
-        $nbItemHM = $lootHistoryRepository->findNbItemHM($slug);
-        $nbItemContested = $lootHistoryRepository->findNbItemContested($slug);
-        $scores = $lootHistoryRepository->calculScore($lootHistoryRepository, $slug);
-        $setScore = $lootHistoryRepository->setCalculScore($slug, $scores);
+        $lootHistories = $lootHistoryRepository->findLootHistoryBySlug($slug);
+        $nbPresences = $lootHistoryRepository->findNbPresenceBySlug($slug);
+        $nbBenches = $lootHistoryRepository->findNbBenchBySlug($slug);
+        $nbItemNM = $lootHistoryRepository->findNbItemNMBySlug($slug);
+        $nbItemHM = $lootHistoryRepository->findNbItemHMBySlug($slug);
+        $nbItemContested = $lootHistoryRepository->findNbItemContestedBySlug($slug);
+        $scores = $lootHistoryRepository->calculScoreBySlug($lootHistoryRepository, $slug);
+        $setScore = $lootHistoryRepository->setCalculScoreBySlug($slug, $scores);
         //dd($setScore); die;       
 
         return $this->render('player/read.html.twig', [
