@@ -250,7 +250,8 @@ a.btn:hover,
 .btn-update-scores:hover,
 #sortTable_previous > a:hover,
 #sortTable_next > a:hover,
-#navbarNav > ul > li > a:hover {
+#navbarNav > ul > li > a:hover,
+.button-inactifs {
     color: rgb(211, 43, 226);
 }
 
@@ -275,7 +276,8 @@ a.btn:hover,
 .button-save,
 .button-back,
 .btn-update-scores,
-.form-control {
+.form-control,
+.button-inactifs {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;

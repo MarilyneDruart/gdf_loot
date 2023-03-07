@@ -118,6 +118,69 @@ class PlayerController extends AbstractController
         return $this->redirectToRoute('app_player_list');
     }
 
+    /**
+     * @Route("/inactifs", name="list_inactifs", methods={"GET"})
+     */
+    public function listInactifs(PlayerRepository $playerRepository, Request $request): Response
+    {
+        // datas for table
+        $players = $playerRepository->findAll();        
+        
+        $nbPresenceByPlayer = [];
+        foreach ($players as $player) {
+            $nbPresence = $this-> playerRepository->findNbPresenceByPlayer($player->getId());
+            $nbPresenceByPlayer[$player->getId()] = $nbPresence;
+        }
+        
+        $nbBenchByPlayer = [];
+        foreach ($players as $player) {
+            $nbBench = $this-> playerRepository->findnbBenchByPlayer($player->getId());
+            $nbBenchByPlayer[$player->getId()] = $nbBench;
+        }                
+        
+        $nbItemNMByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId());
+            $nbItemNMByPlayer[$player->getId()] = $nbItemNM;
+        }
+        
+        $nbItemHMByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId());
+            $nbItemHMByPlayer[$player->getId()] = $nbItemHM;
+        }
+        
+        $nbItemContestedByPlayer = [];
+        foreach ($players as $player) {
+            $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId());
+            $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
+        }
+        
+        $scores = [];
+        foreach ($players as $player) {
+            $scores[$player->getId()] = $player->getScore();
+        }
+
+        // datas for stats (right container)
+        $participations = $playerRepository->findPlayerByParticipation();
+        $benchs = $playerRepository->findPlayerByBench();
+        $ranks = $playerRepository->findPlayerByRank();
+        $roles = $playerRepository->findPlayerByRole();
+
+        return $this->render('player/list_inactifs.html.twig', [
+            'controller_name' => 'PlayerController',
+            'players' => $players,
+            'roles' => $roles,
+            'participations' => $participations,
+            'nbPresenceByPlayer' => $nbPresenceByPlayer,
+            'nbBenchByPlayer' => $nbBenchByPlayer,
+            'nbItemNMByPlayer' => $nbItemNMByPlayer,
+            'nbItemHMByPlayer' => $nbItemHMByPlayer,
+            'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
+            'ranks' => $ranks,
+            'benchs' => $benchs,
+        ]);
+    }
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})
