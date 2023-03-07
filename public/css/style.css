@@ -137,9 +137,9 @@ footer {
 
 /* ---------------------- calendrier ---------------------- */
 #calendar {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 10px;
+    max-width: 68.75rem;
+    margin: 2.5rem auto;
+    padding: 0 0.625rem;
 }
 
 .fc .fc-toolbar {
@@ -160,6 +160,10 @@ footer {
 
 #calendar>div.fc-view-harness.fc-view-harness-active>div>table>tbody>tr>td>div>div>div>table>tbody>tr>td {
     height: 6.4rem;
+}
+
+#calendar > div.fc-view-harness.fc-view-harness-active > div > table > thead > tr > th {
+    padding: 0;
 }
 
 /* case jour */
@@ -235,10 +239,11 @@ a {
 }
 
 a:hover,
-.navbar-expand-lg,
-.navbar-nav,
-.nav-link:hover,
-.button-save:hover {
+.navbar-expand-lg:hover,
+.navbar-nav:hover,
+a.nav-link:hover,
+.button-save:hover,
+a.btn:hover {
     color: rgb(211, 43, 226);
 }
 
@@ -262,6 +267,7 @@ a:hover,
 .button-search,
 .button-save,
 .button-back,
+.btn-update-scores,
 .form-control {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
