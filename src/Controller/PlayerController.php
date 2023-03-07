@@ -64,33 +64,16 @@ class PlayerController extends AbstractController
             $nbItemContestedByPlayer[$player->getId()] = $nbItemContested;
         }
         
+        $scores = [];
+        foreach ($players as $player) {
+            $scores[$player->getId()] = $player->getScore();
+        }
+
         // datas for stats (right container)
         $participations = $playerRepository->findPlayerByParticipation();
         $benchs = $playerRepository->findPlayerByBench();
         $ranks = $playerRepository->findPlayerByRank();
         $roles = $playerRepository->findPlayerByRole();
-        
-        
-        // calcul players score : [(itemNM * 0.8) + (itemHM * 1) + (itemContested * 2)] / (participations + benches)
-        $scoreItemNMByPlayer = $nbItemNMByPlayer[$player->getId()][0]['nbItemNM'] * 0.8;
-        $scoreItemHMByPlayer = $nbItemHMByPlayer[$player->getId()][0]['nbItemHM'] * 1;
-        $scoreBisByPlayer = $scoreItemNMByPlayer + $scoreItemHMByPlayer;
-
-        $scoreContestedByPlayer = $nbItemContestedByPlayer[$player->getId()][0]['nbItemContested'] * 2;
-        
-        if ($nbBenchByPlayer[$player->getId()][0]['nbBench'] == 0 && $nbPresenceByPlayer[$player->getId()][0]['nbPresence'] == 0) {
-            $scoreParticipationByPlayer = 1;
-        } else {
-            $scoreParticipationByPlayer = $nbBenchByPlayer[$player->getId()][0]['nbBench'] + $nbPresenceByPlayer[$player->getId()][0]['nbPresence'];
-        }
-            
-        foreach ($players as $player) {
-            $scoreByPlayer = ($scoreBisByPlayer + $scoreContestedByPlayer) / $scoreParticipationByPlayer;
-        }
-        // dd($scoreByPlayer); die;
-        
-        //TODO set score
-
 
         return $this->render('player/list.html.twig', [
             'controller_name' => 'PlayerController',
@@ -102,11 +85,39 @@ class PlayerController extends AbstractController
             'nbItemNMByPlayer' => $nbItemNMByPlayer,
             'nbItemHMByPlayer' => $nbItemHMByPlayer,
             'nbItemContestedByPlayer' => $nbItemContestedByPlayer,
-            'scoreByPlayer' => $scoreByPlayer,
             'ranks' => $ranks,
             'benchs' => $benchs,
         ]);
     }
+
+
+    /**
+     * @Route("/update-scores", name="update_scores", methods={"POST"})
+     */
+    public function updateScores(Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $players = $this->playerRepository->findAll();
+
+        foreach ($players as $player) {
+            $nbItemNM = $this->playerRepository->findNbItemNMByPlayer($player->getId())[0]['nbItemNM'];
+            $nbItemHM = $this->playerRepository->findNbItemHMByPlayer($player->getId())[0]['nbItemHM'];
+            $nbItemContested = $this->playerRepository->findNbItemContestedByPlayer($player->getId())[0]['nbItemContested'];
+            $participations = $this->playerRepository->findNbPresenceByPlayer($player->getId())[0]['nbPresence'];
+            $benches = $this->playerRepository->findNbBenchByPlayer($player->getId())[0]['nbBench'];
+
+            $scoreItems = ($nbItemNM * 0.8) + ($nbItemHM * 1) + ($nbItemContested * 2);
+            $scorePerPlayer = $participations + $benches > 0 ? $scoreItems / ($participations + $benches) : 0;
+            
+            $player->setScore(number_format($scorePerPlayer, 3));
+            $entityManager->persist($player);
+        }
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_player_list');
+    }
+
 
     /**
      * @Route("/create", name="create", methods={"GET", "POST"})

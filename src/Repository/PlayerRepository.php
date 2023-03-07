@@ -178,6 +178,7 @@ class PlayerRepository extends ServiceEntityRepository
             
             return $query->getResult();
         }
+        
 
         public function findNbItemHMByPlayer(int $playerId): array
         {
@@ -209,50 +210,7 @@ class PlayerRepository extends ServiceEntityRepository
             $query->setParameter('player', $playerId);
         
             return $query->getResult();
-        }
-    
-    // calcul players score : [(itemNM * 0.8) + (itemHM * 1) + (itemContested * 2)] / (participations + benches)
-        // public function calculScoreByPlayer(PlayerRepository $playerRepository, int $playerId)
-        // {
-        //     // TODO
-        //     $nbPresences = $playerRepository->findNbPresenceByPlayer($playerId);
-        //     $nbBenches = $playerRepository->findNbBenchBySlug($playerId);
-        //     $nbItemsNM = $playerRepository->findNbItemNMByPlayer($playerId);
-        //     $nbItemsHM = $playerRepository->findNbItemHMByPlayer($playerId);
-        //     $nbItemsContested = $playerRepository->findNbItemContestedByPlayer($playerId);
-            
-        //     $scoreItemNM = $nbItemsNM[0]['nombre'] * 0.8;
-        //     $scoreItemHM = $nbItemsHM[0]['nombre'] * 1;
-        //     $scoreBis = $scoreItemNM + $scoreItemHM;
-        //     $scoreContested = $nbItemsContested[0]['nombre'] * 2;
-        //     if ($nbBenches[0]['nombre'] == 0 && $nbPresences[0]['nombre'] == 0)
-        //     {
-        //         $scoreParticipation = 1;
-        //     } else {
-        //         $scoreParticipation = $nbBenches[0]['nombre'] + $nbPresences[0]['nombre'];
-        //     } 
-            
-        //     $scores = ($scoreContested + $scoreBis) / $scoreParticipation;
-            
-        //     return number_format($scores, 3);
-        // }
-        
-    // set players score
-        // TODO setCalcul
-        public function setCalculScoreByPlayer(int $playerId, float $scores)
-        {
-                $entityManager = $this->getEntityManager();
-            
-                $query = $entityManager->createQuery(
-                        "UPDATE App\Entity\Player pl
-                        SET pl.score = '$scores'
-                        WHERE pl.id = :player
-                        "
-                    );
-                
-                    return $query->getResult();
-                }
-                
+        }   
 
     public function sortByScore(): array
     {
