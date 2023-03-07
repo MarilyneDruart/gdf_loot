@@ -11,6 +11,7 @@
     <form action="{{ path('app_player_update_scores') }}" method="post">
         <button type="submit" class="btn-update-scores"><i class="bi bi-arrow-clockwise"></i>Mettre à jour les scores</button>
     </form>
+    <a href="{{ path('app_player_list_inactifs') }}"class="button-inactifs" title="Voir les joueurs inactifs">Joueurs inactifs</a>
 </div>
 
 <div class="container">
@@ -90,6 +91,29 @@
                         <ul>
                         {% for playerBench in benchs %}
                             <li>{{playerBench.name}} : {{playerBench[1]}} bench{{ playerBench[1] > 1 ? 's' : '' }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        Joueurs non benchs
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <ul>
+                        {% for player in players %}
+                            {% if player.isActif == 1 %}
+                                {% if nbBenchByPlayer[player.id][0]['nbBench'] == 0 %}
+                                    <li>{{player.name}}</li>
+                                {% endif %}
+                            {% endif %}
                         {% endfor %}
                         </ul>
                     </div>

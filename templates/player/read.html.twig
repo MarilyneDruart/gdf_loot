@@ -5,7 +5,8 @@
 {% block body %}
 <div class="title-player">
     <h1>{{ player.name }}</h1>
-    <h2>{{ player.role.name }} - {{ player.class }} - {{ player.rank }} - {% if player.isActif == 0 %} Inactif {% else %} Actif {% endif %}</h1>
+    <h2>{{ player.role.name }} - {{ player.class }} - {{ player.rank }} - {% if player.isActif == 0 %} Inactif {% else
+        %} Actif {% endif %}</h1>
 </div>
 <div class="container">
 
@@ -21,28 +22,30 @@
                 </tr>
             </thead>
             <tbody>
-                {# pour chaque évènement auquel le joueur a participé je veux la date de l'évènmenent, le(s) raid(s) où l'event s'est déroulé, le nom des items bis reçus, le nom des items contested reçus #}
+                {# pour chaque évènement auquel le joueur a participé je veux la date de l'évènmenent, le(s) raid(s) où
+                l'event s'est déroulé, le nom des items bis reçus, le nom des items contested reçus #}
 
-                {# pour chaque event du player, event date + event raids + item event player de type bis + item event player de type contested #}
+                {# pour chaque event du player, event date + event raids + item event player de type bis + item event
+                player de type contested #}
                 {% for loot in lootHistories %}
                 <tr>
                     <td>{{ loot.date ? loot.date|date('d M Y - H:i') : '' }}</td>
                     <td>{{ loot.raid }}</td>
-                {% if loot.type == "NM" %}
+                    {% if loot.type == "NM" %}
                     <td>{{ loot.item }}</td>
-                {% else %}
+                    {% else %}
                     <td></td>
-                {% endif %}
-                {% if loot.type == "HM" %}
+                    {% endif %}
+                    {% if loot.type == "HM" %}
                     <td>{{ loot.item }}</td>
-                {% else %}
+                    {% else %}
                     <td></td>
-                {% endif %}
-                {% if loot.type == "Contested" %}
+                    {% endif %}
+                    {% if loot.type == "Contested" %}
                     <td>{{ loot.item }}</td>
-                {% else %}
+                    {% else %}
                     <td></td>
-                {% endif %}    
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
@@ -67,9 +70,9 @@
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
                         <ul>
-                        {% for presence in nbPresences %}
+                            {% for presence in nbPresences %}
                             <li>{{ presence.nombre }} présence{{ presence.nombre > 1 ? 's' : '' }}</li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -86,9 +89,9 @@
                     aria-labelledby="panelsStayOpen-headingTwo">
                     <div class="accordion-body">
                         <ul>
-                        {% for bench in nbBenches %}
+                            {% for bench in nbBenches %}
                             <li>{{ bench.nombre }} bench{{ bench.nombre > 1 ? 'es' : '' }}</li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -105,9 +108,9 @@
                     aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
                         <ul>
-                        {% for items in nbItemNM %}
+                            {% for items in nbItemNM %}
                             <li>{{ items.nombre }} item{{ items.nombre > 1 ? 's' : '' }}</li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -124,9 +127,9 @@
                     aria-labelledby="panelsStayOpen-headingFour">
                     <div class="accordion-body">
                         <ul>
-                        {% for items in nbItemHM %}
+                            {% for items in nbItemHM %}
                             <li>{{ items.nombre }} item{{ items.nombre > 1 ? 's' : '' }}</li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -143,9 +146,9 @@
                     aria-labelledby="panelsStayOpen-headingFive">
                     <div class="accordion-body">
                         <ul>
-                        {% for items in nbItemContested %}
+                            {% for items in nbItemContested %}
                             <li>{{ items.nombre }} item{{ items.nombre > 1 ? 's' : '' }}</li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
@@ -162,11 +165,11 @@
                     aria-labelledby="panelsStayOpen-headingSix">
                     <div class="accordion-body">
                         <ul>
-                        {% if scores != 0 %}
+                            {% if scores != 0 %}
                             <li>{{ scores }}</li>
-                        {% else %}
+                            {% else %}
                             <li>Pas de score</li>
-                        {% endif %}
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
