@@ -3,44 +3,57 @@
 {% block title %}- Liste des joueurs{% endblock %}
 
 {% block body %}
-{{ render(controller(
+{# {{ render(controller(
         'App\\Controller\\SearchController::playerSearchBar'
- )) }}
+ )) }} #}
 <div class="button-top">        
     <a href="{{ path('app_player_create') }}"class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un joueur</a>
+    <form action="{{ path('app_player_update_scores') }}" method="post">
+        <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i>Mettre à jour les scores</button>
+    </form>
 </div>
+
 <div class="container">
     <div class="left-container">
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="1">Joueur</th>
-                    <th colspan="1">Rôle</th>
-                    <th colspan="1">Classe</th>
-                    <th colspan="1">Grade</th>
-                    <th colspan="1">Etat</th>
-                    <th colspan="1">Score</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                {% for player in players %}
-                <tr>
-                    <td>
-                        <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
-                            {{ player.name }}
-                        </a>
-                    </td>
-                    <td>{{ player.role.name }}</td>
-                    <td>{{ player.class }}</td>
-                    <td>{{ player.rank }}</td>
-                    <td>{% if player.isActif == 0 %} Inactif {% else %} Actif {% endif %}</td>
-                    <td>{{ player.score }}</td>
-
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive-xl">
+            <table id="sortTable" >
+                <thead>
+                    <tr>
+                        <th colspan="1">Joueur</th>
+                        <th colspan="1">Rôle</th>
+                        <th colspan="1">Classe</th>
+                        <th colspan="1">Participation</th>
+                        <th colspan="1">Loots NM</th>
+                        <th colspan="1">Loots HM</th>
+                        <th colspan="1">Loots Contested</th>
+                        <th colspan="1">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                        {% if player.isActif == 1 %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
+                                        {{ player.name }}
+                                    </a>
+                                </td>
+                                <td>{{ player.role.name }}</td>
+                                <td>{{ player.class }}</td>
+                                <td>{{ nbPresenceByPlayer[player.id][0]['nbPresence'] + nbBenchByPlayer[player.id][0]['nbBench'] }}
+                                <td>{{ nbItemNMByPlayer[player.id][0]['nbItemNM'] }}</td>
+                                <td>{{ nbItemHMByPlayer[player.id][0]['nbItemHM'] }}</td>
+                                <td>{{ nbItemContestedByPlayer[player.id][0]['nbItemContested'] }}</td>
+                                <td>
+                                    <input type="hidden" name="scores[{{ player.id }}]" value="{{ player.score }}" />
+                                    {{ player.score }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="right-container">
         <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -123,5 +136,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
