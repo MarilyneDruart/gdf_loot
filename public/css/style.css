@@ -243,7 +243,14 @@ a:hover,
 .navbar-nav:hover,
 a.nav-link:hover,
 .button-save:hover,
-a.btn:hover {
+a.btn:hover,
+.button-search:hover,
+.button-save:hover,
+.button-back:hover,
+.btn-update-scores:hover,
+#sortTable_previous > a:hover,
+#sortTable_next > a:hover,
+#navbarNav > ul > li > a:hover {
     color: rgb(211, 43, 226);
 }
 
