@@ -357,6 +357,21 @@ table tbody td {
     color: white;
 }
 
+/* ---------------------- register ---------------------- */
+
+.register > form > div {
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.register > form > button {
+    background-color: rgba(30, 91, 126, 0.418);
+    color: white;
+    border: #1b2f4ead solid 1px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: bolder;
+}
 
 /* ---------------------- page item ---------------------- */
 

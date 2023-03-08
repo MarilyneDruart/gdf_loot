@@ -1,4 +1,5 @@
-{% extends 'base.html.twig' %}
+
+{% extends 'login/index.html.twig' %}
 
 {% block navigation %}
 <nav class="navbar navbar-expand-lg">
@@ -31,9 +32,8 @@
         <button type="button" class="btConnection" data-bs-toggle="modal" data-bs-target="#modal">
             Connexion
         </button>
-
         <!-- Modal -->
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        {# <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -41,28 +41,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="{{ path('app_login') }}" method="post">
                             <div class="mb-3">
-                                <label for="inputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+                                <label for="username" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text">Nous ne partagerons jamais votre
                                     e-mail avec
                                     quelqu'un d'autre.</div>
                             </div>
                             <div class="mb-3">
-                                <label for="inputPassword1" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="inputPassword1">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" name="_password">
                             </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="check1">
-                                <label class="form-check-label" for="check1">Check me out</label>
-                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                             <button type="submit" class="submit-connexion">Soumettre</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> #}
     </div>
 </nav>
 {% endblock %}

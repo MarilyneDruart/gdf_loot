@@ -21,27 +21,30 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('pseudo')
             ->add('plainPassword', PasswordType::class, [
+                'label' => 'Conditions',
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
+                    // https://www.cnil.fr/fr/mots-de-passe-une-nouvelle-recommandation-pour-maitriser-sa-securite#:~:text=Exemple%202%20%3A%20les%20mots%20de,d'au%20minimum%207%20mots.
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'SVP entrez un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'min' => 14,
+                        'minMessage' => '{{ limit }} caractères minimum.',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Accepter les conditions',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
             ])
