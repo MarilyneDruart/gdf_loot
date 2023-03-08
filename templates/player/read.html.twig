@@ -32,7 +32,11 @@
                     <td>{{ loot.date ? loot.date|date('d M Y - H:i') : '' }}</td>
                     <td>{{ loot.raid }}</td>
                     {% if loot.type == "NM" %}
-                    <td>{{ loot.item }}</td>
+                    <td>
+                        <a href="{{ loot.itemDetail }}" target="_blank" title="Voir le détail">
+                            {{loot.item}}
+                        </a>
+                    </td>
                     {% else %}
                     <td></td>
                     {% endif %}
