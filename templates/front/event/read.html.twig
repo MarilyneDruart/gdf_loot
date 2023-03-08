@@ -1,0 +1,91 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}- Evènement{% endblock %}
+
+{% block body %}
+
+<div class="title">
+    <h1>
+        {{ event.date ? event.date|date('d M Y - H:i') : ''  }}</br>
+        {% for raid in event.raid %}
+        {{ raid.name }}
+        {% endfor %}
+    </h1>
+    <h2><a href="{{ event.log }}" target="_blank" title="Voir les logs">Warcraftlogs</a></br></h2>
+</div>
+
+<div class="bottom-button d-flex flex-wrap justify-content-evenly">
+    <a class="bottom-button-back" href="{{ path('app_event_list') }}" title="Retour à la liste des évènements">Retour</a>
+    {% if previous_event %}
+        <a href="{{ path('app_event_read', {id: previous_event.id}) }}" class="btn" role="button">
+            <i class="fa fa-angle-left"></i> Précédent
+        </a>
+    {% endif %}
+
+    {% if next_event %}
+        <a href="{{ path('app_event_read', {id: next_event.id}) }}" class="btn" role="button">
+            Suivant <i class="fa fa-angle-right"></i>
+        </a>
+    {% endif %}
+</div>
+
+<div class="container">
+
+    <div class="left-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Type</th>
+                    <th>Raid</th>
+                    <th>Joueur</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lootHistories in event.lootHistories %}
+                <tr>
+                    <td>
+                        <a href="{{ lootHistories.item.detail }}" target="_blank" title="Voir l'item">
+                                {{lootHistories.item.name }}
+                        </a>
+                    </td>
+                    <td>{{lootHistories.item.type }}</td>
+                    <td>{{lootHistories.item.raid.name }}</td>
+                    <td>
+                        <a href="{{ path('app_player_show_by_slug', {'slug': lootHistories.player.slug}) }}" target="_blank" title="Voir le joueur">
+                            {{ lootHistories.player.name }}
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="right-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Joueur</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participations in event.participations %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_player_show_by_slug', {'slug': participations.player.slug}) }}" target="_blank" title="Voir le joueur">
+                            {{ participations.player.name }}
+                        </a>
+                    </td>
+                    {% if participations.isBench == 0 %}
+                        <td>Présent</td>
+                    {% else %}
+                        <td>Bench</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

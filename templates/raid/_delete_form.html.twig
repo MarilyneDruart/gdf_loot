@@ -1,4 +1,0 @@
-<form method="post" action="{{ path('app_raid_delete', {'id': raid.id}) }}" onsubmit="return confirm('Etes vous sûr ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ raid.id) }}">
-    <button class="button-delete">Supprimer le raid</button>
-</form>

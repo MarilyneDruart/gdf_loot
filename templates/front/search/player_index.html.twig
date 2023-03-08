@@ -1,0 +1,24 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}- Recherche{% endblock %}
+
+{% block body %}
+
+{% if app.request.method == 'POST' %}
+<div>
+        {% if players | length == 0 %}
+            <h4>Aucun résulat pour votre recherche.</h4>
+           {% else %}
+               <h3 class="result-bar-title">Résulats :</h3>
+               {% for player in players %}
+                   <div class="result-bar-response">
+                       <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
+                              <h6 class="result-bar-choice">{{ player.name }}</h6>
+                              
+                       </a>
+                   </div>
+              {% endfor %}
+          {% endif %}
+    </div>
+{% endif %}
+{% endblock %}

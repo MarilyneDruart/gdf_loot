@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Backoffice{% endblock %}
+
+{% block navigation %}
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a href="{{ path('app_admin_main')}}">
+            <img class="logo-nav" src="{{ asset('images/logo-gdf.png') }}" alt="logo_gdf">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_admin_event_list')}}">Evènements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_admin_player_list')}}">Roster</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_admin_item_list')}}">Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_admin_raid_list')}}">Raids</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btConnection" data-bs-toggle="modal" data-bs-target="#modal">
+            Connexion
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalLabel">Connexion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="inputEmail1" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">Nous ne partagerons jamais votre e-mail avec
+                                    quelqu'un d'autre.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputPassword1" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="inputPassword1">
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="check1">
+                                <label class="form-check-label" for="check1">Check me out</label>
+                            </div>
+                            <button type="submit" class="submit-connexion">Soumettre</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+{% endblock %}

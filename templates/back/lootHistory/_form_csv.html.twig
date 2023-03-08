@@ -1,0 +1,21 @@
+{% extends 'base-back.html.twig' %}
+{% block title %}- Import csv items lootés{% endblock %}
+
+{% block body %}
+<div class="csv-form">
+    <div class="d-flex justify-content-evenly">
+        <h1>Ajouter un fichier d'items lootés</h1>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="import-form">
+            <input class="form-control" type="file" name="file">
+            <input class="button-save" type="submit" name="sub" value="Importer"></input>
+
+        </div>
+        <div class="export-form">
+            <input class="button-top-add" type="submit" name="exp" value="Exporter"></input>
+        </div>
+    </form>
+    <a class="button-back" href="{{ path('app_admin_event_list') }}">Retour</a>
+</div>
+{% endblock %}

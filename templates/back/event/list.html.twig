@@ -1,0 +1,37 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}- Liste des évènements{% endblock %}
+
+{% block body %}
+
+<div class="button-top">        
+    <a href="{{ path('app_admin_event_create') }}" class="button-top-add" title="Ajouter"><i class="bi bi-plus-circle"></i> Ajouter un évènement</a>
+</div>
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th colspan="1">Nom</th>
+                <th colspan="1">Date</th>
+                <th colspan="1">Log</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events |sort((b, a) => a.date <=> b.date) %}
+                <tr>
+                    <td>
+                        <a href="{{ path('app_admin_event_read', {'id': event.id}) }}" title="Voir l'évènement">
+                        {% for raid in event.raid %}
+                           {{ raid.name }}</br>
+                        {% endfor %}
+                        </a>
+                    </td>
+                    <td>{{ event.date ? event.date|date('d M Y - H:i') : ''  }}</td>
+                    <td><a href="{{ event.log }}" title="Voir les logs de l'évènement">Warcraftlogs</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

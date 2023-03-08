@@ -1,0 +1,56 @@
+{% extends 'base-front.html.twig' %}
+
+{% block title %}- Liste des joueurs{% endblock %}
+
+{% block body %}
+{# {{ render(controller(
+        'App\\Controller\\Front\\SearchController::playerSearchBar'
+ )) }} #}
+<div class="button-top">        
+    <a href="{{ path('app_player_list') }}"class="button-back" title="Retour">Retour à la liste des joueurs actifs</a>
+</div>
+
+<div class="container">
+    <div class="left-container">
+        <div class="table-responsive-xl">
+            <table id="sortTable" >
+                <thead>
+                    <tr>
+                        <th colspan="1">Joueur</th>
+                        <th colspan="1">Rôle</th>
+                        <th colspan="1">Classe</th>
+                        <th colspan="1">Participation</th>
+                        <th colspan="1">Loots NM</th>
+                        <th colspan="1">Loots HM</th>
+                        <th colspan="1">Loots Contested</th>
+                        <th colspan="1">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for player in players %}
+                        {% if player.isActif == 0 %}
+                            <tr>
+                                <td>
+                                    <a href="{{ path('app_player_show_by_slug', {'slug': player.slug}) }}">
+                                        {{ player.name }}
+                                    </a>
+                                </td>
+                                <td>{{ player.role.name }}</td>
+                                <td>{{ player.class }}</td>
+                                <td>{{ nbPresenceByPlayer[player.id][0]['nbPresence'] + nbBenchByPlayer[player.id][0]['nbBench'] }}
+                                <td>{{ nbItemNMByPlayer[player.id][0]['nbItemNM'] }}</td>
+                                <td>{{ nbItemHMByPlayer[player.id][0]['nbItemHM'] }}</td>
+                                <td>{{ nbItemContestedByPlayer[player.id][0]['nbItemContested'] }}</td>
+                                <td>
+                                    <input type="hidden" name="scores[{{ player.id }}]" value="{{ player.score }}" />
+                                    {{ player.score }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

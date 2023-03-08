@@ -238,6 +238,10 @@ a {
     color: white;
 }
 
+#modalLabel {
+    color: black;
+}
+
 a:hover,
 .navbar-expand-lg:hover,
 .navbar-nav:hover,
@@ -251,7 +255,9 @@ a.btn:hover,
 #sortTable_previous > a:hover,
 #sortTable_next > a:hover,
 #navbarNav > ul > li > a:hover,
-.button-inactifs {
+.button-inactifs:hover,
+.btConnection:hover,
+.submit-connexion:hover {
     color: rgb(211, 43, 226);
 }
 
@@ -277,7 +283,9 @@ a.btn:hover,
 .button-back,
 .btn-update-scores,
 .form-control,
-.button-inactifs {
+.button-inactifs,
+.btConnection,
+.submit-connexion {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
