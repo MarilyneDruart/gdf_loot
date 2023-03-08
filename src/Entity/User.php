@@ -35,6 +35,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $pseudo;
+
+    public function __construct()
+    {
+        $this->post = new ArrayCollection();
+        $this->roles = array('ROLE_USER');
+    }
+
+    public function __toString() 
+    {
+        return $this->firstname . $this->lastname;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -76,13 +92,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
+    public function getRolesName() :string
+    {
+        $arrayRole = $this->getRoles();
+        return implode($arrayRole);
+
+    }
+
+    public function setRoles(?array $roles): self
     {
         $this->roles = $roles;
 
@@ -122,5 +143,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
     }
 }
