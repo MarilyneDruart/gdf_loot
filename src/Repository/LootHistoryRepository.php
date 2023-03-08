@@ -47,7 +47,7 @@ class LootHistoryRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            "SELECT p.slug, r.name AS raid, e.date,i.name AS item, i.type 
+            "SELECT p.slug, r.name AS raid, e.date,i.name AS item, i.type, i.detail AS itemDetail
             FROM App\Entity\lootHistory lh 
             JOIN App\Entity\Event e WITH lh.event = e.id 
             JOIN App\Entity\Player p WITH lh.player = p.id 
