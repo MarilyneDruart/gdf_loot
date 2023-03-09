@@ -21,7 +21,7 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('pseudo')
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Conditions',
+                'label' => 'Pass',
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -39,15 +39,15 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Accepter les conditions',
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter nos conditions.',
-                    ]),
-                ],
-            ])
+            // ->add('agreeTerms', CheckboxType::class, [
+            //     'label' => 'Accepter les conditions',
+            //     'mapped' => false,
+            //     'constraints' => [
+            //         new IsTrue([
+            //             'message' => 'Vous devez accepter nos conditions.',
+            //         ]),
+            //     ],
+            // ])
             ->add('captcha', CaptchaType::class)
             ;
     }
