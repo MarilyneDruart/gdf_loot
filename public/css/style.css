@@ -49,7 +49,7 @@ footer {
     margin: 0.5rem;
 }
 
-.footer-list-text{
+.footer-list-text {
     color: rgb(255, 255, 255);
 }
 
@@ -87,10 +87,25 @@ footer {
     margin: 0 2rem;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link {
+.navbar-expand-lg .navbar-nav .nav-link,
+.log a {
     color: white;
     font-size: 1.3rem;
     margin: 2rem;
+
+}
+
+#navbarNav {
+    justify-content: space-between;
+}
+
+.log {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-collapse {
+    background-color: rgba(30, 131, 190, 0.705);
 }
 
 /* ---------------------- searchbar ---------------------- */
@@ -146,7 +161,8 @@ footer {
     justify-content: space-around;
 }
 
-#calendar button, .page-link {
+#calendar button,
+.page-link {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -162,7 +178,7 @@ footer {
     height: 6.4rem;
 }
 
-#calendar > div.fc-view-harness.fc-view-harness-active > div > table > thead > tr > th {
+#calendar>div.fc-view-harness.fc-view-harness-active>div>table>thead>tr>th {
     padding: 0;
 }
 
@@ -238,8 +254,21 @@ a {
     color: white;
 }
 
+li p {
+    color: aliceblue;
+    margin-bottom: 0;
+}
+
+.error-login {
+    color: rgb(0, 0, 0);
+    text-shadow: white 1px 0 10px;
+}
+
+#modalLabel {
+    color: black;
+}
+
 a:hover,
-.navbar-expand-lg:hover,
 .navbar-nav:hover,
 a.nav-link:hover,
 .button-save:hover,
@@ -248,10 +277,13 @@ a.btn:hover,
 .button-save:hover,
 .button-back:hover,
 .btn-update-scores:hover,
-#sortTable_previous > a:hover,
-#sortTable_next > a:hover,
-#navbarNav > ul > li > a:hover,
-.button-inactifs {
+#sortTable_previous>a:hover,
+#sortTable_next>a:hover,
+#navbarNav>ul>li>a:hover,
+.button-inactifs:hover,
+.btn-connexion:hover,
+.submit-connexion:hover,
+.btn-login-submit:hover {
     color: rgb(211, 43, 226);
 }
 
@@ -263,7 +295,8 @@ a.btn:hover,
     margin-top: 4rem;
 }
 
-.bottom-button {
+.bottom-button,
+button.btn-login-submit {
     margin-top: 1rem;
 }
 
@@ -277,7 +310,10 @@ a.btn:hover,
 .button-back,
 .btn-update-scores,
 .form-control,
-.button-inactifs {
+.button-inactifs,
+.btn-connexion,
+.submit-connexion,
+.btn-login-submit {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -331,7 +367,8 @@ table tbody td {
     color: rgb(255, 255, 255);
 }
 
-#sortTable_previous > a, #sortTable_next > a {
+#sortTable_previous>a,
+#sortTable_next>a {
     background-color: rgba(30, 131, 190, 0.418);
     color: white;
     border: #1b2f4ead solid 1px;
@@ -349,6 +386,21 @@ table tbody td {
     color: white;
 }
 
+/* ---------------------- register ---------------------- */
+
+.register>form>div {
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.register>form>button {
+    background-color: rgba(30, 91, 126, 0.418);
+    color: white;
+    border: #1b2f4ead solid 1px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: bolder;
+}
 
 /* ---------------------- page item ---------------------- */
 
@@ -540,5 +592,13 @@ form input#event_log {
 
     .result-bar-choice {
         font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+        background: none;
     }
 }
