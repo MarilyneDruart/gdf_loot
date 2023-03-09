@@ -33,7 +33,7 @@ class MainController extends AbstractController
                 'id' => $event->getId(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
-                'url' => 'https://www.gdf-loot.fr/event/'.$event->getId(),
+                'url' => 'https://www.gdf-loot.fr/admin/event/'.$event->getId(),
                 'title' => implode(' + ', $raidNames) ?: 'Raid inconnu', // set the raid names as title, or use a default string if no raid is linked
             ];
         };
