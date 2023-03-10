@@ -1,7 +1,0 @@
-{{ form_start(form, {"attr" : {"novalidate": "novalidate"}}) }}
-    {{ form_widget(form) }}
-    <div class="d-flex flex-wrap justify-content-evenly">
-        <button class="button-save" title="Enregistrer">{{ button_label|default('Enregistrer') }}</button>
-        <a class="button-back" href="{{ path('app_event_list') }}" title="Retour à la liste d'évènements">Retour</a>
-    </div>
-{{ form_end(form) }}

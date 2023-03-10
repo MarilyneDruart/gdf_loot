@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Users{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="table-responsive-xl">
+        <h1>Liste des utilisateurs</h1>
+        <table class="usersListTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Pseudo</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.pseudo }}</td>
+                    <td>
+                        <a class="bottom-button-update" href="{{ path('app_admin_user_update', {'id': user.id}) }}"title="Modifier le user"><i class="bi bi-pencil"></i></a></td>
+                    </td>
+                    <td>{{ include('back/user/_delete_form.html.twig') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Pas d'enregistrements trouvés</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
