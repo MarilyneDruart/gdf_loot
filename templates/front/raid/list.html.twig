@@ -9,28 +9,30 @@
  )) }}
 </div> #}
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="1">Raid</th>
-                <th colspan="1">Stats</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for raid in raids |sort((a, b) => a.name <=> b.name) %}
+    <div class="table-responsive-xl">
+        <table>
+            <thead>
                 <tr>
-                    <td>
-                        <a href="{{ path('app_raid_show_by_slug', {'slug': raid.slug}) }}">
-                            {{raid.name}}
-                        </a>
-                    </td>
-                    <td>
-                        {{ raid.events|length }}
-                    </td>
+                    <th colspan="1">Raid</th>
+                    <th colspan="1">Stats</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for raid in raids |sort((a, b) => a.name <=> b.name) %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('app_raid_show_by_slug', {'slug': raid.slug}) }}">
+                                {{raid.name}}
+                            </a>
+                        </td>
+                        <td>
+                            {{ raid.events|length }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

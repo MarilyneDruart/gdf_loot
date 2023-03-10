@@ -357,7 +357,7 @@ table tbody tr:nth-child(odd) {
     background-color: #1b2f4ead;
 }
 
-table tbody td {
+table tbody td, .usersListTable tbody tr {
     padding: 0 1rem;
     color: white;
     vertical-align: middle;
@@ -375,6 +375,8 @@ table tbody td {
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
 }
+
+
 
 /* ---------------------- accordions ---------------------- */
 
