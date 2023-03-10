@@ -15,26 +15,28 @@
             <h2>Pas de données</h2>
             </div>
         {% else %}
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="1">Dates</th>
-                        <th colspan="1">Stats</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for events in raid.events %}
-                    <tr>
-                        <td>
-                            <a href="{{ path('app_admin_event_read', {'id': events.id}) }}" target="_blank">
-                                {{ events.date ? events.date|date('d M Y - H:i') : ''  }}</br>
-                            </a>
-                        </td>
-                        <td>Ø</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-responsive-xl">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="1">Dates</th>
+                            <th colspan="1">Stats</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for events in raid.events %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('app_admin_event_read', {'id': events.id}) }}" target="_blank">
+                                    {{ events.date ? events.date|date('d M Y - H:i') : ''  }}</br>
+                                </a>
+                            </td>
+                            <td>Ø</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% endif %}
     </div>
 </div>

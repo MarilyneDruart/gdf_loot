@@ -11,42 +11,44 @@
 <div class="container">
 
     <div class="left-container">
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="1">Date</th>
-                    <th colspan="1">Raid</th>
-                    <th colspan="1">Item NM</th>
-                    <th colspan="1">Item HM</th>
-                    <th colspan="1">Item Contested</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for loot in lootHistories %}
-                <tr>
-                    <td>{{ loot.date ? loot.date|date('d M Y - H:i') : '' }}</td>
-                    <td>{{ loot.raid }}</td>
-                    {% if loot.type == "NM" %}
-                    <td>{{ loot.item }}</td>
-                    {% else %}
-                    <td></td>
-                    {% endif %}
-                    {% if loot.type == "HM" %}
-                    <td>{{ loot.item }}</td>
-                    {% else %}
-                    <td></td>
-                    {% endif %}
-                    {% if loot.type == "Contested" %}
-                    <td>{{ loot.item }}</td>
-                    {% else %}
-                    <td></td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="bottom-button d-flex flex-wrap justify-content-evenly">
-            <a class="bottom-button-back" href="{{ path('app_player_list') }}">Retour</a>
+        <div class="table-responsive-xl">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="1">Date</th>
+                        <th colspan="1">Raid</th>
+                        <th colspan="1">Item NM</th>
+                        <th colspan="1">Item HM</th>
+                        <th colspan="1">Item Contested</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loot in lootHistories %}
+                    <tr>
+                        <td>{{ loot.date ? loot.date|date('d M Y - H:i') : '' }}</td>
+                        <td>{{ loot.raid }}</td>
+                        {% if loot.type == "NM" %}
+                        <td>{{ loot.item }}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        {% if loot.type == "HM" %}
+                        <td>{{ loot.item }}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        {% if loot.type == "Contested" %}
+                        <td>{{ loot.item }}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="bottom-button d-flex flex-wrap justify-content-evenly">
+                <a class="bottom-button-back" href="{{ path('app_player_list') }}">Retour</a>
+            </div>
         </div>
     </div>
     <div class="right-container">

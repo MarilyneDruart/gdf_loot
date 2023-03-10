@@ -9,36 +9,38 @@
  )) }}
 </div>
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="1">Id</th>
-                <th colspan="1">Item</th>
-                <th colspan="1">Emplacement</th>
-                <th colspan="1">Raid</th>
-                <th colspan="1">Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items |sort((a, b) => a.name <=> b.name) %}
+    <div class="table-responsive-xl">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{item.id}}</td>
-                    <td>
-                        <a href="{{item.detail}}" target="_blank" title="Voir le détail">
-                            {{item.name}}
-                        </a>
-                    </td>
-                    <td>
-                    {% for slots in item.slots %}
-                        {{ slots.name }}</br>
-                    {% endfor %}
-                    </td>
-                    <td>{{item.raid.name}}</td>
-                    <td>{{item.type}}</td>
+                    <th colspan="1">Id</th>
+                    <th colspan="1">Item</th>
+                    <th colspan="1">Emplacement</th>
+                    <th colspan="1">Raid</th>
+                    <th colspan="1">Type</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for item in items |sort((a, b) => a.name <=> b.name) %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>
+                            <a href="{{item.detail}}" target="_blank" title="Voir le détail">
+                                {{item.name}}
+                            </a>
+                        </td>
+                        <td>
+                        {% for slots in item.slots %}
+                            {{ slots.name }}</br>
+                        {% endfor %}
+                        </td>
+                        <td>{{item.raid.name}}</td>
+                        <td>{{item.type}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}
