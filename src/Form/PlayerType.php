@@ -2,16 +2,17 @@
 
 namespace App\Form;
 
-use App\Entity\Event;
 use App\Entity\Item;
-use App\Entity\Player;
 use App\Entity\Role;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Event;
+use App\Entity\Player;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class PlayerType extends AbstractType
 {
@@ -43,6 +44,10 @@ class PlayerType extends AbstractType
                 ],
             ])
             ->add('isActif')
+            ->add('score', NumberType::class, [
+                'label' => 'score',
+                'required' => 'true',
+            ])
             ->add('role',
             EntityType::class, [
                 'class' => Role::class,
