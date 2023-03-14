@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Recherche{% endblock %}
+
+{% block body %}
+
+{% if app.request.method == 'POST' %}
+<div>
+    {% if items | length == 0 %}
+    <h4>Aucun résulat pour votre recherche.</h4>
+    {% else %}
+    <h3 class="result-bar-title">Résulats :</h3>
+    <div class="table-responsive-xl">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="1">Id</th>
+                    <th colspan="1">Item</th>
+                    <th colspan="1">Emplacement</th>
+                    <th colspan="1">Raid</th>
+                    <th colspan="1">Type</th>
+                    <th colspan="1">Modifier</th>
+                    <th colspan="1">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items |sort((a, b) => a.name <=> b.name) %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>
+                        <a href="{{item.detail}}">
+                            {{item.name}}
+                        </a>
+                    </td>
+                    <td>
+                        {% for slots in item.slots %}
+                        {{ slots.name }}</br>
+                        {% endfor %}
+                    </td>
+                    <td>{{item.raid.name}}</td>
+                    <td>{{item.type}}</td>
+                    <td><a class="bottom-button-update" href="{{ path('app_admin_item_update', {'id': item.id}) }}"
+                            title="Modifier l'item"><i class="bi bi-pencil"></i></a></td>
+                    <td>{{ include('back/item/_delete_form.html.twig') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+{% endif %}
+
+{% endblock %}
